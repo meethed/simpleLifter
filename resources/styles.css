@@ -1,0 +1,705 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+:root {
+ --background: #123;
+ --border:     #234;
+ --text  :     #777;
+ --button  :   #abc;
+ --hover:      #8af;
+ --selected:   #fff;
+}
+
+
+
+.rBut {
+z-index: 99;
+width: 90%;
+border: 3px solid white;
+border-radius: 15px;
+margin-top: 6%;
+margin-bottom: 6%;
+font-size: 128px;
+font-size: 6vh;
+display: inline-block;
+user-select: none;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+color: #000;
+}
+
+
+.clear {
+display: inline-block;
+background: #444;
+}
+
+#timer2 {
+width: 10%;
+margin: 15px;
+}
+/* main stuff */
+body {
+background: #000;
+font-family: 'Roboto Condensed';
+text-align: center;
+letter-spacing: 0px;
+color: var(--text);
+overflow-y: auto;
+overflow-x: hidden;
+margin: auto;
+padding: 0;
+width: 100vw;
+height: -webkit-fill-available;
+height: 100vh;
+}
+
+/* format buttons */
+.btn {
+cursor: pointer;
+color: var(--button);
+text-decoration: none;
+font-family: inherit;
+font-size: 2em;
+border-radius: 25px;
+}
+
+/*and input things */
+.aninput {
+font-size: inherit;
+font-family: inherit;
+margin: 15px 0 15px 0;
+max-width: 80%;
+}
+
+.btn:hover {
+background: #fff;
+}
+.btn:active {
+background: #28f;
+}
+
+h1 { /* header one size */
+margin: 0;
+font-size: 96px;
+font-size: 5vh;
+font-weight: bold;
+}
+h2 { /*header two size */
+border-top: solid 3px;
+margin: 0 0 2vh 0;
+font-size: 72px;
+font-size: 2.5vh;
+font-weight: bold;
+}
+a:link, a:visited {
+padding: 0px 30px 0px 30px;
+background: #000;
+text-align: center;
+text-decoration: none;
+display: inline;
+color: var(--text);
+}
+a:hover, a:active {
+background: var(--text);
+color: #000;
+}
+/*container for a text box */
+.containertb {
+position: relative;
+width: 85%;
+padding: 5px;
+margin: auto;
+margin-top: 10px;
+border: 5px;
+border-style: solid;
+border-color: var(--border);
+background: var(--background);
+font-size: 96px;
+font-size: 3vh;
+border-radius:10px;
+}
+
+
+/*container for a bigger text box in the comp setup window */
+.containerntb {
+display: none;
+position: absolute;
+z-index: 1;
+left: 5%;
+top: 5%;
+width: 90%;
+height: auto;
+padding: 5px;
+margin: auto;
+border: 5px;
+border-style: solid;
+border-color: var(--border);
+background: var(--background);
+font-size: 96px;
+font-size: 3vh;
+border-radius: 10px;
+}
+
+.backdrop {
+position: fixed;
+display: none;
+width: 100%;
+height: 100%;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: rgba(0,0,0,0.9);
+z-index: 1;
+cursor: pointer;
+}
+
+/* nice box just to add a border to some elements */
+.nicebox {
+border: 3px solid var(--text);
+border-radius: 10px;
+margin: 30px 5px 30px 5px;
+padding: 5px;
+font-size: 96px;
+font-size: 3vh;
+}
+.closer {
+position: absolute;
+right: 0;
+top: 0;
+border-radius: 5px;
+}
+
+.nicebox p {
+font-size: 72px;
+font-size: 2vh;
+padding: 3px 10px 3px 10px;
+}
+
+.nicebox input {
+font-size: 76px;
+font-size: 3vh;
+}
+
+#radioContainer {
+position: absolute;
+top: 1%;
+left: 12.5%;
+}
+#compContainer {
+}
+#allContainer {
+height: 100%
+}
+
+/* Customize the radio button label (the container) */
+
+.container {
+  width: 75%;
+  display: inline-block;
+  position: relative;
+  padding-left: 0px;
+  margin-bottom: 0px;
+  cursor: pointer;
+  color: var(--text);
+  font-size: 76px;
+  font-size: 3vh;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom radio button */
+
+.checkmark {
+  position: absolute;
+  top: 25%;
+  left: -15%;
+  height: 2vh;
+  width: 2vh;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+
+.container:hover input ~ .checkmark {
+  background-color: var(--hover);
+}
+
+/* When the radio button is checked, add a blue background */
+
+.container input:checked ~ .checkmark {
+  background-color: var(--selected);
+}
+
+
+.checkmark:after {
+ content: "";
+ position: absolute;
+ display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+ display: block;
+}
+
+.container .checkmark:after {
+ top: 20%;
+ left: 20%;
+ width: 60%;
+ height: 60%;
+ border-radius: 50%;
+ background: #123;
+}
+
+/*the scrollable div for selecting the comp */
+.scrollme {
+width: 100%;
+height: 85%;
+margin-top: 20px;
+}
+
+.warning { /*to let people know it connected */
+display: none;
+bottom: 0;
+left: 0;
+font-size: 20px;
+font-size: 1vh;
+position: fixed;
+}
+
+#connection {
+display: inline;
+}
+/******************************************************************/
+
+
+/* this is where the lights are */
+.round {
+    background-color: #123456;
+    display: inline-block;
+    width: 100%;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.5s; 
+    padding-top: 100%;
+height: auto; /*take off a few percent cause it's 32% not 33.3% */
+
+}
+
+/* containers for the lights */
+
+
+#Lights {
+position: relative;
+left: 0;
+width: 100%;
+padding: 0;
+margin: 0;
+}
+#bigLights {
+width: 90%;
+display: inline-block;
+}
+#smolLights {
+display: inline-block;
+height: 100%; /* this is cause it'll fill up the rest of the screen it's all g */
+position: relative;
+width: 65%;
+top: 0;
+
+}
+
+.lightContainer {
+width: 32%;
+position: relative;
+display: inline-block;
+}
+
+.sLight {
+position: relative;
+display: inline-block;
+width: 29%;
+}
+/*formatting for the timer */
+
+#timer {
+z-index: -1;
+font-size: 256px;
+font-size: 24vw;
+position: absolute;
+top: 17%;
+left: 17%;
+opacity: 0;
+font-family: "Orbitron";
+}
+#timer.visible {
+opacity: 1;
+}
+
+#secondTimerDiv { /*silly name cause i have duplicate IDs */
+font-family: "Orbitron";
+font-size: 96px;
+font-size: 8vw;
+position: fixed;
+bottom: 5%;
+left: 5%;
+height: fit-content;
+opacity: 0;
+transform: translate(0%,0%);
+transition: all 1s;
+}
+#secondTimerDiv.visible {
+opacity: 1;
+}
+#secondTimerDiv.central {
+left: 17%;
+top: 17%;
+position: absolute;
+font-size: 24vw;
+transition: all 1s;
+}
+
+
+
+/* different colours for the light circles */
+.white {
+background: radial-gradient(#fff 40%, #000 85%);
+background-color: #fff;
+opacity: 1;
+
+}
+.red {
+background: radial-gradient(#f00 40%, #000 85%);
+background-color: #f00;
+opacity: 1;
+
+}
+.blue {
+background: radial-gradient(#00f 40%, #000 85%);
+background-color: #00f;
+opacity: 1;
+
+}
+.yellow {
+background: radial-gradient(#ff0 40%, #000 85%);
+background-color: #ff0;
+opacity: 1;
+
+}
+.pending {
+background: radial-gradient(#0f0 , rgba(0,0,0,0) 30%, rgba(0,0,0,0) 100%);
+width: 100%;
+height: 100%;
+opacity: 1;
+}
+
+.visible {
+opacity: 1;
+transition: opacity 0.3s;
+}
+
+
+
+[id$="Ref"] {
+opacity: 0;
+}
+[id$="Ref"].visible {
+opacity: 1;
+}
+
+#Attempt {
+background-color: #632;
+}
+
+#White {
+background-color: #eee;
+}
+
+#Red {
+background-color: #c00;
+}
+
+#Yellow {
+background-color: #fc0;
+}
+
+#Blue {
+background-color: #00c;
+}
+
+#Loaded {
+background-color: #4a4;;
+}
+
+#Loaded.dn,#White.dn,#Red.dn,#Blue.dn,#Yellow.dn {
+background-color: #fff;
+transform: rotatex(-180deg);
+}
+
+@media screen and (min-width:1200px) {
+.containertb {
+width: 70%;
+}
+.containerntb {
+width: 55%;
+left: 50%;
+transform: translateX(-50%);
+}
+
+.container {
+  width: 75%;
+}
+}
+
+/* help for referees */
+.containerhelp {
+ display: inline-block;
+ opacity: 0;
+ width: 80%;
+ background: #444;
+ border: solid 3px var(--text);
+ color: var(--text);
+ transition: all 0.4s;
+ overflow: hidden;
+ border-radius: 15px;
+}
+.containerhelp.visible {
+ opacity: 1;
+ transition: all 0.4s;
+}
+
+
+li {
+font-size: 48px;
+font-size: 3vh;
+text-align: left;
+padding: 10px;
+}
+
+ol li {
+font-size: 36px;
+font-size: 2vh;
+}
+
+h2 {
+text-shadow: solid 2px;
+font-size: 64px;
+font-size: 4vh;
+
+}
+
+.containerhelp p {
+font-size: 3vh;
+}
+
+.helpBtn {
+background: var(--background);
+width: 90%;
+margin: 10px 0px 10px 0px;
+font-size: 6vh;
+color: #fff;
+border: solid var(--border);
+border-radius: 10px;
+}
+	
+#heartbeat{
+opacity:0;
+transition: all 15s;
+width: 100%;
+height: 100%;
+}
+
+#heartbeat.heartbeat {
+opacity: 1;
+transition: all 15s;
+
+}
+/* this is for the changing attempt ticker */
+
+
+@keyframes tickerh {
+0%   { transform: translate3d(100%, 0,0);}
+100% {transform: translate3d(-200%,0,0);}
+
+}
+.tickerwrap {
+opacity: 0;
+position: fixed;
+top: 5%;
+width: 100%;
+overflow: hidden;
+}
+.ticker {
+display: flex;
+white-space: nowrap;
+animation: tickerh linear 30s infinite;
+}
+
+
+.tickerwrap.ticking {
+opacity: 1;
+}
+
+.tickercontent {
+font-size: 10vh;
+flex-shrink: 0;
+width: 100%;
+box-sizing: border-box;
+padding: 10px;
+text-align: center;
+color: #fff;
+}
+
+
+/* hamburger menu */
+
+.dropDown {
+width:70%;
+position: fixed;
+right: 15%;
+top: 6em;
+background: #333;
+border: 3px solid;
+border-radius: 15px;
+transition: all 0.5s;
+overflow:hidden;
+opacity: 0;
+height: 0px;
+}
+
+.dropDown.showMenu {
+color: #fff;
+display: fixed;
+width: 70%;
+transition: all 0.5s;
+opacity: 0.95;
+height: auto;
+}
+
+[id$="Ref"].showMenu {
+display: none;
+}
+#Lights.showMenu{
+display: none;
+}
+.item {
+font-size: 5em;
+overflow-x:hidden;
+border: solid black 2px;
+}
+
+
+.item:hover, .item:active {
+background: #8af;
+color: #fff;
+}
+
+.plateHolder{
+	margin:auto;
+	display: inline-flex;
+	align-items:center;
+	padding:5px;
+}
+#plates{
+	padding-top:50px;
+	padding-bottom:50px;
+	padding-left:100px;
+	padding-right:100px;
+	border-radius:10px;
+	background-image: linear-gradient(#555,#333,#333,#333,#333,#333, white);
+}
+.plate{
+
+	border: 2px solid black;
+	border-radius:5px;
+	width: 95px;
+	writing-mode: vertical-rl;
+	font-size: 5em;
+	color: black;
+
+}
+
+.plateText{
+font-size:5em;
+color: black;
+}
+.p2500{
+background-image: linear-gradient(black,red,white,red,red,black);
+height: 480px;
+}
+.p2500::after{
+	content: "25";
+}
+.p2000{
+background-image: linear-gradient(black,blue,white,blue,blue,black);
+height: 480px;
+
+}
+.p2000::after{
+	content: "20";
+}
+.p1500{
+background-image: linear-gradient(black,yellow,white,yellow,yellow,black);
+height: 440px;
+}
+.p1500::after{
+	content: "15";
+}
+.p1000{
+background-image: linear-gradient(black,green,white,green,green,black);
+height: 400px;
+}
+.p1000::after{
+	content: "10";
+}
+.p500{
+background-image: linear-gradient(black,white,white,black);
+height: 360px;
+}
+.p500::after{
+	content: "5";
+}
+.p250{
+background-image: linear-gradient(#f71,#aaa,#f71);
+height: 320px;
+color: black;
+}
+.p250::after{
+	content: "2.5";
+}
+.p125{
+background-image: linear-gradient(black,grey,white,grey,black);
+height: 280px;
+}
+.p125::after{
+	content: "1.25";
+}
+.p50{
+background-image: linear-gradient(black,grey,white,grey,black);
+height: 260px;
+}
+.p50::after{
+	content: "0.5";
+}
+.p25{
+background-image: linear-gradient(black,grey,white,grey,black);
+height: 240px;
+}
+.p25::after{
+	content: "0.25";
+}
+

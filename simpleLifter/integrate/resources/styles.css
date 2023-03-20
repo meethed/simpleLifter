@@ -1,0 +1,526 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Roboto+Mono:wght@700&display=swap');
+:root {
+	--head: #69a;
+	--calc: var(--head);
+}
+body {
+	text-align: center;
+	font-family: "Roboto Condensed";
+	font-size: 1.5em;
+	width: 100%;
+	height: 100%;
+	
+}
+
+#controls {
+	
+	margin-bottom:10px;
+	display:inline-block;
+	width: auto;
+	padding-top:15px;
+	margin-left: 20px;
+	border: solid;
+	border-radius: 20px;
+	background: #ccc;
+	position: absolute;
+	top: 10px;
+	left: 5px;
+	width: 15%;
+	height: 248px;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+#compStatus {
+	float: left;
+	width: 30%;
+display:inline-block;
+}
+#statusarea {
+	width: 100%;
+	height: 280px;
+}
+#statusbar {
+	padding-top:15px;
+	display:block;
+	right:10px;
+	position: absolute;
+	border-radius:20px;
+	border: solid;
+	margin-bottom:20px;
+	height: 250px;
+	width: 80%;
+	background: #ccc;
+box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+#sheet{
+	
+	display:block;
+	width: 99%;
+}
+#tableu{
+	
+	width: auto;
+	margin:auto;
+}
+#heartbeat{
+	position:fixed;
+	bottom:0;
+	left:0;
+	font-size:0.5em;
+
+}
+.popup{
+	position:fixed;
+	left:50%;
+	top:50%;
+	transform: translate(-50%,-50%);
+	background-color: #ccc;
+	border: solid;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+	border-radius: 20px;
+	z-index:99;
+	display: none;
+}
+#menu {
+	width: 50%;
+	height: 75%;
+}
+#popupBox{
+	width: 40%;
+}
+
+#divs{}
+
+#head{
+}
+.th {
+	display: table-cell;
+	
+	border: solid 1px;
+	background-color: var(--head);
+	font-weight: bold;
+	
+}
+
+.tr {
+	display: table-row;
+
+}
+.tr::after {
+	
+}
+
+.td {
+	padding-left: 5px;
+	padding-right: 5px;
+	white-space:nowrap;
+	position:relative;
+	border: solid 1px;
+	display: table-cell;
+	background: #eee;
+}
+
+.td.act { /*active table cell */
+	background: tan;
+}
+
+td.act {
+background: tan;
+}
+
+.td.col{
+	font-weight:bold;	
+}
+.gl {
+	background-color: #0f0;
+}
+
+.nl {
+	background-color: #f00;
+}
+
+.at{
+	background-color:#eee;
+}
+
+.calc{
+	background-color: var(--calc);
+}
+
+[id^=cur] { /*anything that starts with cur */
+	display: inline-block;
+	position: relative;
+}
+#curLifter{
+	font-size:2em;
+font-weight:bold;
+white-space:nowrap;
+}
+#curAtt{
+	font-size:2em;
+	
+	display: block;
+}
+#curAtt::after{
+		content: " kg";
+}
+#curGroup{
+	width: 50px;
+}
+#staMisc{
+
+}
+
+#lightsFrame{
+	float:right;
+	width: 400px;
+	height: 225px;
+}
+.btn { /*anything that starts with btn */
+border: 2px solid black;
+border-radius:5px;
+width: auto;
+display: inline-block;
+background: #cdc;
+box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+user-select: none;
+padding-left:5px;
+padding-right: 5px;
+}
+
+.btn:hover{
+background: #efe;
+}
+
+.btn:active{
+color: #cdc;
+background: #aba;
+}
+
+.mbtn { /*anything that starts with btn */
+border: 2px solid black;
+border-radius:5px;
+width: 75%;
+display: inline-block;
+background: #cdc;
+box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+user-select: none;
+margin-top: 10px;
+}
+
+.mbtn:hover{
+background: #efe;
+}
+
+.mbtn:active{
+color: #cdc;
+background: #aba;
+}
+
+#btnGood{
+	background: limegreen;
+}
+
+#btnNo{
+	background: red;
+}
+
+#g{
+	width: 35px;
+}
+
+#l{
+	width: 35px;
+}
+#n{
+	width: 100%;
+}
+#d {
+	width: 105px;
+}
+
+#bw,#wc{
+	width: 95px;
+}
+#y,#a,#rs,#rb {
+	width: 95px;
+}
+#s1,#s2,#s3, #bs, #b1,#b2,#b3, #bb, #st,#d1,#d2,#d3, #bd, #to, #gl {
+	width: 65px;
+	min-width: 65px;
+	
+
+}
+
+/* start of the plates bit */
+
+.plateHolder{
+	float: left;
+	display: inline-flex;
+		align-items:center;
+
+}
+
+.plate{
+
+	border: 2px solid black;
+	border-radius:5px;
+	width: 56px;
+	writing-mode: vertical-rl;
+	font-size: 2em;
+	margin-right: 1px;
+
+	
+}
+
+.p2500{
+background-image: linear-gradient(black,red,white,red,red,black);
+height: 225px;
+}
+.p2500::after{
+	content: "25";
+}
+.p2000{
+background-image: linear-gradient(black,blue,white,blue,blue,black);
+height: 225px;
+
+}
+.p2000::after{
+	content: "20";
+}
+.p1500{
+background-image: linear-gradient(black,yellow,white,yellow,yellow,black);
+height: 200px;
+}
+.p1500::after{
+	content: "15";
+}
+.p1000{
+background-image: linear-gradient(black,green,white,green,green,black);
+height: 167px;
+}
+.p1000::after{
+	content: "10";
+}
+.p500{
+background-image: linear-gradient(black,white,white,black);
+height: 114px;
+}
+.p500::after{
+	content: "5";
+}
+.p250{
+background-image: linear-gradient(black,grey,black);
+height: 100px;
+color: white;
+}
+.p250::after{
+	content: "2.5";
+}
+.p125{
+background-image: linear-gradient(black,grey,white,grey,black);
+height: 90px;
+}
+.p125::after{
+	content: "1.25";
+}
+.p50{
+background-image: linear-gradient(black,grey,white,grey,black);
+height: 80px;
+}
+.p50::after{
+	content: "0.5";
+}
+.p25{
+background-image: linear-gradient(black,grey,white,grey,black);
+height: 70px;
+}
+.p25::after{
+	content: "0.25";
+	font-size: 0.75em;}
+
+h4 {font-size: 64px;} /*this will make the text on the plates display bigger and better */
+
+#lt1 {
+  position:absolute;
+  text-align: left;
+}
+#lt2 {
+  position:absolute;
+  text-align: left
+}
+
+/* end of the plates bit */
+
+.autocomplete-items{
+	font-size: 0.75em;
+	position: absolute;
+	border: 1px solid;
+	border-bottom:none;
+	border-top:none;
+	z-index:99;
+	/*make sure they're the same width as the parent*/
+	top: 100%;
+	left: -10px;
+	right:-10px;
+	
+}
+
+.autocomplete-items div{
+	padding: 10px;
+	cursor: pointer;
+	background-color:#fff;
+	border-bottom: 1px solid;
+}
+
+.autocomplete-items div:hover {
+	background-color: grey;
+	}
+	
+.autocomplete-active {
+	background-color:DodgerBlue;
+	color: #fff;
+}
+
+
+/* scoreboard table time */
+table,th,td{
+	border: 1px solid black;
+	border-collapse: collapse;
+	margin:auto;
+}
+
+table {
+	margin-top: 100px;
+}
+
+/* setup menu time */
+.cont{
+width: 90%;
+display: block;
+margin:auto;
+border-bottom: solid grey;
+margin-bottom: 10px;
+padding-bottom: 10px;
+}
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #aaa;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: black;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #69a;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #69a;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+	background-color: white;
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+input {
+	font-size: 0.9em;
+	margin-bottom:10px;
+}
+
+.btnBR{
+	float:right;
+	padding-right:10px;
+}
+
+.offGp{
+	background: #777;
+}
+#timerFrame{
+	font-family: 'Roboto Mono', monospace;
+	margin-top:40px;
+	margin-right:20px;
+	font-size:3em;
+	float:right;
+	border:solid 10px ;
+	border-radius: 20px;
+	transition: all 1s;
+	background:#777;
+}
+#timer2Frame{
+	font-family: 'Roboto Mono', monospace;
+	bottom: 20px;
+	margin-right:20px;
+	font-size:2em;
+	position: absolute;
+	right: 0px;	
+	border:solid 10px ;
+	border-radius: 20px;
+	transition: all 1s;
+	background:#777;
+}
+
+#lights{
+	font-family: 'Roboto Mono', monospace;
+	margin-top:-145px;
+	margin-right:20px;
+	
+	font-size:3em;
+	float:right;
+	border:solid 10px ;
+	border-radius: 20px;
+	transition: all 1s;
+	background-image: linear-gradient(#000,#777,#000);
+}
+
+#lightsiFrame {
+width: 20vw;
+height: 20vh;
+border-radius: 5px;
+
+}
+

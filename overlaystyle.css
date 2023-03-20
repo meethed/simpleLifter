@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@800&display=swap');
+
+:root{
+	--skewAngle: 00deg;
+	--oppAngle: 00deg;
+	--borderCol: #fff;
+	--textCol: #fff;
+	/* background colour of the overlay cells
+	#000 for standard, #045b3b for Wellington & Central and #20598e for APU NSW
+	*/
+	--mainBG: #060;
+	--attBG: #770;
+	--borderRad: 10px;
+	--borderSiz: 0px;
+	--shadowCol: rgba(0,0,0, 0.8); 
+	--borderFmt: 5px 0px 15px 0px;
+}
+
+
+body {
+font-variant: small-caps;
+word-break: break-all; word-wrap: break-word;
+transition-timing-function:linear;
+background-color: rgba(0,0,0,0);
+overflow: auto;
+color: var(--textCol);
+font-family: 'Roboto Condensed';
+font-size: 45px;
+letter-spacing: 4px;
+text-align: center;
+align-items: center;
+position: absolute;
+width: 1920px;
+height: 1080px;
+margin: 0;
+padding: 0;
+}
+
+div {
+background: linear-gradient(var(--mainBG),#000);
+border: 3px;
+border-style: solid;
+border-color: var(--borderCol);
+opacity: 0;
+transition: 1s;
+border-radius: var(--borderFmt);
+border-style: outset;
+}
+
+
+#overlay {
+background: rgba(0,0,0,0);
+border-style: none;
+display: grid;
+gap: 5px;
+grid-template-columns: 120px 120px 120px 120px 150px 240px;
+grid-template-rows: repeat(3,60px);
+/*grid-template-areas:
+'ln ln ln ln la l t'
+'lt lz lz cs lp . .'
+'cn cn cn cn lf . .';*/
+grid-template-areas:
+'lp cs cs lt lf  l t'
+'ln ln ln ln la lc lc'
+'lz lz cn cn cn . .';
+position: absolute;
+bottom: 10px;
+left: 20px;
+}
+
+#overlay.centre {
+left: 505px;
+}
+
+#lifterName {
+grid-area: ln;
+background-color: #666;
+box-shadow: 5px 5px 15px black;
+
+}
+#lifterState {
+grid-area: lt;
+box-shadow: 5px 5px 15px black;
+
+}
+#lifterAttempt {
+grid-area: la;
+background: linear-gradient(#FFF, #777);
+color: #000;
+font-size: 30px;
+font-weight: bold;
+padding-top: 7px;
+box-shadow: 5px 5px 15px black;
+
+}
+#lifterPTotal {
+grid-area: lp;
+font-size: 20px;
+box-shadow: 5px 5px 15px black;
+
+}
+#lifterBW {
+grid-area: lw;
+box-shadow: 5px 5px 15px black;
+
+}
+#lifterClass {
+grid-area: lc;
+font-size: 25px;
+box-shadow: 5px 5px 15px black;
+
+}
+#lifterCat {
+grid-area: lz;
+font-size: 20px;
+overflow: hidden;
+box-shadow: 5px 5px 15px black;
+
+}
+#lifterFlight {
+grid-area: lf;
+box-shadow: 5px 5px 15px black;
+display: none;
+}
+#compStatus {
+grid-area: cs;
+font-size: 40px;
+box-shadow: 5px 5px 15px black;
+
+}
+
+#compName {
+grid-area: cn;
+box-shadow: 5px 5px 15px black;
+font-size: 20px;
+word-break: normal;
+word-wrap: normal;
+
+}
+#lights {
+font-size: 38px;
+grid-area: l;
+border-style: none;
+background: none;
+
+}
+#timer {
+border-style: none;
+background: none;
+grid-area: t;
+text-align: left;
+font-family: 'Orbitron';
+overflow: hidden;
+width: 150px;
+left: -200px;
+position: absolute;
+}
+#lightsContainer {
+grid-area: lc;
+background: #000;
+max-width: 0%;
+transition-delay: 1s;
+box-shadow: 5px 5px 15px black;
+overflow: hidden;
+}
+#lightsContainer.visible {
+max-width: 100%;
+}
+
+div.visible {
+opacity: 1;
+transition: 1s;
+display: inline;
+}
+
+#lightscontainer.always {
+max-width: 100%;
+transition-delay: 0s;
+opacity: 1;
+display: inline;
+}
+
+#lights.always {
+display: inline;
+}
+
+#timer.always {
+display: inline;
+}
+

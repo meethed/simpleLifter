@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head><title>Lights</title>
+	<link rel="stylesheet" href="lightStyles.css">
+<head>
+<body>
+<div id="loadedtext"><h1>Bar Loaded</h1></div>
+<div id="Lights">
+	<div id="bigLights">
+		<div id="bigL" class="lightContainer">
+    	<div class="round" id="choiceL"></div>
+    </div>
+    <div id="bigC" class="lightContainer">
+    	<div class="round" id="choiceC"></div>
+    </div>
+    <div id="bigR" class="lightContainer">
+    	<div class="round" id="choiceR"></div>
+		</div>
+	</div>
+	<div id="smolLights">
+		<div class="sLight">
+			<div class="round" id="failL"></div>
+		</div>
+		<div class="sLight">
+			<div class="round" id="failC"></div>
+		</div>
+		<div class="sLight">
+			<div class="round" id="failR"></div>
+		</div>
+		</div>
+	</div>
+	<div id="timer">1:00</div>
+	<div id="secondTimerDiv">10:00</div>
+</div>
+
+<div class="tickerwrap" id="tickerw">
+	<div class="ticker" id="ticker"></div>
+</div>
+<div class="plateholder" id="plates"></div>
+<div id="nextdiv"><h1 id="nexttext"></h1></div>
+</body>
+<script>
+const globalplates=[25,20,15,10,5,2.5,1.25,0.5,0.25];
+var
+bigLights=document.getElementById("bigLights"),
+smolLights=document.getElementById("smolLights"),
+choiceL=document.getElementById("choiceL"),
+choiceC=document.getElementById("choiceC"),
+choiceR=document.getElementById("choiceR"),
+failL=document.getElementById("failL"),
+failC=document.getElementById("failC"),
+failR=document.getElementById("failR"),
+timer=document.getElementById("timer"),
+timer2=document.getElementById("secondTimerDiv");
+ticker = document.getElementById("ticker");
+setLights([0,0,0]);
+function setLights(l){
+	if (l.every(x => x==0)) { //if everything is off
+		bigLights.classList.remove("visible");
+		smolLights.classList.remove("visible");
+		choiceL.className="round";
+		choiceC.className="round";
+		choiceR.className="round";
+		failL.className="round";
+		failC.className="round";
+		failR.className="round";
+		document.getElementById("Lights").style.display="none";
+	} else //end all off
+			document.getElementById("Lights").style.display="block";
+			document.getElementById("plates").style.display="none";
+		if (l.every(x => x==1)) { //if they're all white
+
+		choiceL.className="round";
+		choiceC.className="round";
+		choiceR.className="round";
+		failL.className="round";
+		failC.className="round";
+		failR.className="round";
+
+		choiceL.classList.add("white");
+		choiceC.classList.add("white");
+		choiceR.classList.add("white");
+
+		bigLights.classList.add("visible");
+		smolLights.classList.remove("visible");
+	} else
+	if (l.every(x => x>=1)) { //if they're all on but not all white
+		choiceL.className="round";
+		choiceC.className="round";
+		choiceR.className="round";
+		failL.className="round";
+		failC.className="round";
+		failR.className="round";
+
+		if (l[0]>1) {choiceL.classList.add("red"); failL.classList.add(gc(l[0])) } else choiceL.classList.add("white");
+		if (l[1]>1) {choiceC.classList.add("red"); failC.classList.add(gc(l[1])) } else choiceC.classList.add("white");
+		if (l[2]>1) {choiceR.classList.add("red"); failR.classList.add(gc(l[2])) } else choiceR.classList.add("white");
+
+		bigLights.classList.add("visible");
+		smolLights.classList.add("visible");
+	} else
+	{	//if they're not all on or all off
+		clearTimer1();
+		choiceL.className="round";
+		choiceC.className="round";
+		choiceR.className="round";
+		failL.className="round";
+		failC.className="round";
+		failR.className="round";
+
+		bigLights.classList.add("visible");
+		if (l[0]) {choiceL.classList.add("pending");}
+		if (l[1]) {choiceC.classList.add("pending");}
+		if (l[2]) {choiceR.classList.add("pending");}
+	} 
+}
+
+function gc(c) {
+	switch (c) {
+
+		case 2:
+		return "red";
+		break;
+		case 3:
+		return "yellow";
+		break;
+		case 4:
+		return "blue";
+		break;
+		default:
+		return "red";
+		break;
+	}
+}
+
+function rdy() {
+	return 1;
+} //end fuinction rdy
+
+function clearTimer1() {
+	timer.classList.remove("visible");
+} //end function clearTimer
+
+function clearTimer2() {
+	timer2.classList.remove("visible");
+} //end function clear timer 2
+
+function setTimer1(c) {
+	timer.innerHTML="0:"+c;
+
+	if (c>30) timer.style.color="white";
+  if (c>10 && c<30) timer.style.color="orange";
+  if (c<=10) timer.style.color="red"
+	if (c>0) timer.classList.add("visible");
+	if (c<=0) timer.classList.remove("visible");
+
+} //end function setTimer
+
+function setTimer2(c) {
+	timer2.innerHTML="0:"+c;
+
+	if (c>30) timer2.style.color="white";
+  if (c>10 && c<30) timer2.style.color="orange";
+  if (c<=10) timer2.style.color="red"
+	if (c>0) timer2.classList.add("visible");
+	if (c<=0) timer2.classList.remove("visible");
+
+
+} //end function setTimer2
+
+function setBarLoaded() {
+	document.getElementById("loadedtext").innerHTML="Bar Loaded";
+	//timer.innerHTML="0:59";
+	timer.classList.add("visible");
+}
+
+function drawPlates(w){
+	document.getElementById("Lights").style.display="none";
+  plateDiv=document.getElementById("plates");
+  plateDiv.style.display="inline-flex";
+  var c=plateDiv.lastElementChild;
+  while (c) {
+    plateDiv.removeChild(c);
+    c=plateDiv.lastElementChild;
+  }
+  if (!w) return false;
+  var plates=getPlates(w);
+
+  for (i=0;i<plates.length;i++){
+    var weight=globalplates[i];
+    if (plates[i]>0){
+      var plateHolder=document.createElement("div");
+      plateHolder.id="plateHolder"+weight;
+      plateHolder.classList.add("plateHolder");
+      plateDiv.appendChild(plateHolder);
+
+      for (c=0;c<plates[i];c++){
+        var plate=document.createElement("div");
+        plate.id=i+"plate"+c;
+        plate.classList.add("plate");
+        plate.classList.add("p"+weight*100);
+        //plate.innerHTML=weight=" - " + c;
+        plateHolder.appendChild(plate);
+
+      } //end add multiple plates loop
+
+      if (i==0) {var text=document.createElement("div"); //if>
+      text.innerHTML=plates[i]+"x";
+      text.classList.add("plateText");
+      plateHolder.prepend(text); }
+    }
+  }
+} //end function drawPlates
+
+
+function clearPlates() {
+document.getElementById("plateholder").style.display="none";
+}
+
+function getPlates(w){
+	w=w-25;
+
+	var plateCount=[];
+
+	globalplates.forEach((x) => {
+		var plate=Math.floor(w/(x*2));
+		w=w-x*plate*2;
+		plateCount.push(plate);
+	});
+	return plateCount
+} //end getPlates
+
+function updateNext(n,l,w,r) {
+var nextPlates=getPlates(w);
+var plateString="";
+
+nextPlates.forEach((x,id) => {
+	if (x>1) {plateString+=x + "x" + globalplates[id]+" | "} else
+	if (x>0) {plateString+=globalplates[id] + " | "}
+	
+	});
+
+document.getElementById("nexttext").innerHTML="Next: "+n+" | Lot: " + l + " | Rack: " + r + "<br>"+ plateString;
+} //end function nextPlates
+
+
+</script>
+</html>
+

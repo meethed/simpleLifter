@@ -1,0 +1,168 @@
+select {
+	appearance: none;
+	border: none;
+}
+body {
+	text-align: center;
+	font-family: "Roboto Condensed";
+}
+
+/*Header Container */
+#headerContainer {
+	text-align: left;
+}
+
+/*Table Container */ 
+#compContainer {
+	display: table;
+}
+/* Table Header */
+.tabHead {
+	display: inline-block;
+	border: solid 1px;
+		padding: 2px;
+		display: table-cell;
+		background: #5B9BD5;
+}
+/*Table Row */
+.tabRow {
+	display: table-row;
+	padding: 2px;
+	height: 20px;
+	
+}
+/*Table Cell */
+.tabCell {
+	border: solid 1px;
+	display: table-cell;
+	padding: 2px;
+}
+
+
+/* Input Block */
+.textIn {
+	border: none;
+	width: 95%;
+	background: rgba(0,0,0,0);
+	text-align: center;
+}
+/* Read Only Block */
+.ro {
+	background: #5B9BD5;
+}
+
+/*last two rows */
+.total{
+	background: #aef;
+	
+}
+.gb {
+width: 100%;
+height: 100%;
+}
+
+
+.goodLift {
+	background: rgba(0,255,0,1);
+	
+}
+
+.noLift {
+	background: rgba(255,0,0,1);
+	
+}
+
+.disabled {
+	background: rgba(127,127,127,1);
+}
+
+.hide {
+	display: none;
+	
+}
+
+
+
+
+
+
+
+/* UI */
+
+
+/* Dropdown Button */
+.dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+
+/* plates & containers */
+#row1 {
+ display: flex;
+}
+#status {
+ display: flex;
+ flex: 1;
+}
+#plates {
+ display: flex;
+ flex: 2;
+}
+
+.plate {
+ width: 50px;
+ height: 100%;
+}
+
+.p250 {background-color: #f00;}
+.p200 {background-color: #00f;}
+.p150 {background-color: #ff0;}
+.p100 {background-color: #0f0;}
+ .p50 {background-color: #fff;}
+ .p25 {background-color: #777;}
+ .p125{background-color: #888;}
+ .p10 {background-color: #666;}
+ .p05 {background-color: #999;}
+ .p025{background-color: #777;}
+
+

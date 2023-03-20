@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+body {
+width: 100%;
+height: 100%;
+overflow: hidden;
+background: #000;
+color: white;
+font-family: "Roboto Condensed";
+font-size: 3em;
+}
+* {
+transition: 0.5s;
+}
+
+#lifterInfo {
+border: 5px solid #222c5f;
+border: 5px solid white;
+padding: 20px;
+border-radius: 10px;
+position: fixed;
+top: 20%;
+bottom: 20%;
+width: 50%;
+transform: skew(-5deg);
+background-image: linear-gradient(to right, #134, black);
+animation-name: slidey;
+animation-duration: 10s;
+animation-fill-mode: forwards;
+animation-iteration-count: 1;
+box-shadow: 0px 0px 50px 20px #134;
+}
+
+@keyframes slidey {
+0%   {left: -200%; transform: rotate(-180deg) skew(-10deg); opacity: 0.5;}
+15%  {left: 25%; transform: rotate(0deg) skew(-10deg); opacity: 0.95;}
+90%  {left: 25%; transform: rotate(0deg) skew(-10deg); opacity: 0.95;}
+100%  {left: 200%; transform: rotate(180deg) skew(-10deg); opacity: 0.0;}
+}
+
+.lbl, .inf {
+display: inline;
+transform: skew(10deg);
+}
+
+.lbl {
+color: #17a;
+}
+.inf {
+color: #fff;
+}
+.cnt {
+
+}
+
+#lifterName {
+font-size: 2em;
+font-variant: small-caps;
+}
+
+#lifterInfo.visible{
+opacity: 1;
+left: 0px;
+}
+#lifterAttempt {
+background-image: linear-gradient(to right,#134,black);
+padding: 5px;
+border: 3px solid white;
+border-radius: 10px;
+width: 50%;
+position: fixed;
+bottom: 50px;
+opacity: 0;
+left: 50%;
+transform: translateX(-50%) skew(-10deg);
+}
+
+#lifterAttempt.visible {
+opacity: 1;
+transition: 1s;
+}
+
+.info {
+transform: skew(10deg);
+}
+
+.num {
+display: inline-block;
+border: 3px solid white;
+border-radius: 5px;
+}
+
+#attemptName {
+font-size: 0.8em;
+line-height: 0.2;
+margin-top: 12px;
+font-variant: small-caps;
+}
+
+#attemptNum1,#attemptNum2,#attemptNum3 {
+display: block;
+width: 100px;
+text-align: center;
+font-size: 0.55em;
+}
+
+.gd {
+border-color: #0f0;
+background: #070;
+color: #010;
+}
+
+.bd {
+border-color: #f00;
+background: #700;
+color: #100;
+}
+
+.at {
+background: #777;
+color: #000;
+}
+
+#lt {
+background: rgba(0,0,0,0);
+border: none;
+border-radius:5px;
+transform: skew(10deg);
+height: 109px;
+width: 200px;
+position: absolute;
+right: 20px;
+bottom: 5px;
+
+}
+
+#attemptGouge {
+font-size: 0.5em;
+}
+
+#attemptTot {
+text-align: center;
+font-size: 0.55em;
+}
+
+#cTot {
+position: absolute;
+top: 50%;
+right: 40%;
+width: 100px;
+padding-left: 10px;
+padding-right: 10px;
+transform: translateY(-50%);
+}
