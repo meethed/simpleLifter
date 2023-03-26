@@ -73,7 +73,7 @@ fetch("saveload.php?q=loadlifter&comp=<?php echo $compLetters; ?>").then(respons
 		makeTableu(data);
 	}
 });
-// one second per lifter
+// one and a half seconds per lifter
 if (setup) refreshInterval = (setup.lifterCount-document.getElementById("tableu").rows.length) * 1500;
 timerRefresh=setTimeout(fRef,refreshInterval);
 }
@@ -82,7 +82,7 @@ function makeTableu(lifters) {
 if (lifters=="") return;
 if (!setup) return;
 oldJSON=lifters;
-lifters = Object.entries(lifters);
+lifters = lifters.liftList;
 
 var r=0;
 var c=0;
@@ -98,7 +98,6 @@ while (document.getElementById("tableu").rows.length>1) {
 	document.getElementById("tableu").deleteRow(-1);
 }
 
-	//TODO rotate flights
 	// if there's more than one full flight (14) then we need to rotate
 	// this will ensure there isn't just too much information on the screen
 	// to do this, we'll do some simple if/then and swap
@@ -110,135 +109,135 @@ while (document.getElementById("tableu").rows.length>1) {
 
 
 
-for (c=0;c<len-3;c++) {
+for (c=0;c<len;c++) {
 	isActive=0;
 	r=0; //reset the lifters array row counter
-	while (c!=lifters[r][1].sortOrder) {r++; } //arrange by sortorder (ie the current competition lifting order
+	while (c!=lifters[r].sortOrder) {r++; } //arrange by sortorder (ie the current competition lifting order
 
 	//this is the code to skip a lifter
 	if (showGp!=0) //if it's not zero means we need to skip some
 	 if (showGp=="ZZ") {
-	   if (lifters[r][1].group==activeGp) {continue};
+	   if (lifters[r].group==activeGp) {continue};
 	 } else {
-	   if (lifters[r][1].group!=activeGp) {continue};
+	   if (lifters[r].group!=activeGp) {continue};
 	 }
 	newRow=document.createElement("tr");
-	if (lifters[r][1].act!=0 && lifters[r][1].name!="") isActive=1;
+	if (lifters[r].act!=0 && lifters[r].name!="") isActive=1;
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].group;
-		if (lifters[r][1].group!=activeGp) newCol.classList.add("offGp");
+		newCol.innerHTML=lifters[r].group;
+		if (lifters[r].group!=activeGp) newCol.classList.add("offGp");
 		if (isActive) newCol.classList.add("act");
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].lot;
+		newCol.innerHTML=lifters[r].lot;
 		if (isActive) newCol.classList.add("act");
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].name;
+		newCol.innerHTML=lifters[r].name;
 		if (isActive) newCol.classList.add("act");
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].team;
+		newCol.innerHTML=lifters[r].team;
 		if (isActive) newCol.classList.add("act");
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=ageDiv(lifters[r][1].year);
+		newCol.innerHTML=ageDiv(lifters[r].year);
 		if (isActive) newCol.classList.add("act");
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].division;
+		newCol.innerHTML=lifters[r].division;
 		if (isActive) newCol.classList.add("act");
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].bw;
+		newCol.innerHTML=lifters[r].bw;
 		if (isActive) newCol.classList.add("act");
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=weightClass(lifters[r][1].bw,lifters[r][1].division,lifters[r][1].year);
+		newCol.innerHTML=weightClass(lifters[r].bw,lifters[r].division,lifters[r].year);
 		if (isActive) newCol.classList.add("act");
 		newRow.appendChild(newCol);
 
 	//squat
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].sq.a1;
-		newCol.classList.add(gna(lifters[r][1].sq.s1));
+		newCol.innerHTML=lifters[r].sq.a1;
+		newCol.classList.add(gna(lifters[r].sq.s1));
 		if (activeCol==10) newCol.style.fontWeight="bold";
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].sq.a2;
-		newCol.classList.add(gna(lifters[r][1].sq.s2));
+		newCol.innerHTML=lifters[r].sq.a2;
+		newCol.classList.add(gna(lifters[r].sq.s2));
 		if (activeCol==11) newCol.style.fontWeight="bold";
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].sq.a3;
-		newCol.classList.add(gna(lifters[r][1].sq.s3));
+		newCol.innerHTML=lifters[r].sq.a3;
+		newCol.classList.add(gna(lifters[r].sq.s3));
 		if (activeCol==12) newCol.style.fontWeight="bold";
 		newRow.appendChild(newCol);
 
 //bench
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].bp.a1;
-		newCol.classList.add(gna(lifters[r][1].bp.s1));
+		newCol.innerHTML=lifters[r].bp.a1;
+		newCol.classList.add(gna(lifters[r].bp.s1));
 		if (activeCol==14) newCol.style.fontWeight="bold";
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].bp.a2;
-		newCol.classList.add(gna(lifters[r][1].bp.s2));
+		newCol.innerHTML=lifters[r].bp.a2;
+		newCol.classList.add(gna(lifters[r].bp.s2));
 		if (activeCol==15) newCol.style.fontWeight="bold";
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].bp.a3;
-		newCol.classList.add(gna(lifters[r][1].bp.s3));
+		newCol.innerHTML=lifters[r].bp.a3;
+		newCol.classList.add(gna(lifters[r].bp.s3));
 		if (activeCol==16) newCol.style.fontWeight="bold";
 		newRow.appendChild(newCol);
 
 //dead
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].dl.a1;
-		newCol.classList.add(gna(lifters[r][1].dl.s1));
+		newCol.innerHTML=lifters[r].dl.a1;
+		newCol.classList.add(gna(lifters[r].dl.s1));
 		if (activeCol==19) newCol.style.fontWeight="bold";
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].dl.a2;
-		newCol.classList.add(gna(lifters[r][1].dl.s2));
+		newCol.innerHTML=lifters[r].dl.a2;
+		newCol.classList.add(gna(lifters[r].dl.s2));
 
 		if (activeCol==20) newCol.style.fontWeight="bold";
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].dl.a3;
-		newCol.classList.add(gna(lifters[r][1].dl.s3));
+		newCol.innerHTML=lifters[r].dl.a3;
+		newCol.classList.add(gna(lifters[r].dl.s3));
 		if (activeCol==21) newCol.style.fontWeight="bold";
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=getTotal(lifters[r][1]);
+		newCol.innerHTML=getTotal(lifters[r]);
 		if (isActive) newCol.classList.add("act");
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=getipf(lifters[r][1]);
+		newCol.innerHTML=getipf(lifters[r]);
 		if (isActive) newCol.classList.add("act");
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		if (lifters[r][1].place) {
-		newCol.innerHTML=lifters[r][1].place;}
+		if (lifters[r].place) {
+		newCol.innerHTML=lifters[r].place;}
 		if (isActive) newCol.classList.add("act");
 		newRow.appendChild(newCol);
 
@@ -282,6 +281,7 @@ switching=true;
 
 function ageDiv(y){
 var ad;
+if (setup.openOnly) return "O";
 if (yr-y <=18) {ad="S-Jr"; return ad;}
 if (yr-y <=23) {ad="Jr"; return ad;}
 if (yr-y >=70) {ad="M4"; return ad;}
@@ -289,7 +289,6 @@ if (yr-y >=60) {ad="M3"; return ad;}
 if (yr-y >=50) {ad="M2"; return ad;}
 if (yr-y >=40) {ad="M1"; return ad;}
 return "O"
-
 
 return ad;
 }
@@ -304,7 +303,7 @@ function weightClass(bw,c,y){
         case "X": d=setup.xX; break;
         case "M":
         default:
-                  d=setup.mW; break;
+	d=setup.mW; break;
         }
 
         if (!d || d.length==1) {
