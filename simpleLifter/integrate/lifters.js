@@ -189,8 +189,8 @@ class Lifters {
 			var bl=parseInt(b.lot);
 			var ag=a.group.charCodeAt();
 			var bg=b.group.charCodeAt();
-			var aa=getAttempt(a,l);
-			var ba=getAttempt(b,l);
+			var aa=getAttempt(a,l,ag==g);
+			var ba=getAttempt(b,l,bg==g);
 			var as=getStatus(a,l);
 			var bs=getStatus(b,l);
 
@@ -245,12 +245,18 @@ class Lifters {
 				}
 			} 
 
-		function getAttempt(l,a){ //return the attempt based on the "l"ifter and "a"ttempt
+		function getAttempt(l,a,ongp){ //return the attempt based on the "l"ifter and "a"ttempt
 
 			var lift=a.slice(0,2).toLowerCase();
 			var num=a.slice(-1);
 			if (isNaN(num)) return "";
-			return l[lift]["a"+num];
+			var att =l[lift]["a"+num];
+			if (!ongp) {
+				if (!att) att=l[lift]["a2"];
+				if (!att) att=l[lift]["a1"];
+				if (!att) att=0;
+			}
+			return att;
 
 		} //end getAttempt internal function
 
