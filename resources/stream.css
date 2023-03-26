@@ -151,3 +151,13 @@ padding-left: 10px;
 padding-right: 10px;
 transform: translateY(-50%);
 }
+
+
+#pic {
+object-fit: contain;
+max-height: 50%;
+max-width: 25%;
+top: 10%;
+right: 10%;
+position: absolute;
+}
