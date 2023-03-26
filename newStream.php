@@ -16,6 +16,7 @@
 	<div class="cnt"><div id="labelAge" class="lbl">Category: </div><div class="inf" id="lifterAge">120kg</div></div>
 	<div class="cnt"><div id="labelPB" class="lbl">Squat PB: </div><div class="inf" id="lifterPB">120kg</div></div>
 	<div class="cnt"><div id="labelTotal" class="lbl">Total PB: </div><div class="inf" id="lifterTotal">120kg</div></div>
+	<img id="pic" src="./simpleLifter/integrate/pics/blank.jpg"/>
 </div>
 <div id="lifterAttempt">
 	<div class="cont"><div class="info" id="attemptName">Leigh Whittle</div></div>
@@ -260,6 +261,18 @@ function getLifter(js) { //get the lifter details and update the divs
   document.getElementById("lifterTotal").innerHTML=curt + "kg";
   if (curt>doNum(lifterInfo.tpb)) document.getElementById("lifterTotal").innerHTML += "*";
 
+  //do the lifter picture bit
+  fn=filterName(js.lifterName);
+  fetch("./simpleLifter/integrate/pics/"+fn+".jpg", { method: "HEAD" })
+   .then(res => {
+     if (res.ok) {
+  document.getElementById("pic").src="./simpleLifter/integrate/pics/"+fn+".jpg";
+    } else {
+  document.getElementById("pic").src="./simpleLifter/integrate/pics/blank.jpg";
+  }
+  }).catch(err => console.log("Error:", err));
+  //pic updated or set to blank
+  
 
   setTimeout(toggleInfo,2000); //if the lifter name has changed, flash up the new info box
 } // this is if the lights are still showing
@@ -271,6 +284,14 @@ setTimeout(function() {getLifter(js)},2000)
 
 
 } //end function getLifter
+
+	
+function filterName(n) {
+fn = n.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+fn = fn.replace(/\s+/g,"");
+return fn
+} //end function filterName
+
 
 function doNum(n) {
 var dn=parseFloat(n) || 0;
