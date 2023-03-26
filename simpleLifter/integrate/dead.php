@@ -50,19 +50,15 @@ $conn->close();
 var cL="<?php echo $compLetters; ?>";
 var year=" <?php echo $startDate; ?>";
 var yr=year.split("-")[0].trim()
-var lifterdata=""; //JSON.parse(JSON.stringify(<?php echo file_get_contents("./data/".$compLetters.".json")?>));
-var oldJSON=lifterdata;
+var lifterdata= JSON.parse(JSON.stringify(<?php echo file_get_contents("./data/".$compLetters.".json")?>));
 var setup;
 //get setup data
 fetch("saveload.php?q=loadsetup&comp=<?php echo $compLetters; ?>").then(response=>response.json().then(d=>{
 	setup=d;
-makeTableu(lifterdata);
-
-fetch("saveload.php?q=loadlifter&comp=<?php echo $compLetters; ?>").then(response=>response.json()).then(data=>{makeTableu(data);});
+	makeTableu(lifterdata);
 }));
 
 function makeTableu(lifters) {
-oldJSON=lifters;
 var activeCol=lifters.activeCol;
 var isActive=0;
 var activeGp=lifters.activeGp;
@@ -75,120 +71,116 @@ var newRow,newCol;
 while (document.getElementById("tableu").rows.length>1) {
 	document.getElementById("tableu").deleteRow(-1);
 }
-for (c=0;c<len-3;c++) {
+for (c=0;c<len;c++) {
 	isActive=0;
-	if (cL=="ADE") {
-		r++;
-		if (c==len-4) return;
-		} else {
-		r=0;
-		while (c!=lifters[r][1].sortOrder) {r++ }
-	};
+	r=0;
+	while (c!=lifters[r].sortOrder) {r++ }
+
 	
 	newRow=document.createElement("tr");
-	if (lifters[r][1].act!=0 && lifters[r][1].name!="") isActive=1;
+	if (lifters[r].act!=0 && lifters[r].name!="") isActive=1;
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].group;
+		newCol.innerHTML=lifters[r].group;
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].lot;
+		newCol.innerHTML=lifters[r].lot;
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].name;
+		newCol.innerHTML=lifters[r].name;
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].team;
+		newCol.innerHTML=lifters[r].team;
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].year;
+		newCol.innerHTML=lifters[r].year;
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=ageDiv(lifters[r][1].year);
+		newCol.innerHTML=ageDiv(lifters[r].year);
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].division;
+		newCol.innerHTML=lifters[r].division;
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].bw;
+		newCol.innerHTML=lifters[r].bw;
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=weightClass(lifters[r][1].bw,lifters[r][1].division,lifters[r][1].year);
+		newCol.innerHTML=weightClass(lifters[r].bw,lifters[r].division,lifters[r].year);
 		newRow.appendChild(newCol);
 
 	//squat
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].sq.a1 * lifters[r][1].sq.s1;
-		if (lifters[r][1].sq.s1==1) newCol.classList.add("gl");
-		if (lifters[r][1].sq.s1==-1) newCol.classList.add("nl");
+		newCol.innerHTML=lifters[r].sq.a1 * lifters[r].sq.s1;
+		if (lifters[r].sq.s1==1) newCol.classList.add("gl");
+		if (lifters[r].sq.s1==-1) newCol.classList.add("nl");
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].sq.a2 * lifters[r][1].sq.s2;
-		if (lifters[r][1].sq.s2==1) newCol.classList.add("gl");
-		if (lifters[r][1].sq.s2==-1) newCol.classList.add("nl");
+		newCol.innerHTML=lifters[r].sq.a2 * lifters[r].sq.s2;
+		if (lifters[r].sq.s2==1) newCol.classList.add("gl");
+		if (lifters[r].sq.s2==-1) newCol.classList.add("nl");
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].sq.a3 * lifters[r][1].sq.s3;
-		if (lifters[r][1].sq.s3==1) newCol.classList.add("gl");
-		if (lifters[r][1].sq.s3==-1) newCol.classList.add("nl");
+		newCol.innerHTML=lifters[r].sq.a3 * lifters[r].sq.s3;
+		if (lifters[r].sq.s3==1) newCol.classList.add("gl");
+		if (lifters[r].sq.s3==-1) newCol.classList.add("nl");
 		newRow.appendChild(newCol);
 
 //bench
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].bp.a1 * lifters[r][1].bp.s1;
-		if (lifters[r][1].bp.s1==1) newCol.classList.add("gl");
-		if (lifters[r][1].bp.s1==-1) newCol.classList.add("nl");
+		newCol.innerHTML=lifters[r].bp.a1 * lifters[r][bp.s1;
+		if (lifters[r].bp.s1==1) newCol.classList.add("gl");
+		if (lifters[r].bp.s1==-1) newCol.classList.add("nl");
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].bp.a2 * lifters[r][1].bp.s2;
-		if (lifters[r][1].bp.s2==1) newCol.classList.add("gl");
-		if (lifters[r][1].bp.s2==-1) newCol.classList.add("nl");
+		newCol.innerHTML=lifters[r][bp.a2 * lifters[r].bp.s2;
+		if (lifters[r].bp.s2==1) newCol.classList.add("gl");
+		if (lifters[r].bp.s2==-1) newCol.classList.add("nl");
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].bp.a3 * lifters[r][1].bp.s3;
-		if (lifters[r][1].bp.s3==1) newCol.classList.add("gl");
-		if (lifters[r][1].bp.s3==-1) newCol.classList.add("nl");
+		newCol.innerHTML=lifters[r].bp.a3 * lifters[r].bp.s3;
+		if (lifters[r].bp.s3==1) newCol.classList.add("gl");
+		if (lifters[r].bp.s3==-1) newCol.classList.add("nl");
 		newRow.appendChild(newCol);
 
 //dead
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].dl.a1 * lifters[r][1].dl.s1;
-		if (lifters[r][1].dl.s1==1) newCol.classList.add("gl");
-		if (lifters[r][1].dl.s1==-1) newCol.classList.add("nl");
+		newCol.innerHTML=lifters[r].dl.a1 * lifters[r].dl.s1;
+		if (lifters[r].dl.s1==1) newCol.classList.add("gl");
+		if (lifters[r].dl.s1==-1) newCol.classList.add("nl");
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].dl.a2 * lifters[r][1].dl.s2;
-		if (lifters[r][1].dl.s2==1) newCol.classList.add("gl");
-		if (lifters[r][1].dl.s2==-1) newCol.classList.add("nl");
+		newCol.innerHTML=lifters[r].dl.a2 * lifters[r].dl.s2;
+		if (lifters[r].dl.s2==1) newCol.classList.add("gl");
+		if (lifters[r].dl.s2==-1) newCol.classList.add("nl");
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][1].dl.a3 * lifters[r][1].dl.s3;
-		if (lifters[r][1].dl.s3==1) newCol.classList.add("gl");
-		if (lifters[r][1].dl.s3==-1) newCol.classList.add("nl");
+		newCol.innerHTML=lifters[r].dl.a3 * lifters[r].dl.s3;
+		if (lifters[r].dl.s3==1) newCol.classList.add("gl");
+		if (lifters[r].dl.s3==-1) newCol.classList.add("nl");
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=getTotal(lifters[r][1]);
+		newCol.innerHTML=getTotal(lifters[r]);
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=getipf(lifters[r][1]);
+		newCol.innerHTML=getipf(lifters[r]);
 		newRow.appendChild(newCol);
 	document.getElementById("tableu").appendChild(newRow);
 }
@@ -217,8 +209,8 @@ var gender = c.charAt(0);
         case "F": d=setup.fW; break;
         case "X": d=setup.xW; break;
         case "M":
-        default:
-                  d=setup.mW; break;
+	default:
+	d=setup.mW; break;
         }
 
 if (!d || d.length==1) {
