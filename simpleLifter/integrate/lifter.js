@@ -455,9 +455,10 @@ function setDivs(lifter){
 		if (cell) {
 			var num=cell.target.innerHTML; //this is to check if the number is correct
 			if (num % 2.5){doPopup("You just entered a number that isn't divisible by 2.5, which should only be for an appropriate record attempt. Please confirm it's not a typo!")};
-			if (cell.target.id.slice(-1)=="2" || cell.target.id.slice(-1)=="3")
+			if (cell.target.id.slice(-1)=="2" || cell.target.id.slice(-1)=="3") {
+				if (num>0) setTimer2(-1000); //if we've input new data into a second or third attempt, then clear the "1 minute to submit next attempt timer" thing
 				if (num>0 && cell.target.previousElementSibling.innerHTML >0 && parseFloat(num) < parseFloat(cell.target.previousElementSibling.innerHTML)) {doPopup("You entered a number that is lower than the previous attempt. You can't go down in weight, please confirm.")};
-				setTimer2(-1000); //if we've input new data into a second or third attempt, then clear the "1 minute to submit next attempt timer" thing
+			}
 		}
 		if (!lifter.row) return;
 
