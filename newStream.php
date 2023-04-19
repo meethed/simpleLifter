@@ -34,8 +34,21 @@ var tickInterval,
  currentJSON,
  currentLights,
  oldJSON,
- oldLights;
+ oldLights,
+ setup;
 
+//load setup
+fetch("./simpleLifter/integrate/saveload.php?q=loadsetup&comp="+compName,{method:"POST"})
+.then((response) =
+      {
+	return response.json();
+	})
+	.then((myJson) = 
+	      {
+		setup=myJson;
+	});
+
+	
 var compName="<?php echo filter_input(INPUT_GET, 'c', FILTER_SANITIZE_STRING); ?>";
 var simple="<?php echo filter_input(INPUT_GET, 's', FILTER_SANITIZE_STRING); ?>";
 //set up the interval timer
@@ -104,16 +117,31 @@ function doStat(s) {
  }
 } //end function doStat
 function interpretBW(js) {
+  var d=[0];
   var wclass=js.lifterClass;
   var bw=js.lifterBW;
   var g=js.lifterCat.charAt(0);
-  if ((wclass==84) & (bw>84)) {wclass="84+"} else
-  if ((wclass==110) & (bw>110) & g=="F") {wclass="110+"} else
-  if ((wclass==140) & (bw>140) & g=="M") {wclass="140+"} else
-  if ((wclass==120) & (bw>120)) {wclass="120+"}else{
-  wclass="-"+wclass};
-  wclass+="kg";
-  return wclass
+  var age=js.lifterCat.split("-")[3].slice(-1);
+  if (age=="S" || age=="r") {age="J"} else {age="O"}
+  switch (g) {
+	  case "F": d=setup.fW; break;
+	  case "X": d=setup.xW; break;
+	  case "M": 
+	  default:
+	  	d=setup.mW; break;
+}
+
+	if (!d || d.length==1) 
+		if (gender==="F") {d=[47,52,57,63,69,76,84,1000];} else {d=[56,59,66,74,83,93,105,120,1000];};
+	var wc = d.find(e => e >= bw);
+	var ix=d.findIndex(e => e >=bw);
+	
+	if (ix==d.length-1) wc=d.at(-2)+"+";
+	if (ix==0 && age!="O") wc=d[1];
+	
+	if (!wc) wc="";
+	return wc+"kg";
+
 } //end function interpretBW
 
 function interpretCat(js) {
@@ -138,6 +166,7 @@ case "M":
 goodCat="Masters " + c[3].charAt(1) + " ";
 break
 }
+if (setup.openOnly) goodCat="Open ";
 
 //then the gender
 if (c[0]=="F") goodCat += "Women ";
@@ -147,6 +176,7 @@ if (c[0]=="X") goodCat += "Mx ";
 // then the comp category
 
 if (c[1]=="CL") goodCat += "Classic ";
+if (c[1]=="CR") goodCat += "Classic Raw ";
 if (c[1]=="EQ") goodCat += "Equipped ";
 if (c[1]=="SO") goodCat += "Special Olympics ";
 // then the events entered
@@ -154,6 +184,7 @@ if (c[1]=="SO") goodCat += "Special Olympics ";
 if (c[2]=="BP") goodCat += "Bench Only ";
 if (c[2]=="PL") goodCat += "3-Lift ";
 if (c[2]=="PP") goodCat += "Push Pull ";
+if (c[2]=="DL") goodCat += "Deadlift Only ";
 //if (c[2]=="SO") goodCat += "Special Olympics ";
 
 return goodCat;
