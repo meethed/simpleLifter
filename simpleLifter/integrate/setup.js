@@ -38,6 +38,7 @@ class Setup {
 		document.getElementById("inFW").value=setup.fW;
 		document.getElementById("inXW").value=setup.xW;
 		document.getElementById("inCAPO").checked=setup.CAPO;
+		document.getElementById("gl").innerHTML=setup.CAPO ? "Glos" : "IPF Points";
 			if (document.getElementById("inLights").checked) {
 				document.getElementById("lightsFrame").style.display="inline";
 				document.getElementById("btnBar").style.opacity="0";
@@ -79,9 +80,10 @@ function setupCx(){
 	document.getElementById("inOBS").checked=setup.stream;
 	document.getElementById("inBP").checked=setup.BP;
 	document.getElementById("inCAPO").checked=setup.CAPO;
-		document.getElementById("inMW").value=setup.mW;
-		document.getElementById("inFW").value=setup.fW;
-		document.getElementById("inXW").value=setup.xW;
+	document.getElementById("gl").innerHTML=setup.CAPO ? "Glos" : "IPF Points";
+	document.getElementById("inMW").value=setup.mW;
+	document.getElementById("inFW").value=setup.fW;
+	document.getElementById("inXW").value=setup.xW;
 
 	if (!setup.maxGp) setup.maxGp="";
 	setBench();
@@ -98,6 +100,7 @@ function setupReset(){
 	
 	for(var i=0;i<setup.lifterCount;i++){lifters.liftList[i] = new Lifter("",i+1,"","","","","","","","");};
 	document.getElementById("btnCx").innerHTML="Close";
+	document.getElementById("gl").innerHTML=setup.CAPO ? "Glos" : "IPF Points";
 }
 
 function setupOk(){
@@ -112,11 +115,11 @@ function setupOk(){
 	setup.stream=document.getElementById("inOBS").checked;
 	setup.BP=document.getElementById("inBP").checked;
 	setup.CAPO=document.getElementById("inCAPO").checked;
+	document.getElementById("gl").innerHTML=setup.CAPO ? "Glos" : "IPF Points";
 	setup.mW=document.getElementById("inMW").value.split(",");if (setup.mW.slice(-1)!=1000) setup.mW.push(1000);
 	setup.fW=document.getElementById("inFW").value.split(",");if (setup.fW.slice(-1)!=1000) setup.fW.push(1000);
-	setup.xW=document.getElementById("inXW").value.split(",");if (setup.xW.slice(-1)!=1000) setup.xW.push(1000);
+	setup.xW=document.getElementById("inXW").value.split(",");if (setup.xW.slice(-1)!=1000) setup.xW.push(1000); 
 
-	if (setup.CAPO) {document.getElementById("gl").innerHTML="Glos";} else {document.getElementById("gl").innerHTML="IPF Points"};
 	setBench();
 	document.body.removeChild(document.getElementById("shade"));
 	document.getElementById("menu").style.display="none";
@@ -137,7 +140,7 @@ function setupOk(){
 
 function setBench() {
 //clear the appropriate tabs for the bench press etc
-    var ls=Object.entries(lifters);
+    var ls=lifters.liftList;
 
     if (setup.BP) { //if BP only hide columns
       document.getElementById("rs").style.display="none";
@@ -152,24 +155,19 @@ function setBench() {
       document.getElementById("st").style.display="none";
 
     ls.forEach((c,index) => {
-      if (c[1] instanceof Lifter)
-      if (index<ls.length-3)
-      {
-        c[1].row.children[9].style.display="none";
-        c[1].row.children[11].style.display="none";
-        c[1].row.children[12].style.display="none";
-        c[1].row.children[13].style.display="none";
-        c[1].row.children[14].style.display="none";
-        c[1].row.children[19].style.display="none";
-        c[1].row.children[20].style.display="none";
-        c[1].row.children[21].style.display="none";
-        c[1].row.children[22].style.display="none";
-        c[1].row.children[23].style.display="none";
-      }
- });
-
-			//set width to look better
-			document.getElementById("tableu").style.width="75%";
+        c.row.children[9].style.display="none";
+        c.row.children[11].style.display="none";
+        c.row.children[12].style.display="none";
+        c.row.children[13].style.display="none";
+        c.row.children[14].style.display="none";
+        c.row.children[19].style.display="none";
+        c.row.children[20].style.display="none";
+        c.row.children[21].style.display="none";
+        c.row.children[22].style.display="none";
+        c.row.children[23].style.display="none";
+    });
+ 	//set width to look better
+	document.getElementById("tableu").style.width="75%";
 
     } else { //unhide them (just in case
       document.getElementById("rs").style.display="table-cell";
@@ -184,25 +182,19 @@ function setBench() {
       document.getElementById("st").style.display="table-cell";
 
     ls.forEach((c,index) => {
-      if (c[1] instanceof Lifter)
-      if (index<ls.length-3)
-      {
-        c[1].row.children[9].style.display="table-cell";
-        c[1].row.children[11].style.display="table-cell";
-        c[1].row.children[12].style.display="table-cell";
-
-        c[1].row.children[13].style.display="table-cell";
-        c[1].row.children[14].style.display="table-cell";
-        c[1].row.children[19].style.display="table-cell";
-        c[1].row.children[20].style.display="table-cell";
-        c[1].row.children[21].style.display="table-cell";
-        c[1].row.children[22].style.display="table-cell";
-        c[1].row.children[23].style.display="table-cell";
-      }
- });
-			//set width to look better
- 		document.getElementById("tableu").style.width="auto";
-
+        c.row.children[9].style.display="table-cell";
+        c.row.children[11].style.display="table-cell";
+        c.row.children[12].style.display="table-cell";
+        c.row.children[13].style.display="table-cell";
+        c.row.children[14].style.display="table-cell";
+        c.row.children[19].style.display="table-cell";
+        c.row.children[20].style.display="table-cell";
+        c.row.children[21].style.display="table-cell";
+        c.row.children[22].style.display="table-cell";
+        c.row.children[23].style.display="table-cell";
+     });
+	//set width to look better
+        document.getElementById("tableu").style.width="auto";
     }
 	
 } //end function setBench();
