@@ -21,20 +21,19 @@ position: fixed;
 top: 20%;
 bottom: 20%;
 width: 50%;
-transform: skew(-5deg);
 background-image: linear-gradient(to right, #134, black);
 animation-name: slidey;
-animation-duration: 10s;
+animation-duration: 15s;
 animation-fill-mode: forwards;
 animation-iteration-count: 1;
 box-shadow: 0px 0px 50px 20px #134;
 }
 
 @keyframes slidey {
-0%   {left: -200%; transform: rotate(-180deg) skew(-10deg); opacity: 0.5;}
-15%  {left: 25%; transform: rotate(0deg) skew(-10deg); opacity: 0.95;}
-90%  {left: 25%; transform: rotate(0deg) skew(-10deg); opacity: 0.95;}
-100%  {left: 200%; transform: rotate(180deg) skew(-10deg); opacity: 0.0;}
+0%   {left: -200%; transform: rotate(-180deg);  opacity: 0.5;}
+15%  {left: 25%; transform: rotate(0deg); opacity: 0.95;}
+90%  {left: 25%; transform: rotate(0deg); opacity: 0.95;}
+100%  {left: 200%; transform: rotate(180deg); opacity: 0.0;}
 }
 
 .lbl, .inf {
@@ -151,7 +150,6 @@ padding-left: 10px;
 padding-right: 10px;
 transform: translateY(-50%);
 }
-
 
 #pic {
 object-fit: contain;
