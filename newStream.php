@@ -8,7 +8,7 @@
 <!-- <button onclick="toggleInfo()">Toggle Lifter Info</button>
 <button onclick="toggleAttempt()">Toggle Lifter Attempt</button> -->
 <div id="lifterInfo">
-	<div id="lifterName">Leigh Whittle</div>
+	<div id="lifterName">Test Layout</div>
 	<div class="cnt"><div id="labelPos" class="lbl">Place: </div><div class="inf" id="lifterPos">1st</div></div>
         <div class="cnt"><div id="labelTotal" class="lbl">Total: </div><div class="inf" id="lifterTot">500kg</div></div>
         <div class="cnt"><div id="labelTeam" class="lbl">Team: </div><div class="inf" id="lifterTm">VIC</div></div>
@@ -19,7 +19,7 @@
 	<img id="pic" src="./simpleLifter/integrate/pics/blank.jpg"/>
 </div>
 <div id="lifterAttempt">
-	<div class="cont"><div class="info" id="attemptName">Leigh Whittle</div></div>
+	<div class="cont"><div class="info" id="attemptName">Test Layout</div></div>
 	<div class="cont gd num"><div class="info" id="attemptNum1">240kg</div></div>
 	<div class="cont bd num"><div class="info" id="attemptNum2">250kg</div></div>
 	<div class="cont at num"><div class="info" id="attemptNum3">260kg</div></div>
@@ -235,6 +235,8 @@ function getLifter(js) { //get the lifter details and update the divs
   document.getElementById("lifterTot").style.display="inline";
   document.getElementById("cTot").style.display="inline-block"};
 
+  //clear team if it's blank
+  if (js.lifterTeam.length<2) {document.getElementById("lifterTm").parentElement.style.display="none"} else {document.getElementById("lifterTm").parentElement.style.display="block";};
   //set the PBs
   switch (stat) {
 
