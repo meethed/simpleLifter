@@ -9,7 +9,6 @@ $jsondata = json_decode(file_get_contents($dir.'/'.$lifterFile),true);
 $bestdata = json_decode(file_get_contents($dir.'/best'.$lifterFile),true);
 
 foreach($jsondata as $key=>$value) {
-if (is_numeric($key)) {
  if ($value["name"]==$n) {
  $ret = $value[$s];
  $ret["place"]=$value["place"];
@@ -24,7 +23,6 @@ if (is_numeric($key)) {
 // print_r($ret);
  echo json_encode($ret);
  }; //end if the lifter name matches
-}
 } //end loop
 
 
