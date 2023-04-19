@@ -311,6 +311,7 @@ class Lifter {
 		let cy  = new Date().getFullYear();
 		age = cy-this.year;
 
+		 if (!setup.CAPO) {
 		if (age<=18) {ageClass="S-Jr";} else
 		if (age<=23) {ageClass="Jr";} else
 		if (age>=70) {ageClass="M4";} else
@@ -318,7 +319,20 @@ class Lifter {
 		if (age>=50) {ageClass="M2";} else
 		if (age>=40) {ageClass="M1";} else
 			{ageClass="O";}
-	
+	 	} else { 
+ 		if (age<=18) {ageClass="J15-18";} else 
+ 		if (age<=23) {ageClass="J18-23";} else 
+ 		if (age<=80) {ageClass="M80+";} else 
+ 		if (age<=75) {ageClass="M75-79";} else 
+ 		if (age<=70) {ageClass="M70-74";} else 
+ 		if (age<=65) {ageClass="M65-69";} else 
+ 		if (age<=60) {ageClass="M60-64";} else 
+ 		if (age<=55) {ageClass="M55-59";} else 
+ 		if (age<=50) {ageClass="M50-54";} else 
+ 		if (age<=45) {ageClass="M45-49";} else 
+ 		if (age<=40) {ageClass="M40-44";} else 
+ 		{ageClass="O"}; 
+ 		}
 		return ageClass;}
 
 	}
