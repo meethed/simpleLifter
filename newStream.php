@@ -37,20 +37,13 @@ var tickInterval,
  oldLights,
  setup;
 
-//load setup
-fetch("./simpleLifter/integrate/saveload.php?q=loadsetup&comp="+compName,{method:"POST"})
-.then((response) =
-      {
-	return response.json();
-	})
-	.then((myJson) = 
-	      {
-		setup=myJson;
-	});
 
-	
 var compName="<?php echo filter_input(INPUT_GET, 'c', FILTER_SANITIZE_STRING); ?>";
 var simple="<?php echo filter_input(INPUT_GET, 's', FILTER_SANITIZE_STRING); ?>";
+//load setup
+fetch("./simpleLifter/integrate/saveload.php?q=loadsetup&comp="+compName).then(response=>response.json().then(d=>{setup=d}));
+      
+
 //set up the interval timer
 tickInterval=setInterval(tick, 1000);
 
