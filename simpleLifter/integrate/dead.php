@@ -50,7 +50,7 @@ $conn->close();
 var cL="<?php echo $compLetters; ?>";
 var year=" <?php echo $startDate; ?>";
 var yr=year.split("-")[0].trim()
-var lifterdata= JSON.parse(JSON.stringify(<?php echo file_get_contents("./data/".$compLetters.".json")?>));
+var lifterdata=JSON.parse(JSON.stringify(<?php echo file_get_contents("./data/".$compLetters.".json")?>));
 var setup;
 //get setup data
 fetch("saveload.php?q=loadsetup&comp=<?php echo $compLetters; ?>").then(response=>response.json().then(d=>{
@@ -62,7 +62,7 @@ function makeTableu(lifters) {
 var activeCol=lifters.activeCol;
 var isActive=0;
 var activeGp=lifters.activeGp;
-var lifters=Object.entries(lifters);
+var lifters=lifters.liftList
 var len=lifters.length;
 var r=0;
 var c=0;
@@ -138,13 +138,13 @@ for (c=0;c<len;c++) {
 //bench
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r].bp.a1 * lifters[r][bp.s1;
+		newCol.innerHTML=lifters[r].bp.a1 * lifters[r].bp.s1;
 		if (lifters[r].bp.s1==1) newCol.classList.add("gl");
 		if (lifters[r].bp.s1==-1) newCol.classList.add("nl");
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r][bp.a2 * lifters[r].bp.s2;
+		newCol.innerHTML=lifters[r].bp.a2 * lifters[r].bp.s2;
 		if (lifters[r].bp.s2==1) newCol.classList.add("gl");
 		if (lifters[r].bp.s2==-1) newCol.classList.add("nl");
 		newRow.appendChild(newCol);
