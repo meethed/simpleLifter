@@ -169,7 +169,6 @@ class Lifters {
 			});
 
 			// here we have a sorted 'group'
-			console.log(cCat+": "+gp);
 			ps[c.idx]=gp.findIndex((x) => x===c.idx)+1;
 			gp=[];
 
@@ -189,8 +188,8 @@ class Lifters {
 			var bl=parseInt(b.lot);
 			var ag=a.group.charCodeAt();
 			var bg=b.group.charCodeAt();
-			var aa=getAttempt(a,l,ag==g);
-			var ba=getAttempt(b,l,bg==g);
+			var aa=getAttempt(a,l,ag==g); //note if it's the "off" flight, then we need to select 1st attempts if everything is blank 
+			var ba=getAttempt(b,l,bg==g); //as above
 			var as=getStatus(a,l);
 			var bs=getStatus(b,l);
 
@@ -226,11 +225,10 @@ class Lifters {
 				if (lifters.activeLi.slice(-1)!=3) { //if it's not the third round
 				nl=l.slice(0,-1)+(parseInt(l.slice(-1))+1); //set up the next attempt by cutting off the last digit and adding 1 to it (SQ-1 to SQ-2 etc)
 					if (ag && bg &&as && bs){ //only if the "A" and "B" are in the current group
-							aa=getAttempt(a,nl); 
+							aa=getAttempt(a,nl,ag==g); 
 							if (aa=="") aa=9000; else aa-=1000;//if they've already done the current lift then sort by the next attempt, by making it much lower to sort it at the top
-							ba=getAttempt(b,nl);
+							ba=getAttempt(b,nl,bg==g);
 							if (ba=="") ba=9000; else ba-=1000;//if they've already done the current lift then sort by the next attempt, by making it much lower to sort it at the top
-
 				}}
 
 
@@ -250,7 +248,7 @@ class Lifters {
 			var lift=a.slice(0,2).toLowerCase();
 			var num=a.slice(-1);
 			if (isNaN(num)) return "";
-			var att =l[lift]["a"+num];
+			var att=l[lift]["a"+num];
 			if (!ongp) {
 				if (!att) att=l[lift]["a2"];
 				if (!att) att=l[lift]["a1"];
