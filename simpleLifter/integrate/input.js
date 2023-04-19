@@ -1,4 +1,4 @@
-var divisions=["M-CL-PL", "F-CL-PL","M-EQ-PL","F-EQ-PL","M-CL-BP", "F-CL-BP","M-EQ-BP","F-EQ-BP","M-SO","F-SO"];
+var divisions=["M-CL-PL", "F-CL-PL","M-EQ-PL","F-EQ-PL","M-CL-BP", "F-CL-BP","M-EQ-BP","F-EQ-BP","M-SO-PL","F-SO-PL","M-CR-PL","F-CR-PL","M-CL-DL","F-CL-DL"];
 var groups=["A","B","C","D","E","F","G"];
 var utils=["Comp Setup...","Save","Load","Generate Results","Help..."];
 var lifts=["Weigh In","SQ-1","SQ-2","SQ-3","BP-1","BP-2","BP-3","DL-1","DL-2","DL-3"];
@@ -247,7 +247,7 @@ function doPopup(text){
 	
 function doHelp(){
 		lifters.saveLocal();
-	doPopup("Welcome to simpleLifter Web v0.03<br>It's like nextLifter and openLifter but it does a few other things and is really easy to use.<br><br>To get started and add lifters, set up your competition using the 'utilities' button, then start entering data. The weigh in and competition all happen from here with no need to change tabs, so if you need to you can edit the data at any time!<br><br>When you're ready, change 'weigh in' (under the lifter details up top) to SQ-1. It automatically updates attempts, flights and lifts so you only really need to input the next attempt, and click goodlift/no lift! <br>Use the utilities to generate the results at the completion of the competition, and to save the data locally.<br><br>You can set the lift by clicking on the header row, and you can delete rows by clearing the 'Name' and 'Lot' information. To change a good/no lift if you get it wrong, just double click on the cell to toggle.<br><br>More help will be coming soon but you'll work it out!");
+	doPopup("Welcome to simpleLifter Web v0.9<br>It's like nextLifter and openLifter but it does a few other things and is really easy to use.<br><br>To get started and add lifters, set up your competition using the 'utilities' button, then start entering data. The weigh in and competition all happen from here with no need to change tabs, so if you need to you can edit the data at any time!<br><br>When you're ready, change 'weigh in' (under the lifter details up top) to SQ-1. It automatically updates attempts, flights and lifts so you only really need to input the next attempt, and click goodlift/no lift!<br><br>Use the utilities to generate the results at the completion of the competition, and to save the data locally.<br><br>You can set the lift by clicking on the header row, and you can delete rows by clearing the 'Name' and 'Lot' information. To change a good/no lift if you get it wrong, just double click on the cell to toggle.<br><br>More help will be coming soon but you'll work it out!"); 
 }
 
 function closeAllLists(elmnt) {
