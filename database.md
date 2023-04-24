@@ -1,7 +1,8 @@
+CLICK ON "RAW" AND DISABLE WORD WRAP SO IT PRESENTS CORRECTLY
+
 ok so the php code needs a mysql (or similar) database rather than just using JSON. This is a hangover from when it all started out in a slightly different direction.
 
-The database must be called 'lightsdb', and lightsdb must have a table called 'comps'. I mean, you can change it but that's just what I use, and some of the .inc isn't
-done properly. 
+The database must have a table called 'comps'. I mean, you can change it but that's just what I use for the SQL select statements. 
 
 The 'comps' table is set up as follows:
 
@@ -39,7 +40,22 @@ The 'comps' table is set up as follows:
 | bar            | double(5,2)  | YES  |     | NULL                |                               | Bar weight (for platform display only)
 +----------------+--------------+------+-----+---------------------+-------------------------------+
 
-
-
 Most of the live stream and platform display stuff should move into the simpleLifter JSON. It was originally done like this to support nextLifter excel and VBA 
 Now that I never need to see or use nextLifter again, I'll make another job to transition this out of the database.
+
+________________________________________________________________
+
+Ok so the config.php (or config.inc) file is located in /var/www, with the web root starting at /var/www/html. This means it's visible to PHP but not to the internets.
+
+The config.php needs to create a connection $conn, to your applicable database:
+
+eg:
+
+ /var/www/config.php (or /var/www/config.inc)
+------------------------------------------
+
+$conn = new mysqli("localhost", "username", "userpwd", "lightsdb");
+
+------------------------------------------
+
+that's it
