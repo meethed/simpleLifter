@@ -10,14 +10,7 @@
  <h1>Archived Competition Results</h1>
 
  <?php
-$servername = "localhost";
-$username = "lightsuser";
-$password = "lights";
-$dbname = "lightsdb";
-// create connection
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
+include_once "../config.php";
 // check connection
 if ($conn->connect_error) {
   echo '<div class="warning">Connection failed: ' . $conn->connect_error . '</div>';
