@@ -1,12 +1,6 @@
 <?php
 
-function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
-}
-
+ include_once "../config.php";
 
   $compName = test_input($_POST["newCompName"]);
   $startdate = $_POST["startdate"];
@@ -17,12 +11,6 @@ function test_input($data) {
 
 if ($compName == "") die("Bruv the competition name was blank do it again");
 
-$conn = new mysqli('localhost', 'lightsuser', 'lights', 'lightsdb');
-//check connection
-if ($conn->connect_error) {
-  echo "There has been an error connecting with the server. Please try again<br>Error: " . $conn_connect_error;
-  die("Connection failed: ". $conn->connect_error);
-}
 //get the next comp letter sequence
 $str = "SELECT compLetters, compName FROM comps ORDER BY compLetters DESC limit 1";
 $result = $conn->query($str);
