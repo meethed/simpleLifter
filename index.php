@@ -66,18 +66,7 @@
 <h2>Choose your competition:</h2>
 
 <?php
-$servername = "localhost";
-$username = "lightsuser";
-$password = "lights";
-$dbname = "lightsdb";
-// create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// check connection
-if ($conn->connect_error) {
-  echo '<div class="warning">Connection failed: ' . $conn->connect_error . '</div>';
-  die("connection error");
-}
+include_once "../config.php";
 echo '<div class="warning">Connected Successfully</div>';
 
 $sql = "SELECT * FROM comps WHERE (enddate >= curdate())";
