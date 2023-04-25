@@ -54,7 +54,32 @@ eg:
  /var/www/config.php (or /var/www/config.inc)
 ------------------------------------------
 
-$conn = new mysqli("localhost", "username", "userpwd", "lightsdb");
+<?php
+
+$s="localhost";
+$u="INSERT YOUR DATABASE USERNAME HERE";
+$p="INSERT YOUR PASSWORD FOR THE ABOVE USER HERE";
+$d="INSERT YOUR DATABASE NAME HERE";
+
+$conn = new mysqli($s, $u, $p, $d);
+
+if ($conn->connect_error) {
+ die("Connection failed: " . $conn->connect_error);
+}
+
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
+?>
+
+
+
+
 
 ------------------------------------------
 
