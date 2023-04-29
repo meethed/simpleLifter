@@ -232,7 +232,7 @@ function evaluateTimer1(t){
 	diff=t-d+clockOffset;
 	var updatet1=oldt1-t;
 
-	if (diff<=0) {clearTimer1(); return false;}
+	if (diff<=0) {oldt1=t; clearTimer1(); return false;}
 	if (diff>0 && updatet1) {
 		oldt1=t;
 		timer1=1;
