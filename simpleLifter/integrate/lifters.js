@@ -123,7 +123,7 @@ class Lifters {
 					if (!setup.countUp) {this.activeGp=setup.maxGp};
 				
 					// this is where we pop up saying we're doing a 10 minute (or 20 minute timer)
-					 if (setup.maxGp="A") {var t=20;} else {var t=10;};  // if there's only the A group then 20 minute timer
+					 if (setup.maxGp=="A") {var t=20;} else {var t=10;};  // if there's only the A group then 20 minute timer
 					if (this.activeLi.charAt(0)=="B") {var oldEvent="Squats"} else {var oldEvent="Bench Press"};
 					doPopup("That was the last of the  " + oldEvent + ". A " + t + " minute timer will now commence.");
 					setTimer2(t);
