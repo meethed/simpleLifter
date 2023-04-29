@@ -135,7 +135,7 @@ class Lifters {
 		if (setup.auto&&this.activeRw.activeCell(this.activeLi)=="" && this.activeLi!="DL-3" &&this.activeRow!=0)
 		this.incrementRow; //if after all that the next cell is blank, then skip them!
 	this.doSort();
-	updateStatus();
+	//updateStatus(); this one is unnecessary and leads to weird doubling up
 
 	//set the next cell for editing
 	if (this.activeLi.charAt(this.activeLi.length-1)!="3") {
