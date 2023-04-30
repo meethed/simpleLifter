@@ -700,7 +700,7 @@ if ((ll!=0) && (cl!=0) & (rl!=0)) { //if they are all non-zero THEN DISPLAY THE 
 	updateLights(10); //clear th etimer
 	if (att!=3 && att!=6 && att!=9) updateTimer2(1); //if the referees have set all the lights, set the next attempt timer to 1 minute;
 	clearTimeout(resetinterval); //reset the 10 second timer just in case
-	resetinterval = setTimeout(function() {clearlights();},10000);  //this is the timer for clearing the lights. it is currently 10 seconds
+	resetinterval = setTimeout(function() {clearlights();},5000);  //this is the timer for clearing the lights. it is currently 5 seconds. 10 was too long
 
 
 document.getElementById("smolLights").classList.add("visible");
