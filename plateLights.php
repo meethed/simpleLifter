@@ -128,7 +128,7 @@ function checkUpdate() {
 function drawLights(l) {
 var lds;
 	if (l.every(x=> x==0)) { //if all zero
-		if (waiting==1) {updateCache;waiting=0;}; //if it's waiting for lights to clear before updating, do it now
+		if (waiting==1) {updateCache();waiting=0;}; //if it's waiting for lights to clear before updating, do it now
 		lds = document.querySelectorAll(".round");
 		lds.forEach((e) => {e.className="round"});
 		lights.style.display="none";
