@@ -150,27 +150,25 @@ class Lifters {
 	} //end incrementRow getter
 
 	get places() {
-	let gp=[];
+	var gp;
 	let ps=[];
 	var cCat, ccCat, at,bt;
 	var ls=this.liftList
 	ls.forEach((c,index) => {
-		gp=[];
+		gp=1;
 			var cCat=c.division+c.weightClass; //current category
-			gp.push(c.idx);
 			if (!setup.openOnly) cCat += c.ageDiv; //if it's open age only then ignore weights
 
 			ls.forEach((cc,iindex) => {
 			  ccCat=cc.division+cc.weightClass;
 			  if (!setup.openOnly) ccCat += cc.ageDiv; //add age if not open
 			  if (cCat==ccCat && c.idx!=cc.idx && cc.predictedTotal>c.predictedTotal)  //note this isn't a proper sort. it just works out how many in front of the current lifter there are
-			  gp.unshift(cc.idx); //if they're bigger they go before
+			  gp+=1; //if they're bigger they go before
  
 			});
 
 			// here we have a sorted 'group'
-			ps[c.idx]=gp.findIndex((x) => x===c.idx)+1;
-			gp=[];
+			ps[c.idx]=gp;
 
 	}) //get the next lifter
 	return ps;
