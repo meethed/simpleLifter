@@ -162,13 +162,13 @@ class Lifters {
 			ls.forEach((cc,iindex) => {
 			  ccCat=cc.division+cc.weightClass;
 			  if (!setup.openOnly) ccCat += cc.ageDiv; //add age if not open
-			  if (cCat==ccCat && c.idx!=cc.idx && cc.predictedTotal>c.predictedTotal)  //note this isn't a proper sort. it just works out how many in front of the current lifter there are
+			  if (cCat==ccCat && c.idx!=cc.iindex && cc.predictedTotal>c.predictedTotal)  //note this isn't a proper sort. it just works out how many in front of the current lifter there are
 			  gp+=1; //if they're bigger they go before
  
 			});
 
 			// here we have a sorted 'group'
-			ps[c.idx]=gp;
+			ps[index]=gp;
 
 	}) //get the next lifter
 	return ps;
