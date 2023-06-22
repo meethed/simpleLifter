@@ -70,9 +70,11 @@ function doScoreboard() {
 			//document.getElementById("tableu").appendChild(el[1].row);
 			el.sortOrder=index;
 		}); //end sorting function
-	
+
+	var csv=document.createElement("div");
+	csv.innerHTML="<a href='./dead.php?c=" + compName + "'>Click here for Open Powerlifting CSV Export</a>";
 	document.body.appendChild(scoreboard); //display the scoreboard separately
-	
+	document.body.appendChild(csv);
 	//OK we've finished sorting now to add in headers
 	var headRow = makeTr(document.getElementById("tableu").children[0]);
 	headRow.children[18].innerHTML="Place";
