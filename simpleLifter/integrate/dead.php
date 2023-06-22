@@ -22,28 +22,35 @@ $conn->close();
 <h2><?php echo $startDate; ?></h2>
 <table id="tableu">
 <tr>
-<th>Gr</th>
-<th>Lot</th>
-<th>Lifter Name</th>
-<th>Team</th>
-<th>Birth Year</th>
-<th>Age Div</th>
+<th>Place</th>
+<th>Name</th>
+<th>Sex</th>
+<th>BirthDate</th>
+<th>Age</th>
+<th>Equipment</th>
 <th>Division</th>
-<th>BW</th>
-<th>Weight Class</th>
-<th>SQ 1</th>
-<th>SQ 2</th>
-<th>SQ 3</th>
-<th>BP 1</th>
-<th>BP 2</th>
-<th>BP 3</th>
-<th>DL 1</th>
-<th>DL 2</th>
-<th>DL 3</th>
-<th>Total</th>
+<th>BodyweightKg</th>
+<th>WeightClassKg</th>
+<th>Squat1Kg</th>
+<th>Squat2Kg</th>
+<th>Squat3Kg</th>
+<th>Best3SquatKg</th>
+<th>Bench1Kg</th>
+<th>Bench2Kg</th>
+<th>Bench3Kg</th>
+<th>Best3BenchKg</th>
+<th>Deadlift1Kg</th>
+<th>Deadlift2Kg</th>
+<th>Deadlift3Kg</th>
+<th>Best3DeadliftKg</th>
+<th>TotalKg</th>
+<th>Event</th>
 <th>Points</th>
+<th>Team</th>
 </tr>
 </table>
+<br><a style="padding:5px;border:inset 3px black; background-image: linear-gradient(45deg,#777,white,#aaa);" onclick="exportToExcel()">Click to here export as CSV</a>
+<p>These archived results are displayed in a format that is compatible with <a href="http://www.openpowerlifting.org">OpenPowerlifting</a>. The table above can be copy+pasted into Excel or Sheets, alternatively the CSV file at the link above can be downloaded to a computer.</p>
 <script src="lifter.js"></script>
 <script src="lifters.js"></script>
 <script>
@@ -59,9 +66,6 @@ fetch("saveload.php?q=loadsetup&comp=<?php echo $compLetters; ?>").then(response
 }));
 
 function makeTableu(lifters) {
-var activeCol=lifters.activeCol;
-var isActive=0;
-var activeGp=lifters.activeGp;
 var lifters=lifters.liftList
 var len=lifters.length;
 var r=0;
@@ -72,20 +76,13 @@ while (document.getElementById("tableu").rows.length>1) {
 	document.getElementById("tableu").deleteRow(-1);
 }
 for (c=0;c<len;c++) {
-	isActive=0;
 	r=0;
 	while (c!=lifters[r].sortOrder) {r++ }
-
-	
+	curDiv=lifters[r].division.split("-");
 	newRow=document.createElement("tr");
-	if (lifters[r].act!=0 && lifters[r].name!="") isActive=1;
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r].group;
-		newRow.appendChild(newCol);
-
-		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r].lot;
+		newCol.innerHTML=lifters[r].place;
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
@@ -93,7 +90,7 @@ for (c=0;c<len;c++) {
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r].team;
+		newCol.innerHTML=curDiv[0];
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
@@ -101,11 +98,19 @@ for (c=0;c<len;c++) {
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=ageDiv(lifters[r].year);
+		newCol.innerHTML=yr-lifters[r].year;
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r].division;
+		newCol.innerHTML=getOPLEquipment(curDiv[1]);
+		newRow.appendChild(newCol);
+
+		newCol=document.createElement("td");
+		var oplDiv =curDiv[0];
+		if (curDiv[1].charAt(0)=="C") oplDiv+="R"
+		oplDiv+="-";
+		oplDiv+=ageDiv(lifters[r].year);
+		newCol.innerHTML=oplDiv;
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
@@ -117,79 +122,136 @@ for (c=0;c<len;c++) {
 		newRow.appendChild(newCol);
 
 	//squat
+		var bestSq=0,curSq=0;;
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r].sq.a1 * lifters[r].sq.s1;
+		curSq=lifters[r].sq.a1 * lifters[r].sq.s1;
+		bestSq=Math.max(curSq,0);
+		newCol.innerHTML=curSq;
 		if (lifters[r].sq.s1==1) newCol.classList.add("gl");
 		if (lifters[r].sq.s1==-1) newCol.classList.add("nl");
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r].sq.a2 * lifters[r].sq.s2;
+		curSq=lifters[r].sq.a2 * lifters[r].sq.s2;
+		bestSq=Math.max(bestSq,curSq,0);
+		newCol.innerHTML=curSq;
 		if (lifters[r].sq.s2==1) newCol.classList.add("gl");
 		if (lifters[r].sq.s2==-1) newCol.classList.add("nl");
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r].sq.a3 * lifters[r].sq.s3;
+		curSq=lifters[r].sq.a3 * lifters[r].sq.s3;
+		bestSq=Math.max(bestSq,curSq,0);
+		newCol.innerHTML=curSq;
 		if (lifters[r].sq.s3==1) newCol.classList.add("gl");
 		if (lifters[r].sq.s3==-1) newCol.classList.add("nl");
 		newRow.appendChild(newCol);
 
-//bench
-
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r].bp.a1 * lifters[r].bp.s1;
+		newCol.innerHTML=bestSq;
+		newRow.appendChild(newCol);
+//bench
+		var bestBP=0, curBP=0;
+		newCol=document.createElement("td");
+		curBP=lifters[r].bp.a1 * lifters[r].bp.s1;
+		newCol.innerHTML=curBP;
+		bestBP=Math.max(curBP,0);
 		if (lifters[r].bp.s1==1) newCol.classList.add("gl");
 		if (lifters[r].bp.s1==-1) newCol.classList.add("nl");
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r].bp.a2 * lifters[r].bp.s2;
+		curBP=lifters[r].bp.a2 * lifters[r].bp.s2;
+		newCol.innerHTML=curBP;
+		bestBP=Math.max(curBP,bestBP,0);
 		if (lifters[r].bp.s2==1) newCol.classList.add("gl");
 		if (lifters[r].bp.s2==-1) newCol.classList.add("nl");
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r].bp.a3 * lifters[r].bp.s3;
+		curBP=lifters[r].bp.a3 * lifters[r].bp.s3;
+		newCol.innerHTML=curBP;
+		bestBP=Math.max(curBP,bestBP,0);
 		if (lifters[r].bp.s3==1) newCol.classList.add("gl");
 		if (lifters[r].bp.s3==-1) newCol.classList.add("nl");
 		newRow.appendChild(newCol);
 
-//dead
-
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r].dl.a1 * lifters[r].dl.s1;
+		newCol.innerHTML=bestBP;
+		newRow.appendChild(newCol);
+//dead
+		var bestDL=0, curDL=0;
+		newCol=document.createElement("td");
+		curDL=lifters[r].dl.a1 * lifters[r].dl.s1;
+		newCol.innerHTML=curDL;
+		bestDL=Math.max(curDL,0);
 		if (lifters[r].dl.s1==1) newCol.classList.add("gl");
 		if (lifters[r].dl.s1==-1) newCol.classList.add("nl");
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r].dl.a2 * lifters[r].dl.s2;
+		curDL=lifters[r].dl.a2 * lifters[r].dl.s2;
+		newCol.innerHTML=curDL;
+		bestDL=Math.max(curDL,bestDL,0);
 		if (lifters[r].dl.s2==1) newCol.classList.add("gl");
 		if (lifters[r].dl.s2==-1) newCol.classList.add("nl");
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=lifters[r].dl.a3 * lifters[r].dl.s3;
+		curDL=lifters[r].dl.a3 * lifters[r].dl.s3;
+		newCol.innerHTML=curDL;
+		bestDL=Math.max(curDL,bestDL,0);
 		if (lifters[r].dl.s3==1) newCol.classList.add("gl");
 		if (lifters[r].dl.s3==-1) newCol.classList.add("nl");
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
+		newCol.innerHTML=bestDL;
+		newRow.appendChild(newCol);
+
+		newCol=document.createElement("td");
 		newCol.innerHTML=getTotal(lifters[r]);
+		newRow.appendChild(newCol);
+		
+		newCol=document.createElement("td");
+		newCol.innerHTML=eventFilter(curDiv[2]);
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
 		newCol.innerHTML=getipf(lifters[r]);
 		newRow.appendChild(newCol);
+
+		newCol=document.createElement("td");
+		newCol.innerHTML=lifters[r].team;
+		newRow.appendChild(newCol);
+
 	document.getElementById("tableu").appendChild(newRow);
 }
 } //end function maketableu
 
+function eventFilter(e) {
+switch (e) {
+case "PL": return "SBD";break;
+case "BP": return "B"; break;
+case "PP": return "BD"; break;
+case "DL": return "D"; break;
+case "SQ": return "S"; break;
+}
+}
+
+function getOPLEquipment(e) {
+switch (e) {
+  case "CL": return "Raw";break;
+  case "EQ": return "Single-ply";break;
+  case "MP": return "Multi-ply";break;
+  case "CR": return "Raw+Wraps";break;
+  default: return "Raw"; break;
+}
+}
 
 function ageDiv(y){
 if (setup.openOnly) return "O";
-if (yr-y <=18)  return "S-Jr";
+if (yr-y <=18)  return "SJ";
 if (yr-y <=23)  return "Jr";
 if (yr-y >=70)  return "M4";
 if (yr-y >=60)  return "M3";
@@ -316,8 +378,31 @@ if (a==0) {ipf=0} else  ipf = (t*100/(a-b*Math.exp(-c*bw))).toFixed(2);
 return ipf   //end ipfGL
 }
 
+function exportToExcel(){ //export the table to CSS
+	var linky,csv_data=",", dataType='application/vnd.ms-excel';
+	var rows= document.getElementsByTagName('tr');
+	for (var i=0; i< rows.length; i++) {
+		var cols = rows[i].querySelectorAll("td,th");
+		for (var j=0; j<cols.length; j++) {
+			csv_data += cols[j].innerHTML + ",";
+		}
+		csv_data += "\n";
+	}
+	let d= new Date();
+
+	 filename="<?php echo $compName; ?> - " + d.toISOString().split("T")[0]+".csv";
+ 
+	 linky=document.createElement("a");
+	 document.body.appendChild(linky);
+	 linky.href='data:attachment/csv'+encodeURI(csv_data);
+	 linky.download=filename;
+	 linky.click();
+	 
+
+} //end function exporttoexcel
+
+
 
 </script>
 </body>
 </html>
-
