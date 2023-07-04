@@ -1,0 +1,3 @@
+At this stage it's open source, sure. But it's still kinda a one-man show.
+
+If there's issues, let me know and i'll fix em I guess...
