@@ -33,7 +33,7 @@ $compLetters        = strval(test_input($_POST["compLetters"]));
 $nextLoad           = strval(test_input($_POST["nextLoad"]));
 
 //check if it exists
-$stmt=$conn->prepare("select * from comps where compLetters=?");
+$stmt=$conn->prepare("select compName from comps where compLetters=?");
 
 $stmt->bind_param("s", $compLetters);
 $stmt->execute();
@@ -53,14 +53,7 @@ if  (mysqli_num_rows($result) == 1) { //if it already exists do an update
 
 
 
-} else { // if it doesn't exist do an insert
-  if($stmt=$conn->prepare("INSERT INTO overlay (compLetters, compName, lifterName, currentAttempt, total, compStatus, lifterTeam, lifterBW, lifterClass, lifterCat, lifterFlight) VALUES(?,?,?,?,?,?,?,?,?,?,?)")){
-    $stmt->bind_param("sssddisdsss", $compLetters, $compName, $lifterName, $currentAttempt, $total, $compStatus, $lifterTeam, $lifterBW, $lifterClass, $lifterCat, $lifterFlight);
-    $stmt->execute();
-    $stmt->close();
-
-  }
-}
+};
 
 //all done updating
 $conn->close();
