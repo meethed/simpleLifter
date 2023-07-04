@@ -191,6 +191,11 @@ class Lifters {
 			var as=getStatus(a,l);
 			var bs=getStatus(b,l);
 
+		      //first up just brute force weigh in lot number
+      			if (l.charAt(0)=="W") {
+      			if (al>bl) return 1;
+      			if (bl>al) return -1;
+      }		
 			//fix up blanks so they're at the bottom
 			if (aa=="") aa=9000;
 			if (ba=="") ba=9000;
