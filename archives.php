@@ -17,7 +17,7 @@ if ($conn->connect_error) {
   die("connection error");
 }
 
-$sql = "SELECT * FROM comps WHERE (enddate <= curdate())";
+$sql = "SELECT compLetters,compName,startdate,enddate FROM comps WHERE (enddate <= curdate())";
 $result = $conn->query($sql);
 
 //start a new scrollable div
