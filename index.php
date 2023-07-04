@@ -69,7 +69,7 @@
 include_once "../config.php";
 echo '<div class="warning">Connected Successfully</div>';
 
-$sql = "SELECT * FROM comps WHERE (enddate >= curdate())";
+$sql = "SELECT compLetters,compName,startdate,enddate FROM comps WHERE (enddate >= curdate())";
 //$sql = '';
 $result = $conn->query($sql);
 
