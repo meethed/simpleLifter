@@ -1,0 +1,3 @@
+# Security Policy #
+
+Yeah um it's loose. Nothing client side is bad (it can't be it all runs in the web browser). And if anything on the server end is bad, I guess amazon would let me know... 
