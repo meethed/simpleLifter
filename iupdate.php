@@ -8,7 +8,7 @@ $json = $_POST["json"];
 if (json_decode($json) !=null) { //if the json is valid
 $j=json_decode($json);
 echo $json;
-$stmt=$conn->prepare("select * from comps where compLetters=?");
+$stmt=$conn->prepare("select compName from comps where compLetters=?");
 
 $stmt->bind_param("s", $j->compLetters);
 $stmt->execute();
