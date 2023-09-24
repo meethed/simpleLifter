@@ -233,9 +233,10 @@ function setTimer2(t) {
 } //end function setTimer2
 
 function clearTimer1() {
-	timer1.classList.remove("visible");
+  timer1.classList.remove("visible");
   timer1.innerHTML="";
-	clearInterval(interval1);
+  clearInterval(interval1);
+  updateCache();
 } //end function clearTimer1
 
 function clearTimer2() {
@@ -249,6 +250,7 @@ drawLights([0,0,0]);
 } //end function clearLights
 
 function drawPlates1(n,w,l,r,b) {
+if (timer1.classList.contains("visible")) return false; //override in case there's a conflict - always show the timer over the plates
 	ps=plates1;
 	lights.style.display="none";
   ps.style.display="inline-flex";
