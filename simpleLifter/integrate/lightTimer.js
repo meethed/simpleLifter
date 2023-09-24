@@ -22,6 +22,9 @@ fetch("saveload.php?q=loadlifter&comp="+compName,{method:"POST"})
     return response.json();
   })
   .then((myJson) => {
+        var a=document.querySelectorAll(".tr");
+        var i; const l=a.length;
+        for (i=1;i<l;i++) {a[i].remove();}
 	lifters = new Lifters(0);
 	loading=myJson;
 	var i=0;
