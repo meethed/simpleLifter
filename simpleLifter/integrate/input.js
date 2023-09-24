@@ -1,6 +1,6 @@
 var divisions=["M-CL-PL", "F-CL-PL","M-EQ-PL","F-EQ-PL","M-CL-BP", "F-CL-BP","M-EQ-BP","F-EQ-BP","M-SO-PL","F-SO-PL","M-CR-PL","F-CR-PL","M-CL-DL","F-CL-DL"];
 var groups=["A","B","C","D","E","F","G"];
-var utils=["Comp Setup...","Save","Load","Generate Results","Help..."];
+var utils=["Comp Setup...","Save","Load","Generate Results","Change Session...","Help..."];
 var lifts=["Weigh In","SQ-1","SQ-2","SQ-3","BP-1","BP-2","BP-3","DL-1","DL-2","DL-3"];
 function autocomplete(inp, arr) {
   /*the autocomplete function takes two arguments,
@@ -226,9 +226,10 @@ function showUtils(){
           b.addEventListener("click", function(e) {
           
 						if (e.target.innerHTML=="Save") lifters.saveLocal();
-						if (e.target.innerHTML=="Load") {lifters.loadLocal()};
+						if (e.target.innerHTML=="Load") lifters.loadLocal();
 						if (e.target.innerHTML=="Generate Results") doScoreboard();
 						if (e.target.innerHTML=="Comp Setup...") doSetup();
+					        if (e.target.innerHTML=="Change Session...") doSessionChange();
 						if (e.target.innerHTML=="Help...") doHelp();
 						if (e.target.innerHTML=="Hide Results") hideScoreboard();
           });
