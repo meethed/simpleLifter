@@ -180,6 +180,8 @@ $conn->close();
 	<script src="input.js"></script>
 	<script src="lightTimer.js"></script>
 	<script src="windows.js"></script>
+        <script src="sessionChange.js"></script>
+
 	<script>
 
 	if (!failedLogin) {
