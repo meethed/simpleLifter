@@ -134,9 +134,15 @@ background: tan;
 .gl {
 	background-color: #0f0;
 }
+.gl.act {
+	background-color: #699955;
+}
 
 .nl {
 	background-color: #f00;
+}
+.nl.act {
+	background-color: darkred;
 }
 
 .at{
