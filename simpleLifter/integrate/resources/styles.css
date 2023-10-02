@@ -380,7 +380,7 @@ h4 {font-size: 64px;} /*this will make the text on the plates display bigger and
 }
 
 .autocomplete-items div:hover {
-	background-color: grey;
+	background-color: tan;
 	}
 	
 .autocomplete-active {
