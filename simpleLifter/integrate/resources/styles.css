@@ -363,13 +363,13 @@ h4 {font-size: 64px;} /*this will make the text on the plates display bigger and
 	top: 100%;
 	left: -10px;
 	right:-10px;
-	
+	box-shadow: 5px 5px 10px 0px black;
 }
 
 .autocomplete-items div{
 	padding: 10px;
 	cursor: pointer;
-	background-color:#fff;
+	background-color:#eff;
 	border-bottom: 1px solid;
 }
 
