@@ -1,4 +1,3 @@
-
 const activeComps=[]; //global scope
 
 function doSessionChange() {
@@ -18,10 +17,8 @@ fetch("../../getcomps.php")
   c++;
  }
 
-
-
+  
 //cool we have all of the active comps
-
 
 var accessCode,
     compLetters;
@@ -46,6 +43,7 @@ var box,btnOk,msg;
   //create the password input (using prepend do it first)
   var accessInput=document.createElement("input");
   accessInput.placeholder="Insert Access Code";
+  accessInput.type="password";
   accessInput.name="pwd";
   frm.prepend(accessInput);
 
@@ -62,9 +60,15 @@ var box,btnOk,msg;
   option.innerHTML=activeComps[k];
   selector.append(option);
   });
-
+  
 document.getElementById("popupBox").style.display="block";
 
+  //add a label
+  var lab=document.createElement("div");
+  lab.innerHTML="<p>Select the competition, input the access code, and then press 'go'. If you don't wanna do this, press 'close'</p>";
+  frm.prepend(lab);
+
+  
 //validate  session
 
 goBtn.addEventListener("click",function() {
