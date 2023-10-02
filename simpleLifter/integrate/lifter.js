@@ -406,6 +406,7 @@ function setDivs(lifter){
 		if(i!=8 && i!=5) {newCell.contentEditable="plaintext-only";} else newCell.classList.add("calc");
 		newCell.addEventListener("focusout",function(e) {updateFromDiv(lifter)});
 		if (i==2) newCell.addEventListener("dblclick",function(e) {changeLifter(e.currentTarget)});
+		newCell.addEventListener("contextmenu",function(e) {e.preventDefault(); showContext(e.currentTarget);});
 		newCell.classList.add("td");
 	} 	
 	if (i>=11 && i<=25) { //these ones are for the numbers
