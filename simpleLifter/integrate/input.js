@@ -2,6 +2,7 @@ var divisions=["M-CL-PL", "F-CL-PL","M-EQ-PL","F-EQ-PL","M-CL-BP", "F-CL-BP","M-
 var groups=["A","B","C","D","E","F","G"];
 var utils=["Comp Setup...","Save","Load","Generate Results","Change Session...","Help..."];
 var lifts=["Weigh In","SQ-1","SQ-2","SQ-3","BP-1","BP-2","BP-3","DL-1","DL-2","DL-3"];
+var timers=[1,2,3,4,5,6,10,20,"Clear"];
 function autocomplete(inp, arr) {
   /*the autocomplete function takes two arguments,
   the text field element and an array of possible autocompleted values:*/
@@ -239,6 +240,39 @@ function showUtils(){
 }	
 } //end function showUtils
 
+function showTimers(){
+	
+	var a,b,val;
+	var arr=timers;
+	var t=document.getElementById("btnTimer");
+	a = document.createElement("DIV");
+  a.setAttribute("id", t.id + "autocomplete-list");
+  a.setAttribute("class", "autocomplete-items");
+	t.appendChild(a);
+      /*for each item in the array...*/
+      for (i = 0; i < arr.length; i++) {
+        /*check if the item starts with the same letters as the text field value:*/
+        /*create a DIV element for each element:*/
+          b = document.createElement("DIV");
+          if (arr[i]==1) {b.innerHTML = "1 Minute"} else
+            if (parseInt(arr[i])) {b.innerHTML = arr[i] + " Minutes"} else
+              b.innerHTML="Clear";
+
+          
+          /*insert a input field that will hold the current array item's value:*/
+          
+          /*execute a function when someone clicks on the item value (DIV element):*/
+          b.addEventListener("click", function(e) {
+         setBarLoaded(-1);
+
+         const m=parseInt(e.target.innerHTML);
+         setTimer2(m ? m : -1);
+         });
+         a.appendChild(b);
+       
+    
+}	
+} //end function showTimers
 
 function doPopup(text){
 	var box,btnOk,msg;
