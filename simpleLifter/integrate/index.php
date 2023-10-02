@@ -84,6 +84,7 @@ $conn->close();
 		<div class="mbtn" id="btnGood">Good Lift</div>
 		<div class="mbtn" id="btnNo">No Lift</div>
 		<div class="mbtn" id="btnBar">Bar Loaded</div>
+		<div class="mbtn" id="btnTimer">Break Timer...</div>
 		<div class="mbtn" id="btnUtil">Utilities...</div>
 	</div>
 	</div>
