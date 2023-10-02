@@ -3,6 +3,8 @@ var groups=["A","B","C","D","E","F","G"];
 var utils=["Comp Setup...","Save","Load","Generate Results","Change Session...","Help..."];
 var lifts=["Weigh In","SQ-1","SQ-2","SQ-3","BP-1","BP-2","BP-3","DL-1","DL-2","DL-3"];
 var timers=[1,2,3,4,5,6,10,20,"Clear"];
+var contexts=["Activate lifter","Delete lifter","...More coming soon..."];
+
 function autocomplete(inp, arr) {
   /*the autocomplete function takes two arguments,
   the text field element and an array of possible autocompleted values:*/
@@ -233,6 +235,36 @@ function showUtils(){
 					        if (e.target.innerHTML=="Change Session...") doSessionChange();
 						if (e.target.innerHTML=="Help...") doHelp();
 						if (e.target.innerHTML=="Hide Results") hideScoreboard();
+          });
+          a.appendChild(b);
+        
+     
+}	
+} //end function showUtils
+
+function showContext(t){
+	
+	var a,b,val;
+	var arr=contexts;
+	a = document.createElement("DIV");
+  	a.setAttribute("id", t.id + "autocomplete-list");
+  	a.setAttribute("class", "autocomplete-items");
+	t.appendChild(a);
+      /*for each item in the array...*/
+      for (i = 0; i < arr.length; i++) {
+        /*check if the item starts with the same letters as the text field value:*/
+        /*create a DIV element for each element:*/
+          b = document.createElement("DIV");
+          b.innerHTML =  arr[i];
+          
+          /*insert a input field that will hold the current array item's value:*/
+          
+          /*execute a function when someone clicks on the item value (DIV element):*/
+          b.addEventListener("click", function(e) {
+	  const cell=e.target.parentElement.parentElement;
+	  closeAllLists();
+	  if (e.target.innerHTML=="Activate Lifter") changeLifter(cell);
+	  if (e.target.innerHTML=="Delete Lifter") {cell.innerHTML=""; cell.previousSibling.innerHTML="";};
           });
           a.appendChild(b);
         
