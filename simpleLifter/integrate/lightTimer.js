@@ -61,7 +61,7 @@ function saveServer(){
 
 
 function setBarLoaded(t){
-	if( document.getElementById("btnBar").innerHTML=="Reset timer") {
+	if( document.getElementById("btnBar").innerHTML=="Reset timer" || t==-1) {
 		clearInterval(ticker);
 		t=-1;
 		document.getElementById("btnBar").innerHTML="Bar Loaded";
