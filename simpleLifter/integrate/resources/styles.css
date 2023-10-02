@@ -524,3 +524,10 @@ border-radius: 5px;
 
 }
 
+select {
+font-family: "Roboto Condensed";
+font-size: 1em;
+text-overflow: ellipsis;
+max-width: 100%;
+
+}
