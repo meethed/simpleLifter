@@ -532,8 +532,9 @@ function setDivs(lifter){
 		for (i=0;i<setup.lifterCount;i++)
 		if (lifters.liftList[i].name==e.innerHTML){
 			if (lifters.liftList[i].group!=lifters.activeGp) {lifters.activeGp=lifters.liftList[i].group;lifters.doSort()};
+			setBarLoaded(-1)
 			lifters.activeRow=lifters.liftList[i].sortOrder;
-			break;
+			updateStatus();
 			}
 		
 	}
