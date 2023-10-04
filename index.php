@@ -16,7 +16,7 @@
 
 <h2>Select Position / Lights</h2>
 <div class="question">
-<a HREF="reasons.php">&quest;</a>
+<a HREF="reasons.php"><strong>Help</strong></a>
 </div>
 </form>
 
