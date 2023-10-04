@@ -354,7 +354,6 @@ var nextPlates=getPlates(w);
 nextPlates.forEach((x,id) => {
 	if (x>1) {plateString+=x + "x" + globalPlates[id]+" / "} else
 	if (x>0) {plateString+=globalPlates[id] + " / "}
-	
 	});
 return plateString;
 } //end function getLoad
