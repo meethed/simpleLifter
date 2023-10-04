@@ -67,9 +67,15 @@
 
 <?php
 include_once "../config.php";
+// check connection
+if ($conn->connect_error) {
+  echo '<div class="warning">Connection failed: ' . $conn->connect_error . '</div>';
+  die("connection error");
+}
 echo '<div class="warning">Connected Successfully</div>';
 
-$sql = "SELECT compLetters,compName,startdate,enddate FROM comps WHERE (enddate >= curdate())";
+
+$sql = "SELECT compName, compLetters,startdate,enddate FROM comps WHERE (enddate >= curdate()) ORDER BY startdate";
 //$sql = '';
 $result = $conn->query($sql);
 
