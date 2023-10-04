@@ -49,7 +49,7 @@ if (empty($_POST)) { // if there is no POST data (ie a direct URL)
 <div id="heading"><h1>
 	<?php
 // Create connection
-$conn = new mysqli('localhost', 'lightsuser','lights','lightsdb');
+include_once "../config.php";
 // Check connection
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
@@ -114,13 +114,13 @@ echo '<div class="rBut clear" id="cLoaded">X</div><div class="rBut" id="Attempt"
     <div id="Lights" class="<?php echo $_POST['pos']; ?>">
         <div id="bigLights">
             <div id="bigL" class="lightContainer">
-                <div class="round" id="choiceL"></div>
+                <div class="round" id="choiceL"></div><div></div>
             </div>
             <div id="bigC" class="lightContainer">
-                <div class="round" id="choiceC"></div>
+                <div class="round" id="choiceC"></div><div></div>
             </div>
             <div id="bigR" class="lightContainer">
-                <div class="round" id="choiceR"></div>
+                <div class="round" id="choiceR"></div><div></div>
             </div>
         </div>
             <div id="smolLights">
@@ -670,6 +670,7 @@ if ((ll==0)  || (cl==0) || (rl==0)) { //if at least one of them is zero
 		smolL[i].children[0].className="round";
 		if (spots[i]!=0){
 			bigL[i].children[0].classList.add("pending");
+			bigL[i].children[0].style.animationDelay=Math.random()/2+"s";
 			bigL[i].children[0].classList.add("visible");
 		}
 		else {
@@ -700,7 +701,7 @@ if ((ll!=0) && (cl!=0) & (rl!=0)) { //if they are all non-zero THEN DISPLAY THE 
 	updateLights(10); //clear th etimer
 	if (att!=3 && att!=6 && att!=9) updateTimer2(1); //if the referees have set all the lights, set the next attempt timer to 1 minute;
 	clearTimeout(resetinterval); //reset the 10 second timer just in case
-	resetinterval = setTimeout(function() {clearlights();},5000);  //this is the timer for clearing the lights. it is currently 5 seconds. 10 was too long
+	resetinterval = setTimeout(function() {clearlights();},5000);  //this is the timer for clearing the lights. it is currently 5 seconds
 
 
 document.getElementById("smolLights").classList.add("visible");
