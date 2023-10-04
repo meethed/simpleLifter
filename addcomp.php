@@ -9,7 +9,7 @@
   $cnt = test_input($_POST["contact"]);
 
 
-if ($compName == "") die("Bruv the competition name was blank do it again");
+if ($compName == "") {echo "Bruv the competition name was blank do it again"; die();}
 
 //get the next comp letter sequence
 $str = "SELECT compLetters, compName FROM comps ORDER BY compLetters DESC limit 1";
@@ -22,7 +22,6 @@ $oldname = $data["compName"];
 $result->close;
 if ($oldname == $compName) {
 echo "Error duplicate competition";
-
 die();
 }
 // if the last competition to be added had the same name, it's likely an F5 issue so just nuke it (no duplicates allowed)
