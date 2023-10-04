@@ -2,14 +2,14 @@
 <html>
 <head>
 <link rel=stylesheet href="./resources/styles.css">
-<title>Lights and stream server</title>
+<title>simpleLifter</title>
 </head>
 <body>
 <div class="backdrop"></div>
 
 <form id="frm" method="POST">
 <div id="allContainer" class="containertb">
-<h1>Powerlifting lights, timers, spreadsheets,<br>results, and more!</h1>
+<h1><i>simpleLifter</i></h1><h2>Powerlifting competition management system</h2>
 <p>This suite of tools was written to provide a contemporary, feature-rich and COMPLETELY FREE computer-controlled lighting, timing and live-stream overlay set up for powerlifting competition.</p>
 <p>For help, more information on available features, and contacts in case you need assistance, please click the question mark on the right.</p>
 <p>Please select the referee position or display type, choose your competition and enter the codeword (if applicable) before clicking "let's go".</p>
