@@ -16,7 +16,7 @@
 	<div class="cnt"><div id="labelAge" class="lbl">Category: </div><div class="inf" id="lifterAge">120kg</div></div>
 	<div class="cnt"><div id="labelPB" class="lbl">Squat PB: </div><div class="inf" id="lifterPB">120kg</div></div>
 	<div class="cnt"><div id="labelTotal" class="lbl">Total PB: </div><div class="inf" id="lifterTotal">120kg</div></div>
-	<img id="pic" src="./simpleLifter/integrate/pics/blank.jpg"/>
+	<img id="pic" style="z-index: -1; display: none;"  src="./simpleLifter/integrate/pics/blank.jpg"/>
 </div>
 <div id="lifterAttempt">
 	<div class="cont"><div class="info" id="attemptName">Test Layout</div></div>
@@ -37,13 +37,11 @@ var tickInterval,
  oldLights,
  setup;
 
-
 var compName="<?php echo filter_input(INPUT_GET, 'c', FILTER_SANITIZE_STRING); ?>";
 var simple="<?php echo filter_input(INPUT_GET, 's', FILTER_SANITIZE_STRING); ?>";
-//load setup
 fetch("./simpleLifter/integrate/saveload.php?q=loadsetup&comp="+compName).then(response=>response.json().then(d=>{setup=d}));
-      
 
+if (compName=="AGZ") document.getElementById("pic").style.display="block";
 //set up the interval timer
 tickInterval=setInterval(tick, 1000);
 
