@@ -1,6 +1,6 @@
 <?php
 
- include_once "../config.php";
+  include_once "../config.php";
 
   $compName = test_input($_POST["newCompName"]);
   $startdate = $_POST["startdate"];
@@ -8,8 +8,7 @@
   $pwd = test_input($_POST["pwd"]);
   $cnt = test_input($_POST["contact"]);
 
-
-if ($compName == "") {echo "Bruv the competition name was blank do it again"; die();}
+		if ($compName == "") {echo "Bruv the competition name was blank do it again"; die();}
 
 //get the next comp letter sequence
 $str = "SELECT compLetters, compName FROM comps ORDER BY compLetters DESC limit 1";
