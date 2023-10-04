@@ -5,7 +5,7 @@ $n=filter_input(INPUT_GET,"n",FILTER_SANITIZE_STRING); //n = lifter name
 $s=filter_input(INPUT_GET,"s",FILTER_SANITIZE_STRING); //s = comp status (sq/bp/dl)
 $lifterFile=filter_input(INPUT_GET,"c",FILTER_SANITIZE_STRING).".json"; //c=comp tri-letter
 
-$jsondata = json_decode(file_get_contents($dir.'/'.$lifterFile),true);
+$jsondata = json_decode(file_get_contents($dir.'/'.$lifterFile),true)["liftList"];
 $bestdata = json_decode(file_get_contents($dir.'/best'.$lifterFile),true);
 
 foreach($jsondata as $key=>$value) {
@@ -20,7 +20,6 @@ foreach($jsondata as $key=>$value) {
     $ret["tpb"]=$bvalue["tpb"];
    }
   }
-// print_r($ret);
  echo json_encode($ret);
  }; //end if the lifter name matches
 } //end loop
