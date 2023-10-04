@@ -38,9 +38,15 @@
 <li>HAVE A BACKUP! Manual lights or flags are a must!</li>
 </ol>
 <h2>Privacy & Cookies</h2>
-<p>No personal information is retained when using the lights. Your email address is only used for me to contact you, but I will not do this unless I have to. </p>
-<p>Cookies are used to manage password and logon data, and to store some data locally in the event of a server outage. These are "essential" cookies and can't be disabled without compromising the security of the server.</p>
-<p>simpleLifter stores lifter data on the server, but only enough for successful conduct of a competition and recording of results (eg on openipf.org). DOB is not used, only birth year. I DO NOT backup or hold this data longer than necessary. If you want anything reviewed or deleted, please contact me.</p>
+<p>First things first, nobody is forcing you to use simpleLifter. If you disagree with the privacy and cookies information below, you are free to use other setups. simpleLifter and Comp Of The Future are IP of Evan Mccloy. Whilst it is an open source project (<a href="https://github.com/meethed/simpleLifter">https://github.com/meethed/simpleLifter</a>), the cotf.zapto.org domain is managed by Evan. To contact me regarding privacy information or cookies please use insanityasylum[at]hotmail.com</p>
+<p>The only personal information that is used by simpleLifter:
+<li><strong>Optional</strong> contact email address when you create a new comp</li>
+<li>Lifter name, year of birth and optional profile picture when using the simpleLifter spreadsheet.</li>
+<p>Personal information is stored in a separate database on the cotf.zapto.org server, which is an Amazon Web Services instance in the cloud, and is regularly maintained and updated with security patches. This information is stored for two reasons:
+<li>The contact email so I can reach out and offer assistance</li>
+<li>The lifter data to ensure that lifter name and age classes are correct</li>
+<p>No personal contact information will be disclosed unless Australian law requires it. I am the only person with access to the database to access contact emails, and I've made it difficult for me to do so - let alone anybody else. Lifter information (in the form of competition results) is archived and can be removed at anytime at the request of any individual. If you have any complaints please contact me at the email address above. I've been pretty transparent so besides removing your information there isn't much I can do - but still, reach out please if there are concerns.</p>
+<p>No sensitive (health, race, criminal record, or sexual orientation) data is collected. Cookies are used to manage password and logon data, and to store some data locally in the event of a server outage. These are "essential" cookies and can't be disabled without compromising the security of the server. simpleLifter stores lifter data on the server and as local cookies, but only enough for successful conduct of a competition and recording of results (eg on openipf.org). DOB is not used, only birth year. I DO NOT backup or hold this data longer than necessary. If you want anything reviewed or deleted, please contact me.</p>
 </div>
 </div>
 <button id="hBut" class="helpBtn">Basic help</button>
