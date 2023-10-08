@@ -243,7 +243,7 @@ function showUtils(){
 } //end function showUtils
 
 function showContext(t){
-	
+
 	var a,b,val;
 	var arr=contexts;
 	a = document.createElement("DIV");
@@ -261,16 +261,16 @@ function showContext(t){
           
           /*execute a function when someone clicks on the item value (DIV element):*/
           b.addEventListener("click", function(e) {
-	  const cell=e.target.parentElement.parentElement;
-	  closeAllLists();
-	  if (e.target.innerHTML=="Activate Lifter") changeLifter(cell);
-	  if (e.target.innerHTML=="Delete Lifter") {cell.innerHTML=""; cell.previousSibling.innerHTML="";};
-          });
-          a.appendChild(b);
+					const cell=e.target.parentElement.parentElement;
+					closeAllLists();
+					if (e.target.innerHTML=="Activate Lifter") changeLifter(cell);
+					if (e.target.innerHTML=="Delete Lifter") {cell.innerHTML=""; cell.previousSibling.innerHTML="";};
+					});
+					a.appendChild(b);
         
      
 }	
-} //end function showUtils
+} //end function showContext
 
 function showTimers(){
 	
@@ -295,12 +295,12 @@ function showTimers(){
           
           /*execute a function when someone clicks on the item value (DIV element):*/
           b.addEventListener("click", function(e) {
-         setBarLoaded(-1);
+					setBarLoaded(-1);
 
-         const m=parseInt(e.target.innerHTML);
-         setTimer2(m ? m : -1);
-         });
-         a.appendChild(b);
+					const m=parseInt(e.target.innerHTML);
+					setTimer2(m ? m : -1);
+					});
+				a.appendChild(b);
        
     
 }	
