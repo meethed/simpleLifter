@@ -121,9 +121,9 @@ class Lifters {
 
 					if (setup.countUp) {this.activeGp="A";}
 					if (!setup.countUp) {this.activeGp=setup.maxGp};
-				
+
 					// this is where we pop up saying we're doing a 10 minute (or 20 minute timer)
-					 if (setup.maxGp=="A") {var t=20;} else {var t=10;};  // if there's only the A group then 20 minute timer
+					if (setup.maxGp=="A") {var t=20;} else {var t=10;};  // if there's only the A group then 20 minute timer
 					if (this.activeLi.charAt(0)=="B") {var oldEvent="Squats"} else {var oldEvent="Bench Press"};
 					doPopup("That was the last of the  " + oldEvent + ". A " + t + " minute timer will now commence.");
 					setTimer2(t);
@@ -135,7 +135,7 @@ class Lifters {
 		if (setup.auto&&this.activeRw.activeCell(this.activeLi)=="" && this.activeLi!="DL-3" &&this.activeRow!=0)
 		this.incrementRow; //if after all that the next cell is blank, then skip them!
 	this.doSort();
-	//updateStatus(); this one is unnecessary and leads to weird doubling up
+	updateStatus(); // i need this one.
 
 	//set the next cell for editing
 	if (this.activeLi.charAt(this.activeLi.length-1)!="3") {
@@ -154,20 +154,20 @@ class Lifters {
 	let ps=[];
 	var cCat, ccCat, at,bt;
 	var ls=this.liftList
-	ls.forEach((c,index) => {
+	ls.forEach((c,index) => { //for each lifter in the lift list
 		gp=1;
 			var cCat=c.division+c.weightClass; //current category
 			if (!setup.openOnly) cCat += c.ageDiv; //if it's open age only then ignore weights
 
-			ls.forEach((cc,iindex) => {
-			  ccCat=cc.division+cc.weightClass;
+			ls.forEach((cc,iindex) => { //for each lifter for comparison
+			  ccCat=cc.division+cc.weightClass; //current cat for the comparison lifter
 			  if (!setup.openOnly) ccCat += cc.ageDiv; //add age if not open
 			  if (cCat==ccCat && c.idx!=cc.iindex && cc.predictedTotal>c.predictedTotal)  //note this isn't a proper sort. it just works out how many in front of the current lifter there are
-			  gp+=1; //if they're bigger they go before
+			  gp+=1; //if they're bigger then add one
  
 			});
 
-			// here we have a sorted 'group'
+			// cool so the places (liftList index) is assigned for each lifter
 			ps[index]=gp;
 
 	}) //get the next lifter
@@ -191,10 +191,10 @@ class Lifters {
 			var as=getStatus(a,l);
 			var bs=getStatus(b,l);
 
-		      //first up just brute force weigh in lot number
-      			if (l.charAt(0)=="W") {
-      			if (al>bl) return 1;
-      			if (bl>al) return -1;
+			//first up just brute force weigh in lot number
+			if (l.charAt(0)=="W") {
+			if (al>bl) return 1;
+			if (bl>al) return -1;
       }		
 			//fix up blanks so they're at the bottom
 			if (aa=="") aa=9000;
@@ -353,9 +353,8 @@ class Lifters {
 			this.liftList[lifter].row.remove();
 			this.liftList.splice(lifter,1);
 			this.liftList[lifter];
-
 		}
-	this.liftList.forEach((c,i) => c.idx=i);
+	this.liftList.forEach((c,i) => c.idx=i); //renumber neatly
 	} //end of the nuke lifter function
 
 } //end of the Lifters class
