@@ -70,7 +70,6 @@ function doScoreboard() {
 			//document.getElementById("tableu").appendChild(el[1].row);
 			el.sortOrder=index;
 		}); //end sorting function
-
 	var csv=document.createElement("div");
 	csv.innerHTML="<a href='./dead.php?c=" + compName + "'>Click here for Open Powerlifting CSV Export</a>";
 	document.body.appendChild(scoreboard); //display the scoreboard separately
@@ -157,8 +156,6 @@ function exportToExcel(){ //export the table to Excel format
 	 linky.href='data:'+dataType+', '+tableu;
 	 linky.download=filename;
 	 linky.click();
-	 
-
 } //end function exporttoexcel
 
 function hideScoreboard(){
