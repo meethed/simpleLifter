@@ -22,9 +22,9 @@ fetch("saveload.php?q=loadlifter&comp="+compName,{method:"POST"})
     return response.json();
   })
   .then((myJson) => {
-        var a=document.querySelectorAll(".tr");
-        var i; const l=a.length;
-        for (i=1;i<l;i++) {a[i].remove();}
+	var a=document.querySelectorAll(".tr");
+	var i; const l=a.length;
+	for (i=1;i<l;i++) {a[i].remove();}
 	lifters = new Lifters(0);
 	loading=myJson;
 	var i=0;
@@ -245,7 +245,6 @@ function evaluateTimer1(t){
 		document.getElementById("btnBar").innerHTML="Reset timer";
   document.getElementById("lights").style.opacity=0;
 	ticker=setInterval(function() {
-	
 	var now = Date.now()/1000;
 	var distance = (t-now+clockOffset)*1000;
 	var seconds = Math.floor((distance % (1000*60)) / 1000);
