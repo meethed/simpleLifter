@@ -28,6 +28,11 @@ user-select: none;
 color: #000;
 }
 
+.question {
+position: fixed;
+top: 5px;
+right: 5px;
+}
 
 .clear {
 display: inline-block;
@@ -400,13 +405,27 @@ background-color: #ff0;
 opacity: 1;
 
 }
-.pending {
+/*.pending {
 background: radial-gradient(#0f0 , rgba(0,0,0,0) 30%, rgba(0,0,0,0) 100%);
 width: 100%;
 height: 100%;
 opacity: 1;
 }
-
+*/
+.pending {
+width: 100%;
+height: 100%;
+animation: rotation 1.123s cubic-bezier(0.5, 0, 0.5, 1)  infinite;
+background-image: conic-gradient(from 310deg at 50% 50%, #000000 0%, #000000 29%, #000000af 30%, #00000000 80%),radial-gradient(#000000 42%, #0f0 46%, #000000 50%, #000000 100%);
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 .visible {
 opacity: 1;
 transition: opacity 0.3s;
