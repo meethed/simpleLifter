@@ -27,7 +27,6 @@ display: block;
 margin: auto;
 display: inline-flex;
 align-items: center;
-padding: 5px;
 }
 
 
@@ -153,7 +152,9 @@ transition: opacity 0.3s;
 #plates1,#plates2{
 	padding-left:20px;
 	padding-right:20px;
-	border-radius:10px;
+	border-radius:5px;
+	height: 99%;
+	margin-top: 2px;
 	background-image: linear-gradient(#555,#333,#333,#333,#333,#333, white);
 }
 .plate{
