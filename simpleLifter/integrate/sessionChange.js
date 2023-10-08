@@ -17,7 +17,6 @@ fetch("../../getcomps.php")
   c++;
  }
 
-  
 //cool we have all of the active comps
 
 var accessCode,
@@ -30,7 +29,6 @@ popupBox.prepend(frm);
 
 
 //show dialog with dropdown of active comps
-
 var box,btnOk,msg;
   document.getElementById("msg").innerHTML="";
 
@@ -55,19 +53,18 @@ var box,btnOk,msg;
   //create the selector options
 
   Object.keys(activeComps).forEach(k => {
-  var option=document.createElement("option");
+	var option=document.createElement("option");
   option.value=k;
   option.innerHTML=activeComps[k];
   selector.append(option);
   });
-  
-document.getElementById("popupBox").style.display="block";
+ 
+	document.getElementById("popupBox").style.display="block";
 
   //add a label
   var lab=document.createElement("div");
-  lab.innerHTML="<p>Select the competition, input the access code, and then press 'go'. If you don't wanna do this, press 'close'</p>";
-  frm.prepend(lab);
-
+	lab.innerHTML="<p>Select the competition, input the access code, and then press 'go'. If you don't wanna do this, press 'close'</p>";
+	frm.prepend(lab);
   
 //validate  session
 
@@ -77,7 +74,7 @@ var compNameTry="",compPWDTry="";
 
 const frmData = new FormData(frm);
 fetch("switchComps.php", {
-method: "POST",
+	method: "POST",
   body: frmData, })
  .then(response =>
   response.text()).then(d => {;
@@ -88,8 +85,7 @@ d=d.replace(/(\r\n|\n|\r)/gm,"").trim();
   compName=selector.value;
   fullComp=selector.options[selector.selectedIndex].text;
 
-
-var a=document.querySelectorAll(".tr");
+	var a=document.querySelectorAll(".tr");
   var i; const l=a.length;
   for (i=1;i<l;i++) {a[i].remove();}
 
@@ -98,19 +94,13 @@ var a=document.querySelectorAll(".tr");
   lifters.loadLocal();
   lifters.doSort();
  } //if it's correct
-
 });
-
 
 frm.innerHTML="";
 popupBox.removeChild(frm);
 popupBox.style="display:none";
  });
 //reload
-
-
 }); //end of the fetch -  none of this happens without the fetch
 
 }
-
-
