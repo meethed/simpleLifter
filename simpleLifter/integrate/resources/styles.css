@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Roboto+Mono:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 :root {
 	--head: #69a;
 	--calc: var(--head);
@@ -487,28 +488,33 @@ input {
 	background: #777;
 }
 #timerFrame{
-	font-family: 'Roboto Mono', monospace;
+	width: 50%;
+	text-align: left;
+	font-family: 'Orbitron', monospace;
 	margin-top:40px;
 	margin-right:20px;
 	font-size:3em;
-	float:right;
 	border:solid 10px ;
 	border-radius: 20px;
 	transition: all 1s;
 	background:#777;
+	float: right;
+
 }
 #timer2Frame{
-	font-family: 'Roboto Mono', monospace;
-	bottom: 20px;
-	margin-right:20px;
-	font-size:2em;
-	position: absolute;
-	right: 0px;	
-	border:solid 10px ;
-	border-radius: 20px;
-	transition: all 1s;
-	background:#777;
+	font-family: 'Orbitron', monospace;
+  bottom: 20px;
+  margin-right:20px;
+  font-size:2em;
+  position: absolute;
+  right: 0px;
+  text-align: left;
+  border:solid 10px ;
+  border-radius: 20px;
+  transition: all 1s;
+  background:#777;
 }
+
 
 #lights{
 	font-family: 'Roboto Mono', monospace;
@@ -535,5 +541,4 @@ font-family: "Roboto Condensed";
 font-size: 1em;
 text-overflow: ellipsis;
 max-width: 100%;
-
 }
