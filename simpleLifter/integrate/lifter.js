@@ -408,6 +408,7 @@ function setDivs(lifter){
 		if (i==2) {
 		newCell.addEventListener("dblclick",function(e) {changeLifter(e.currentTarget)});
 		newCell.addEventListener("contextmenu",function(e) {e.preventDefault(); showContext(e.currentTarget);});
+		}
 		newCell.classList.add("td");
 	} 	
 	if (i>=11 && i<=25) { //these ones are for the numbers
