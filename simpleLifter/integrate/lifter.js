@@ -405,7 +405,8 @@ function setDivs(lifter){
 		newCell=document.createElement("div");
 		if(i!=8 && i!=5) {newCell.contentEditable="plaintext-only";} else newCell.classList.add("calc");
 		newCell.addEventListener("focusout",function(e) {updateFromDiv(lifter)});
-		if (i==2) newCell.addEventListener("dblclick",function(e) {changeLifter(e.currentTarget)});
+		if (i==2) {
+		newCell.addEventListener("dblclick",function(e) {changeLifter(e.currentTarget)});
 		newCell.addEventListener("contextmenu",function(e) {e.preventDefault(); showContext(e.currentTarget);});
 		newCell.classList.add("td");
 	} 	
@@ -532,13 +533,10 @@ function setDivs(lifter){
 		t.innerHTML = e.innerHTML;
 		for (i=0;i<setup.lifterCount;i++)
 		if (lifters.liftList[i].name==e.innerHTML){
-			if (lifters.liftList[i].group!=lifters.activeGp) {lifters.activeGp=lifters.liftList[i].group;lifters.doSort()};
-			setBarLoaded(-1)
+			if (lifters.liftList[i].group!=lifters.activeGp) {lifters.activeGp=lifters.liftList[i].group; lifters.doSort()};
+			setBarLoaded(-1); //clear the barloaded timer THEN change the lifter - this will ensure the plates display is updated
 			lifters.activeRow=lifters.liftList[i].sortOrder;
 			updateStatus();
 			}
-		
-	}
-
+		}
 ////////////////////////////////////////////////////////////////////
-
