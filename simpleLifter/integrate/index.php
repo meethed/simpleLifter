@@ -163,7 +163,7 @@ $conn->close();
 	
 	<div id="popupBox" class="popup">
 		<p id="msg">Warning Popup</p>
-		<div id="btnOk" class="btn" onclick="document.getElementById('popupBox').style.display='none'">Close</div><p></p>
+		<div id="btnOk" class="btn" onclick="document.getElementById('popupBox').replaceChildren(msg,btnOk); document.getElementById('popupBox').style.display='none'">Close</div><p></p>
 	</div>
 	<script>
 		failedLogin = <?php echo $failed; ?>;
