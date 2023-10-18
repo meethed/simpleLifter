@@ -1,11 +1,6 @@
 
   <?php
-// Create connection
-$conn = new mysqli('localhost', 'lightsuser','lights','lightsdb');
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
+include_once "../../../config.php";
 $sql = "SELECT compLetters, compID, compName, hish FROM comps WHERE compLetters=\"" . $_POST["compName"]. "\"";
 $result = $conn->query($sql);
 
