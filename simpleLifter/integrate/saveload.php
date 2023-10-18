@@ -15,12 +15,7 @@ if ($isExcel=="excel") {
 ////// this bit is to validate the password
 
 // Create connection
-$conn = new mysqli('localhost', 'lightsuser','lights','lightsdb');
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
-
+include_once "../../../config.php";
 $sql = "SELECT compLetters, hish FROM comps WHERE compLetters=\"" . $compName. "\"";
 $result = $conn->query($sql);
 
