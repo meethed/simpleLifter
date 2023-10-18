@@ -136,18 +136,18 @@ background: tan;
 	background-color: #0f0;
 }
 .gl.act {
-	background-color: #699955;
+  background-color: #699955;
 }
 
 .nl {
-	background-color: #f00;
+  background-color: #f00;
 }
 .nl.act {
-	background-color: darkred;
+  background-color: darkred;
 }
 
 .at{
-	background-color:#eee;
+  background-color:#eee;
 }
 
 .calc{
@@ -369,8 +369,8 @@ h4 {font-size: 64px;} /*this will make the text on the plates display bigger and
 	/*make sure they're the same width as the parent*/
 	top: 100%;
 	left: -10px;
-	right:-10px;
-	box-shadow: 5px 5px 10px 0px black;
+  right:-10px;
+  box-shadow: 5px 5px 10px 0px black;	
 }
 
 .autocomplete-items div{
@@ -499,22 +499,20 @@ input {
 	transition: all 1s;
 	background:#777;
 	float: right;
-
 }
 #timer2Frame{
 	font-family: 'Orbitron', monospace;
-  bottom: 20px;
-  margin-right:20px;
-  font-size:2em;
-  position: absolute;
-  right: 0px;
-  text-align: left;
-  border:solid 10px ;
-  border-radius: 20px;
-  transition: all 1s;
-  background:#777;
+	bottom: 20px;
+	margin-right:20px;
+	font-size:2em;
+	position: absolute;
+	right: 0px;
+	text-align: left;	
+	border:solid 10px ;
+	border-radius: 20px;
+	transition: all 1s;
+	background:#777;
 }
-
 
 #lights{
 	font-family: 'Roboto Mono', monospace;

@@ -117,11 +117,11 @@
 </div>
 </div>
 
-<button id="ipfBut" class="helpBtn" onclick="window.location.href='https://www.powerlifting.sport/fileadmin/ipf/data/rules/technical-rules/english/IPF_Technical_Rules_Book_2022_1.pdf'">IPF Rules 2022</button>
+<button id="ipfBut" class="helpBtn" onclick="window.location.href='https://www.powerlifting.sport/fileadmin/ipf/data/rules/technical-rules/english/IPF_Technical_Rules_Book_2024.pdf'">IPF Rules 2024</button>
 <h1></h1><h1></h1>
 <button id="backBut" class="helpBtn" onclick="window.history.back()">Back</button>
 <h1></h1><h1></h1>
-<button id="pdfBut" class="helpBtn" onclick="window.location.href='lights.pdf'">PDF manual</button>
+<!--<button id="pdfBut" class="helpBtn" onclick="window.location.href='lights.pdf'">PDF manual</button> -->
 </body>
 <script>
 

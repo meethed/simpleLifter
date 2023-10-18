@@ -71,7 +71,7 @@ function doScoreboard() {
 			el.sortOrder=index;
 		}); //end sorting function
 	var csv=document.createElement("div");
-	csv.innerHTML="<a href='./dead.php?c=" + compName + "'>Click here for Open Powerlifting CSV Export</a>";
+  csv.innerHTML="<a href='./dead.php?c=" + compName + "'>Click Here for Open Powerlifting CSV Export</a>";
 	document.body.appendChild(scoreboard); //display the scoreboard separately
 	document.body.appendChild(csv);
 	//OK we've finished sorting now to add in headers

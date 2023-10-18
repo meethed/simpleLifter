@@ -451,10 +451,15 @@ if (pos=="timer") {
 }
 }
 function checkUpdate() {
-  compName.forEach(e => {
-  fetch("lights.php?compLetters=" + e) //this is what happens every second - the stuff previous waits until it's ready (complete)
-  .then((response) => response.json())
-  .then((lightvars) => {
+	var xhttp;
+	var newdbcache;
+	xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState ==4 && this.status ==200) {
+		newdbcache=this.responseText; // the function will return CSV data for JS to process
+
+			//update the dbcache
+			lightvars = JSON.parse(newdbcache);
   		if (lightvars.updated>lastUpdate) { //if something has changed
 	   //note we don't know what has changed yet
 
@@ -505,9 +510,16 @@ var d= Math.floor(Date.now()/1000); //d is now in seconds
 
 		  lastUpdate=lightvars.updated;
 		} //end if the cached data has changed
-});
-})
-};
+		} //end if connected
+
+	}; //end check function
+  compName.forEach(e => {
+	xhttp.open("GET", "lights.php?compLetters=" + e) //this is what happens every second - the stuff previous waits until it's ready (complete)
+	xhttp.send();
+  });
+}
+
+
 function clearTimers() { //clear both timers
 clearLoaded();
 clearSecond();

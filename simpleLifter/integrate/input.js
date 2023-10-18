@@ -14,7 +14,7 @@ function autocomplete(inp, arr) {
       var a, b, i, val = this.innerHTML;
       /*close any already open lists of autocompleted values*/
       closeAllLists();
-      if (!val) { return false;}
+      //if (!val) { return false;}
       currentFocus = -1;
       /*create a DIV element that will contain the items (values):*/
       a = document.createElement("DIV");
@@ -143,7 +143,7 @@ function showLifts(){
           b.innerHTML =  arr[i];
           
           /*insert a input field that will hold the current array item's value:*/
-          
+
           /*execute a function when someone clicks on the item value (DIV element):*/
           b.addEventListener("click", function(e) {
           /*insert the value for the autocomplete text field:*/
@@ -228,12 +228,12 @@ function showUtils(){
           /*execute a function when someone clicks on the item value (DIV element):*/
           b.addEventListener("click", function(e) {
           
-						if (e.target.innerHTML=="Save") lifters.saveLocal();
-						if (e.target.innerHTML=="Load") lifters.loadLocal();
-						if (e.target.innerHTML=="Generate Results") doScoreboard();
-						if (e.target.innerHTML=="Comp Setup...") doSetup();
-					        if (e.target.innerHTML=="Change Session...") doSessionChange();
-						if (e.target.innerHTML=="Help...") doHelp();
+				    if (e.target.innerHTML=="Save") lifters.saveLocal();
+				    if (e.target.innerHTML=="Load") lifters.loadLocal();
+				    if (e.target.innerHTML=="Generate Results") doScoreboard();
+				    if (e.target.innerHTML=="Comp Setup...") doSetup();
+            if (e.target.innerHTML=="Change Session...") doSessionChange();
+			      if (e.target.innerHTML=="Help...") doHelp();
 						if (e.target.innerHTML=="Hide Results") hideScoreboard();
           });
           a.appendChild(b);
@@ -246,10 +246,10 @@ function showContext(t){
 
 	var a,b,val;
 	var arr=contexts;
-	a = document.createElement("DIV");
-  	a.setAttribute("id", t.id + "autocomplete-list");
-  	a.setAttribute("class", "autocomplete-items");
-	t.appendChild(a);
+  a = document.createElement("DIV");
+  a.setAttribute("id", t.id + "autocomplete-list");
+  a.setAttribute("class", "autocomplete-items");
+  t.appendChild(a);
       /*for each item in the array...*/
       for (i = 0; i < arr.length; i++) {
         /*check if the item starts with the same letters as the text field value:*/
@@ -261,16 +261,17 @@ function showContext(t){
           
           /*execute a function when someone clicks on the item value (DIV element):*/
           b.addEventListener("click", function(e) {
-					const cell=e.target.parentElement.parentElement;
-					closeAllLists();
-					if (e.target.innerHTML=="Activate Lifter") changeLifter(cell);
-					if (e.target.innerHTML=="Delete Lifter") {cell.innerHTML=""; cell.previousSibling.innerHTML="";};
-					});
-					a.appendChild(b);
+          const cell=e.target.parentElement.parentElement;
+          closeAllLists();
+					if (e.target.innerHTML=="Activate lifter") changeLifter(cell);
+          if (e.target.innerHTML=="Delete lifter") {cell.innerHTML=""; cell.previousSibling.innerHTML="";};
+          });
+          a.appendChild(b);
         
      
 }	
 } //end function showContext
+
 
 function showTimers(){
 	
@@ -289,20 +290,20 @@ function showTimers(){
           if (arr[i]==1) {b.innerHTML = "1 Minute"} else
             if (parseInt(arr[i])) {b.innerHTML = arr[i] + " Minutes"} else
               b.innerHTML="Clear";
-
+      
           
           /*insert a input field that will hold the current array item's value:*/
           
           /*execute a function when someone clicks on the item value (DIV element):*/
           b.addEventListener("click", function(e) {
-					setBarLoaded(-1);
+          setBarLoaded(-1); 
 
-					const m=parseInt(e.target.innerHTML);
-					setTimer2(m ? m : -1);
-					});
-				a.appendChild(b);
-       
-    
+          const m=parseInt(e.target.innerHTML);
+          setTimer2(m ? m : -1);
+          });
+        a.appendChild(b);
+        
+     
 }	
 } //end function showTimers
 

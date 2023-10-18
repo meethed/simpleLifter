@@ -83,8 +83,8 @@ $conn->close();
 	<div id="controls">
 		<div class="mbtn" id="btnGood">Good Lift</div>
 		<div class="mbtn" id="btnNo">No Lift</div>
-		<div class="mbtn" id="btnBar">Bar Loaded</div>
-		<div class="mbtn" id="btnTimer">Break Timer...</div>
+    <div class="mbtn" id="btnBar">Bar Loaded</div>
+    <div class="mbtn" id="btnTimer">Break Timer...</div>
 		<div class="mbtn" id="btnUtil">Utilities...</div>
 	</div>
 	</div>
@@ -139,8 +139,9 @@ $conn->close();
 			<label>Auto Referee (Good / No Lift) Progression?</label><label class="switch"><input type="checkbox" id="inAutoRefs" name="inAutoRefs"><span class="slider"></span></label><br>
 			<label>Live stream updates for OBS?</label><label class="switch"><input type="checkbox" id="inOBS" name="inOBS"><span class="slider"></span></label><br>
 			<label>Bench Press only competition?</label><label class="switch"><input type="checkbox" id="inBP" name="inBP"><span class="slider"></span></label><br>
-			<label>CAPO (Glos & Weights)</label><label class="switch"><input type="checkbox" id="inCAPO" name="inCAPO"><span class="slider"></span></label>
-		</div>
+			<label>CAPO (Glos & Weights)</label><label class="switch"><input type="checkbox" id="inCAPO" name="inCAPO"><span class="slider"></span></label><br>
+	    <label>Open Only (ignore age but keep DOB)?</label><label class="switch"><input type="checkbox" id="inOpen" name="inOpen"><span class="slider"></span></label>
+  	</div>
 		<div class="cont">
 			<label>Male Weight Classes<input name="inMW" id="inMW" type="string" value="53,56,59,66,74,83,93,105,120"></label><br>
 			<label>Female Weight Classes<input name="inFW" id="inFW" type="string" value="43,47,52,57,63,69,67,84"></label><br>
@@ -180,9 +181,8 @@ $conn->close();
 	<script src="plates.js"></script>
 	<script src="input.js"></script>
 	<script src="lightTimer.js"></script>
-	<script src="windows.js"></script>
-        <script src="sessionChange.js"></script>
-
+  <script src="windows.js"></script>
+  <script src="sessionChange.js"></script>
 	<script>
 
 	if (!failedLogin) {

@@ -154,7 +154,7 @@ transition: opacity 0.3s;
 	padding-right:20px;
 	border-radius:5px;
 	height: 99%;
-	margin-top: 2px;
+	margin-top:2px;
 	background-image: linear-gradient(#555,#333,#333,#333,#333,#333, white);
 }
 .plate{

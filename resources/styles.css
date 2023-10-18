@@ -187,6 +187,9 @@ font-size: 76px;
 font-size: 3vh;
 }
 
+.nicebox input[type="number"] {
+width: 9%;
+}
 #radioContainer {
 position: absolute;
 top: 1%;
@@ -416,8 +419,19 @@ opacity: 1;
 width: 100%;
 height: 100%;
 animation: rotation 1.123s cubic-bezier(0.5, 0, 0.5, 1)  infinite;
-background-image: conic-gradient(from 310deg at 50% 50%, #000000 0%, #000000 29%, #000000af 30%, #00000000 80%),radial-gradient(#000000 42%, #0f0 46%, #000000 50%, #000000 100%);
+background-image: conic-gradient(from 310deg at 50% 50%, #000000 0%, #000000 29%, #000000af 30%, #00000000 80%),radial-gradient(#000000 42%, #0f0 46%, #000000 50%,  #000000 100%);
 }
+/*.pending + div{
+position: fixed;
+border: 4px solid red;
+display: block;
+content: " ";
+width: 100%;
+height: 100%;
+animation: rotation 0.7s cubic-bezier(0.2, 0.5, 0.7,1) infinite;
+background-image: conic-gradient(from 45deg at 50% 50%, #000000 0%, #000000 62%, #00000000 80%, #000000 83%),radial-gradient(#000000 12%, #ffffff 13%, #000000 15%, #000000 100%);
+}
+*/
 @keyframes rotation {
   from {
     transform: rotate(0deg);
@@ -722,3 +736,10 @@ height: 240px;
 	content: "0.25";
 }
 
+.ms {
+
+}
+
+.ms:hover{
+text-decoration:line-through;
+}

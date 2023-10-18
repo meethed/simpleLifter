@@ -84,7 +84,7 @@ class Lifters {
 		this.activeRow+=1; //ok cool that was easy (it includes a get and set)
 
 		//but we need to make sure we didn't go too far
-		//first if it's attempt 1 or 2, we need to detect when we should go back to the top for the next attempt
+  	//first if it's attempt 1 or 2, we need to detect when we should go back to the top for the next attempt
 		//if it's attempt 3, we need to go back to attempt 1 for the next flight
 		//if it's the last flight, we need to go back to attempt 1 for the next lift (bench/dead) for the first flight
 
@@ -123,7 +123,7 @@ class Lifters {
 					if (!setup.countUp) {this.activeGp=setup.maxGp};
 
 					// this is where we pop up saying we're doing a 10 minute (or 20 minute timer)
-					if (setup.maxGp=="A") {var t=20;} else {var t=10;};  // if there's only the A group then 20 minute timer
+          if (setup.maxGp=="A") {var t=20;} else {var t=10;}; // if there's only the A group then 20 minute timer
 					if (this.activeLi.charAt(0)=="B") {var oldEvent="Squats"} else {var oldEvent="Bench Press"};
 					doPopup("That was the last of the  " + oldEvent + ". A " + t + " minute timer will now commence.");
 					setTimer2(t);
@@ -191,11 +191,12 @@ class Lifters {
 			var as=getStatus(a,l);
 			var bs=getStatus(b,l);
 
-			//first up just brute force weigh in lot number
-			if (l.charAt(0)=="W") {
+      //first up just brute force weigh in lot number
+      if (l.charAt(0)=="W") {
 			if (al>bl) return 1;
 			if (bl>al) return -1;
-      }		
+			}
+
 			//fix up blanks so they're at the bottom
 			if (aa=="") aa=9000;
 			if (ba=="") ba=9000;
@@ -287,9 +288,10 @@ class Lifters {
 				i=index; //index is equal to the counter - means we've found our lifter
 			} else if (c.sortOrder==0) t=index;
 });
+
 		if (this.activeLi.charAt(0)=="S") {rr=9;var ra="SQ Rack: "};
 		if (this.activeLi.charAt(0)=="B") {rr=10; var ra="BP Rack: ";};
-		if (this.activeLi.charAt(0)=="D") {rr=9; var ra="";}
+    if (!rr) {rr=0; var ra="";};
 		//a is the attempt as a raw number, n is the lifter name, l is the lot number and r is the rack
 		if (this.liftList[i].group==this.activeGp) //if we can progress in the same flight/lift
 			return {"n":this.liftList[i].row.children[2].innerHTML,"a":this.liftList[i].row.children[this.activeCol+1].innerHTML,"l":this.liftList[i].row.children[1].innerHTML,"r":ra+this.liftList[i].row.children[rr].innerHTML}

@@ -16,6 +16,7 @@ class Setup {
 		this.mW=[53,59,66,74,83,93,105,120,1000];
 		this.fW=[43,47,52,57,63,69,76,84,1000];
 		this.xW=[56,59,66,74,83,93,105,120,1000];
+    this.openOnly=false;
 }
 	
 	get toJson(){
@@ -38,6 +39,7 @@ class Setup {
 		document.getElementById("inFW").value=setup.fW;
 		document.getElementById("inXW").value=setup.xW;
 		document.getElementById("inCAPO").checked=setup.CAPO;
+    document.getElementById("inOpen").checked=setup.openOnly;
 		document.getElementById("gl").innerHTML=setup.CAPO ? "Glos" : "IPF Points";
 			if (document.getElementById("inLights").checked) {
 				document.getElementById("lightsFrame").style.display="inline";
@@ -80,6 +82,7 @@ function setupCx(){
 	document.getElementById("inOBS").checked=setup.stream;
 	document.getElementById("inBP").checked=setup.BP;
 	document.getElementById("inCAPO").checked=setup.CAPO;
+  document.getElementById("inOpen").checked=setup.openOnly;
 	document.getElementById("gl").innerHTML=setup.CAPO ? "Glos" : "IPF Points";
 	document.getElementById("inMW").value=setup.mW;
 	document.getElementById("inFW").value=setup.fW;
@@ -115,6 +118,8 @@ function setupOk(){
 	setup.stream=document.getElementById("inOBS").checked;
 	setup.BP=document.getElementById("inBP").checked;
 	setup.CAPO=document.getElementById("inCAPO").checked;
+  setup.openOnly=document.getElementById("inOpen").checked;
+
 	document.getElementById("gl").innerHTML=setup.CAPO ? "Glos" : "IPF Points";
 	setup.mW=document.getElementById("inMW").value.split(",");if (setup.mW.slice(-1)!=1000) setup.mW.push(1000);
 	setup.fW=document.getElementById("inFW").value.split(",");if (setup.fW.slice(-1)!=1000) setup.fW.push(1000);

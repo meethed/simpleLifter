@@ -24,9 +24,9 @@ window.addEventListener('click',function(e){
 	if(e.target.id=="btnUtil"){
 		showUtils();
 	}
-	if(e.target.id=="btnTimer"){
-		showTimers();
-	}
+  if(e.target.id=="btnTimer"){
+    showTimers();
+  }
 	if(e.target.id=="btnBar"){
 		setBarLoaded();
 	}

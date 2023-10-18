@@ -2,12 +2,23 @@
 include_once "../../../config.php";
 $compLetters=filter_var($_GET["c"], FILTER_SANITIZE_STRING);
 if ($compLetters=="") {die("no competition selected");};
-$stmt = $conn->prepare("SELECT compName,startDate FROM comps WHERE compLetters= ?");
+$stmt = $conn->prepare("SELECT isParent, isChild, endDate, compName,startDate FROM comps WHERE compLetters= ?");
 $stmt->bind_param("s",$compLetters);;
 $stmt->execute();
 $out = $stmt->get_result()->fetch_assoc();
 $compName=$out["compName"];
 $startDate=$out["startDate"];
+$endDate=$out["endDate"];
+$isParent=$out["isParent"];
+$isChild=$out["isChild"];
+
+if ($isParent) {
+  $s2 = $conn->prepare("SELECT compLetters from comps where parentComp=?");
+  $s2->bind_param("s",$compLetters);
+  $s2->execute();
+  $comps=$s2->get_result()->fetch_all();
+}
+
 $conn->close();
 ?>
 
@@ -19,7 +30,7 @@ $conn->close();
 </head>
 <body>
 <h1>Archived Results<br><?php echo $compName ?></h1>
-<h2><?php echo $startDate; ?></h2>
+<h2><?php echo $startDate." - ".$endDate; ?></h2>
 <table id="tableu">
 <tr>
 <th>Place</th>
@@ -56,29 +67,45 @@ $conn->close();
 <script>
 var cL="<?php echo $compLetters; ?>";
 var year=" <?php echo $startDate; ?>";
-var yr=year.split("-")[0].trim()
-var lifterdata=JSON.parse(JSON.stringify(<?php echo file_get_contents("./data/".$compLetters.".json")?>));
+var isParent=<?php if ($isParent) {echo "1";} else {echo "0";}; ?>;
+var isChild=<?php if ($isChild) {echo "1";} else {echo "0";}; ?>;
+var yr=year.split("-")[0].trim();
+if (!isParent) {
 var setup;
 //get setup data
 fetch("saveload.php?q=loadsetup&comp=<?php echo $compLetters; ?>").then(response=>response.json().then(d=>{
 	setup=d;
-	makeTableu(lifterdata);
+    fetch("saveload.php?q=loadlifter&comp="+cL).then(response=>response.json()).then(data=>{makeTableu(data)});
 }));
+} //end if is not a parent comp
 
-function makeTableu(lifters) {
+if (isParent){
+  fetch("saveload.php?q=loadsetup&comp=<?php echo $comps[1][0]; ?>").then(response=>response.json().then(d=>{setup=d;}));
+  var compArray=[<?php foreach ($comps as $v) {echo "'".$v[0]."',";};?>];
+  compArray.shift(); //get rid of parent comp
+  compArray.forEach(e  => {
+    fetch("saveload.php?q=loadlifter&comp="+e).then(response=>response.json()).then(data=>{
+    addTableu(data);
+    }); //end fetch
+  }); //end for each
+
+} // end if is parent
+
+
+function addTableu(lifters) {
 var lifters=lifters.liftList
 var len=lifters.length;
 var r=0;
 var c=0;
 var newRow,newCol;
 
-while (document.getElementById("tableu").rows.length>1) {
-	document.getElementById("tableu").deleteRow(-1);
-}
-for (c=0;c<len;c++) {
-	r=0;
-	while (c!=lifters[r].sortOrder) {r++ }
-	curDiv=lifters[r].division.split("-");
+for (r=0;r<len;r++) {
+  if (!lifters[r].gender) {
+	  curDiv=lifters[r].division ? lifters[r].division.split("-") : "M-CL-PL";
+    lifters[r].gender=curDiv[0];
+    lifters[r].gear=curDiv[1];
+    lifters[r].lifts=curDiv[2];
+  }
 	newRow=document.createElement("tr");
 
 		newCol=document.createElement("td");
@@ -90,7 +117,7 @@ for (c=0;c<len;c++) {
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=curDiv[0];
+		newCol.innerHTML=lifters[r].gender;
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
@@ -102,12 +129,12 @@ for (c=0;c<len;c++) {
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=getOPLEquipment(curDiv[1]);
+		newCol.innerHTML=getOPLEquipment(lifters.gear);
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		var oplDiv =curDiv[0];
-		if (curDiv[1].charAt(0)=="C") oplDiv+="R"
+		var oplDiv = lifters[r].gender;
+		if (lifters[r].gear[0]=="C") oplDiv+="R"
 		oplDiv+="-";
 		oplDiv+=ageDiv(lifters[r].year);
 		newCol.innerHTML=oplDiv;
@@ -118,7 +145,7 @@ for (c=0;c<len;c++) {
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=weightClass(lifters[r].bw,lifters[r].division,lifters[r].year);
+		newCol.innerHTML=weightClass(lifters[r].bw,lifters[r].gender,lifters[r].year);
 		newRow.appendChild(newCol);
 
 	//squat
@@ -214,7 +241,7 @@ for (c=0;c<len;c++) {
 		newRow.appendChild(newCol);
 		
 		newCol=document.createElement("td");
-		newCol.innerHTML=eventFilter(curDiv[2]);
+		newCol.innerHTML=eventFilter(lifters[r].lifts);
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
@@ -227,6 +254,16 @@ for (c=0;c<len;c++) {
 
 	document.getElementById("tableu").appendChild(newRow);
 }
+} // end function addTableu
+
+
+function makeTableu(lifters) {
+
+while (document.getElementById("tableu").rows.length>1) {
+	document.getElementById("tableu").deleteRow(-1);
+}
+
+addTableu(lifters);
 } //end function maketableu
 
 function eventFilter(e) {
@@ -260,12 +297,11 @@ if (yr-y >=40)  return "M1";
 return "O"
 }
 
-function weightClass(bw,c,y){
+function weightClass(bw,gender,y){
 if (!setup) return;
 var age=yr-y;
 var f,m,x;
 var wc=0;
-var gender = c.charAt(0);
 
         switch (gender) {
         case "F": d=setup.fW; break;

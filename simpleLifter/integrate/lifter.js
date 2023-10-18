@@ -36,20 +36,22 @@ class Att{ //this is the 'attempt' class. It contains 3x attemps (a1-3) and 3x s
 } //end class Att
 
 class Lifter {
-	constructor(group="A",lot=1,name="Lifter1",team="",year=1987,division="M-CL-PL",bw=95.5,sr="15",br="11/5",json=""){ //generic constructor with default data
+	constructor(group="A",lot=1,name="Lifter1",team="",year=1987,division="M-CL-PL",bw=95.5,sr="15",br="11/5",gender="M", gear="CL",lifts="PL",json=""){ //generic constructor with default data
 	if (json) {
 	Object.assign(this,json);
 	this.sq= new Att(this.sq.a1,this.sq.a2,this.sq.a3,this.sq.s1,this.sq.s2,this.sq.s3);
 	this.bp= new Att(this.bp.a1,this.bp.a2,this.bp.a3,this.bp.s1,this.bp.s2,this.bp.s3);
 	this.dl= new Att(this.dl.a1,this.dl.a2,this.dl.a3,this.dl.s1,this.dl.s2,this.dl.s3);
+  if (this.gender) this.division=this.gender+"-"+this.gear+"-"+this.lifts;
 
 } else {
 	this.group= group,
 	this.lot= parseInt(lot),
 	this.name= name,
 	this.team= team,
-	this.year= year,
-	this.division= division,
+	this.year= year;
+  if (division) {this.division= division;this.gender=division[0];this.gear=division.split("-")[1];this.lifts=division.split("-")[2];} else
+    if (gender) {this.division=gender+"-"+gear+"-"+lifts};
 	this.bw= bw,
 	this.sr= sr,
 	this.br= br,
@@ -150,10 +152,10 @@ class Lifter {
 		this.row.children[4].innerHTML=this.year;
 		this.row.children[5].innerHTML=this.ageDiv;
 		this.row.children[6].innerHTML=this.division;
-		if (isNaN(this.bw)) {this.row.children[7].innerHTML=""} else
+    if (isNaN(this.bw)) {this.row.children[7].innerHTML=""} else
 		this.row.children[7].innerHTML=this.bw;
 		this.row.children[8].innerHTML=this.weightClass;
-		this.row.children[9].innerHTML=this.sr;	
+		this.row.children[9].innerHTML=this.sr;
 		this.row.children[10].innerHTML=this.br;
 		validateLifts(this.row,11,this.sq);
 		this.row.children[14].innerHTML=this.sq.best;
@@ -198,13 +200,13 @@ class Lifter {
 
 	
 	get isBench() { //returns 0 if it's PL not BP
-	if (this.division.charAt(this.division.length-1)=="L") return 0; else return 1
+  if (this.lifts=="BP") return 1; else return 0;
 	}
-	
+
 	get subTotal() {
 		return this.sq.best+this.bp.best; //squat and bench sub total based on good attempts
 	}
-	
+
 	get total() {
 		var t=this.sq.best+this.bp.best+this.dl.best; //total based on good attempts
 		if (this.sq.bombed || this.bp.bombed || this.dl.bombed) t="DSQ"  //if they've bombed in one of the lifts then return DSQ
@@ -227,7 +229,7 @@ class Lifter {
 	let cy  = new Date().getFullYear();
 	var age = cy-this.year;
 
-	if (team=="***") return 0;
+	if (team=="***") return 0; ///if the team is *** then they don't get points
 	if (setup.CAPO) { return getGlos(t,bw,d,age);};
 
 	function getGlos(t,bw,d,age) { //internal function for glosbrenner ESTIMATE
@@ -342,7 +344,7 @@ class Lifter {
 	
 	var wc,f,gender,age,bw;
 	var d=[0];
-	gender = this.division.charAt(0);
+	gender = this.gender;
 	age = this.ageDiv;
 	bw = this.bw;
 
@@ -406,9 +408,9 @@ function setDivs(lifter){
 		if(i!=8 && i!=5) {newCell.contentEditable="plaintext-only";} else newCell.classList.add("calc");
 		newCell.addEventListener("focusout",function(e) {updateFromDiv(lifter)});
 		if (i==2) {
-		newCell.addEventListener("dblclick",function(e) {changeLifter(e.currentTarget)});
-		newCell.addEventListener("contextmenu",function(e) {e.preventDefault(); showContext(e.currentTarget);});
-		}
+    newCell.addEventListener("dblclick",function(e) {changeLifter(e.currentTarget)});
+    newCell.addEventListener("contextmenu",function(e) {e.preventDefault(); showContext(e.currentTarget);});
+    }
 		newCell.classList.add("td");
 	} 	
 	if (i>=11 && i<=25) { //these ones are for the numbers
@@ -439,7 +441,7 @@ function setDivs(lifter){
 	newRow.children[4].id=newRow.id+"yr";
 	newRow.children[5].id=newRow.id+"ad";
 	newRow.children[6].id=newRow.id+"dv";
-	autocomplete(newRow.children[6],divisions);
+	 autocomplete(newRow.children[6],divisions);
 	newRow.children[7].id=newRow.id+"bw";
 	newRow.children[8].id=newRow.id+"wc";
 	newRow.children[9].id=newRow.id+"sr";
@@ -491,6 +493,9 @@ function setDivs(lifter){
 		lifter.team=lifter.row.children[3].innerHTML;
 		lifter.year=parseInt(lifter.row.children[4].innerHTML);
 		lifter.division=lifter.row.children[6].innerHTML;
+     lifter.gender=lifter.division[0];
+     lifter.gear=lifter.division.split("-")[1];
+     lifter.lifts=lifter.division.split("-")[2];
 		lifter.bw=parseFloat(lifter.row.children[7].innerHTML);
 		lifter.sr=lifter.row.children[9].innerHTML;	
 		lifter.br=lifter.row.children[10].innerHTML;
@@ -534,10 +539,10 @@ function setDivs(lifter){
 		t.innerHTML = e.innerHTML;
 		for (i=0;i<setup.lifterCount;i++)
 		if (lifters.liftList[i].name==e.innerHTML){
-			if (lifters.liftList[i].group!=lifters.activeGp) {lifters.activeGp=lifters.liftList[i].group; lifters.doSort()};
-			setBarLoaded(-1); //clear the barloaded timer THEN change the lifter - this will ensure the plates display is updated
+			if (lifters.liftList[i].group!=lifters.activeGp) {lifters.activeGp=lifters.liftList[i].group; lifters.doSort();}
+      setBarLoaded(-1); //clear the barloaded timer THEN change the lifter - this will ensure the plates display is updated
 			lifters.activeRow=lifters.liftList[i].sortOrder;
-			updateStatus();
+      updateStatus();
 			}
-		}
+	}
 ////////////////////////////////////////////////////////////////////

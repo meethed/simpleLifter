@@ -2,12 +2,21 @@
 $compLetters=filter_input(INPUT_POST,"compName", 
 FILTER_SANITIZE_STRING); if ($compLetters=="") {
  $compLetters=filter_input(INPUT_GET, "c", FILTER_SANITIZE_STRING);}
-if ($compLetters=="") {
- $compLetters="ADE";};
-$stmt = $conn->prepare("SELECT compName FROM comps WHERE compLetters= ?");
+$stmt = $conn->prepare("SELECT isParent, isChild, compName FROM comps WHERE compLetters= ?");
 $stmt->bind_param("s",$compLetters);;
 $stmt->execute();
-$compName = $stmt->get_result()->fetch_assoc()["compName"];
+$vals = $stmt->get_result()->fetch_assoc();
+$compName=$vals["compName"];
+$isParent=$vals["isParent"];
+$isChild=$vals["isChild"];
+if ($isParent) {
+$s2 = $conn->prepare("SELECT compLetters from comps where parentComp=?");
+$s2->bind_param("s",$compLetters);
+$s2->execute();
+$comps=$s2->get_result()->fetch_all();
+}
+
+
 $conn->close();
 ?>
 <!DOCTYPE html>
@@ -18,7 +27,7 @@ $conn->close();
 </head>
 <body>
 <?php if ($compLetters=="ADE") {echo "<h1>APU Classic Nationals 2022</h1><h3>Note lifter's actual age groups are shown, however they are all competing as Open lifters</h3>";}; ?>
-<iframe id="lightsiFrame"  src="../../comp.php?pos=lights&s=OBS&compName=<?php echo $compLetters ?>"></iframe>
+<?php if (!$isParent) {echo "<iframe id='lightsiFrame'  src='../../comp.php?pos=lights&s=OBS&compName=".$compLetters."'></iframe>";}; ?>
 <table id="tableu">
 <tr>
 <th>Gr</th>
@@ -47,7 +56,9 @@ $conn->close();
 <script src="lifters.js"></script>
 <script>
 var cL="<?php echo $compLetters; ?>";
-if (cL=="ADE") document.getElementById("lightsiFrame").style.display="none";
+const isParent = <?php if ($isParent) {echo "1";}else {echo "0";}; ?>;
+const isChild = <?php if ($isChild) {echo "1";}else {echo "0";}; ?>;
+
 var yr=new Date().getFullYear();
 var lifterdata=""
 var oldJSON=lifterdata;
@@ -55,30 +66,48 @@ var refreshInterval=10000;
 var timerRefresh;
 var setup;
 var reloading=0;
+var setupstr;
+var bigdata=[];
 //get setup data
-fetch("saveload.php?q=loadsetup&comp=<?php echo $compLetters; ?>").then(response=>response.json().then(d=>{
+// if it's a parent comp then get it from the first child
+if (!isParent) setupstr = "saveload.php?q=loadsetup&comp=<?php echo $compLetters; ?>";
+if (isParent) setupstr = "saveload.php?q=loadsetup&comp=<?php echo $comps[1][0]; ?>";
+fetch(setupstr).then(response=>response.json().then(d=>{
 	setup=d;
 }));
 makeTableu(lifterdata);
 fRef();
 
-timerRefresh=setTimeout(fRef,refreshInterval);
+if (!isParent) timerRefresh=setTimeout(fRef,refreshInterval);
 
 function fRef() {
+
 if (!setup) {reloading+=1;reload=setTimeout(fRef,500);return -1};
+if (!isParent) {
 fetch("saveload.php?q=loadlifter&comp=<?php echo $compLetters; ?>").then(response=>response.json()).then(data=>{
 	if (JSON.stringify(data)==JSON.stringify(oldJSON)) {refreshInterval=3000} else {
 		makeTableu(data);
 		refreshInterval=5000;
-
-	}
-});
+	} // if new data
+}); //end fetch
 timerRefresh=setTimeout(fRef,refreshInterval);
+} //end if not is parent
+if (isParent) {
+var compArray=[<?php foreach ($comps as $v) {echo "'".$v[0]."',";};?>];
+compArray.shift(); //get rid of parent comp
+compArray.forEach(e  => {
+  fetch("saveload.php?q=loadlifter&comp="+e).then(response=>response.json()).then(data=>{
+  addTableu(data.liftList);
+  }); //end fetch
+}); //end for each
+
+} // end if is parent
 }
 
-function makeTableu(lifterdata) {
+function addTableu(lifterdata) {
 if (lifterdata=="") return;
 oldJSON=lifterdata;
+if (!isParent) {
 var activeCol=lifterdata.activeCol;
 var isActive=0;
 var activeGp=lifterdata.activeGp;
@@ -87,22 +116,27 @@ var len=lifters.length;
 var r=0;
 var c=0;
 var newRow,newCol;
-
-while (document.getElementById("tableu").rows.length>1) {
-	document.getElementById("tableu").deleteRow(-1);
 }
+
+if (isParent) {
+var activeCol=0;
+var isActive=-1;
+var activeGp="Z";
+var lifters=lifterdata;
+var len=lifters.length;
+var r=0;
+var c=0;
+var newRow,newCol;
+}
+
 for (c=0;c<len;c++) {
 	isActive=0;
-	if (cL=="ADE") {
-		r++;
-		if (c==len-4) return;
-		} else {
 		r=0;
-		while (c!=lifters[r].sortOrder) {r++ }
-	};
-	
+
+		if (!isParent) {while (c!=lifters[r].sortOrder) {r++ }} else {r=c;};
+
 	newRow=document.createElement("tr");
-	if (lifters[r].act!=0 && lifters[r].name!="") isActive=1;
+	if (lifters[r].act!=0 && !isParent && lifters[r].name!="") isActive=1;
 
 		newCol=document.createElement("td");
 		newCol.innerHTML=lifters[r].group;
@@ -228,7 +262,16 @@ for (c=0;c<len;c++) {
 		if (isActive) newCol.classList.add("act");
 		newRow.appendChild(newCol);
 	document.getElementById("tableu").appendChild(newRow);
+} //end for the next lifter
+} //end function add tableu
+
+
+function makeTableu(lifterdata) {
+while (document.getElementById("tableu").rows.length>1) {
+	document.getElementById("tableu").deleteRow(-1);
 }
+
+addTableu(lifterdata);
 } //end function maketableu
 
 

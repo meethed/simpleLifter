@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Powerlifting Livestream Overlay</title>
+<link rel="stylesheet" href="./resources/overlaystyle.css">
+</head>
+<body>
+<?php
+$lightsonly = $_GET["lightsonly"]=="true";
+
+  include_once "../config.php";
+  $stmt=$conn->prepare("SELECT compName from comps where compLetters=?");
+  $stmt->bind_param("s",test_input($_GET["comp"]));
+  $stmt->execute();
+  $result = $stmt->get_result();
+  $compName=$result->fetch_assoc();
+  $conn->close();
+
+if (!$lightsonly) {echo'
+<div id="overlay" class="visible">
+  <div class="visible" id="lifterName"></div>
+  <div class="visible" id="lifterAttempt"></div>
+  <div class="visible" id="lifterState"></div>
+  <div class="visible" id="lifterPTotal"></div>
+  <div class="visible" id="lifterCat"></div>
+  <div class="visible" id="lifterFlight"></div>
+  <div class="visible" id="compStatus"></div>
+  <div class="visible" id="compName">';
+  echo $compName["compName"];
+  echo '</div>';}
+;?>
+<div id="lightsContainer" class="visible <?php if ($lightsonly) {echo 'always';}?>">
+  <div id="lights" class="visible <?php if ($lightsonly) {echo 'always';}?>"></div>
+  <div id="timer" class="visible <?php if ($lightsonly) {echo 'always';}?>"></div>
+</div>
+<div id="logos">
+<?php include "./".$_GET["comp"].".inc" ?>
+</div>
+</body>
+<script>
+const lights = [];
+var
+ cacheNext=false,
+ oldt1=0,
+ oldt2=0,
+ firstInterval,
+ secondInterval,
+ timeoutclearScreen,
+ timeoutsetNext,
+ timer1,
+ timer2,
+ status,
+ compLetters="<?php echo $_GET["comp"];?>",
+ refreshTimer,
+ oldText="",
+ clockOffset=0,
+ currentLifter, //JSON for the current data
+ oldLifter=""; //JSON for the old data
+
+
+poll();
+function poll() {
+/// poll the lifter and lights data here ///
+
+const xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+  if (this.readyState ==4 && this.status ==200) {
+	if (this.status === 200) {
+	try {
+	  interpret(this.responseText);	
+	  setTimeout(poll,2000);
+	} catch {
+	  setTimeout(poll,5000);
+	}
+}
+}
+}
+xhttp.open("GET","lights.php?compLetters=" + compLetters); //getsolverlay.php will get lights and comp overlay data at once
+xhttp.send();
+
+}
+
+//this function interprets the JSON data passed via the database (from excel and from the lights)
+function interpret(text) {
+ currentLifter=JSON.parse(text);
+
+// if (!(currentLifter.updated==oldLifter.updated)) {  //if there's been an update do things here!! NOTE this could be lights or lifter changes
+if (text!=oldText) {
+
+///// if there has been a change to the data to be displayed, it will update the values immediately /////
+///// they might not be displayed though, as the display / not display is controlled by the lights  /////
+///// and timer. eg. if the bar is loaded it'll display some bits. if the referees make a call, it  /////
+///// will display some other bits. if it's just after the lights and a new lifter has come up, the /////
+///// display will show the 'big' details for the lifter, then transition to a simpler display when /////
+///// the bar loaded call is ...called...                                                           /////
+
+/// first up is getting the status from the lights ///
+
+
+lights[0]=currentLifter.leftLight; //parse the light status
+lights[1]=currentLifter.centreLight; //parse the light status
+lights[2]=currentLifter.rightLight; //parse the light status
+
+if (!lights[0]) lights[0]=0; //null isn't zero. some later functions check for zero
+if (!lights[1]) lights[1]=0; 
+if (!lights[2]) lights[2]=0;
+
+///status or change combinations
+/// lights off & second timer >1 minute- show the second timer - break between lifts
+/// lights off & second timer - show the lifter bio data       - almost ready to call bar loaded (ON CHANGE)
+/// lights off & first timer  - show the lifter & first timer  - bar loaded has been called
+/// lights off & first timer BUT lifter change - say the live stream is running without the lights then reset anyways
+/// 1-2 lights on             - show the lifter & the pendings - attempt completed, referees entered attempts
+/// 3 lights on               - show the lifter & the lights   - attempt completed, all attempts in
+/// 10 seconds after 3 lights - hide everything 
+
+if (!lights[0] && !lights[1] && !lights[2]) { // if all the lights are off
+   clearLights(); //make sure you can't see em
+   if (cacheNext) {newLifter();};
+
+  if (evaluateTimer1(currentLifter.timeTo)) {  //if all lights off but timer 1 on BAR LOADED (also parse second timer)
+   showBarLoaded(); //show the bar loaded timer
+  } else
+
+  if (evaluateTimer2(currentLifter.timeTwo)) { //if all lights off but timer 2 > 1 minute BREAK
+  showBreakTimer(); //show the break timer
+  } 
+
+}
+
+if (lights.some(x => x>0)) { //if at least one light is non zero
+  doLights(lights);
+
+  smolClearTimer1(); //clear the timer but don't reformat - don't clear timer 2 though just in case
+}
+
+if (lights.every(x => x>0)) { //if every light is non-zero then 10 second delay to hide everything NO DON'T JUST WAIT FOR THE REFEREE
+  clearTimeout(timeoutclearScreen); //clear these
+  clearTimeout(timeoutsetNext);     //clear there
+  //timeoutclearScreen = setTimeout(function() {clearScreen();}, 10000); //hide everything
+  timeoutsetNext     = setTimeout(function() {setNext();}, 15000);     // set the next lifter after another 5 seconds. this will be cleared by the timer if we have to
+}
+
+
+
+
+  //if there's been a change to the lifter Name then change ASAP - except if the lights are showing
+  if ((currentLifter.lifterName != oldLifter.lifterName) && (lights.every(x => x==0))) {
+   newLifter();
+   cacheNext=false;
+  } else 
+  if ((currentLifter.lifterName != oldLifter.lifterName) && (lights.some(x => x>0))) { //if the lights are on and there's been a change, need to wait and trigger when the lights turn off
+	cacheNext=true;
+  } else 
+
+ //if there's been a change to the comp status
+  if (currentLifter.compStatus != oldLifter.compStatus) {
+  newLifter();
+  }
+
+
+
+
+ //update old to new
+ oldText=text;
+ oldLifter=JSON.parse(JSON.stringify(currentLifter));
+};
+};
+
+
+function evaluateTimer1(t) { //t is time. bar loaded timer is timer 1
+// let's do this
+
+
+  var d = new Date(); //d is now
+  t=t.split(/[- :]/); //split the PHP date time to convert to JS
+  var t1 = new Date(Date.UTC(t[0], t[1]-1, t[2], t[3], t[4], t[5])); //this is the new UTC time in JS format
+  
+  diff = t1 - d; //workout the differnece between the target time (t1) and now (now)
+  
+  var updatet1=oldt1-t1;
+
+  if (diff<=0) { clearTimer1(); return false;} //if it's behind, then stop
+  if ((diff>0) && (updatet1)) { //if barloaded timer is running
+	oldt1=t1;
+	timer1=true;
+				doHeartbeat();
+        clearInterval(firstInterval); //clear this interval (the bar loaded clicker 250ms)
+        clearInterval(secondInterval); //clear this interval (the bar loaded clicker 250ms)
+        var pad ="00";
+	document.getElementById("lights").innerHTML="";
+        document.getElementById("timer").innerHTML = "0:59";
+        document.getElementById("timer").classList.add("visible"); //show the timer
+        document.getElementById("lightsContainer").classList.add("visible"); //show the timer container
+        document.getElementById("timer").style.color="#fff";
+
+        //timer time
+        firstInterval = setInterval(function() {
+
+	var now = new Date().getTime(); //get the current time
+
+	distance = t1-now; //work out the delta
+	distance -=clockOffset; // apply the static offset
+
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        var seconds =  (pad+seconds).slice(-pad.length); //formatting of the seconds
+
+        document.getElementById("timer").innerHTML = minutes +":" + seconds;
+        if (minutes ==0) {
+        if (seconds ==30) { //30s remaining goes orange
+        document.getElementById("timer").style.color="#970";
+        }
+        if (seconds ==9) { //move to single figures goes red
+        document.getElementById("timer").style.color="#f00";
+        }
+        if (seconds <= 0) {clearTimer1();}} //clear me
+
+
+}, 250); //250ms timer interval
+return true;}
+} //end evaluateTimer1
+
+function smolClearTimer1() {
+  timer1=false;
+  clearInterval(firstInterval);
+  document.getElementById("timer").classList.remove("visible");
+
+} //end smolClearTimer1
+
+
+function clearTimer1() {
+timer1=false;
+clearInterval(firstInterval);
+if (!timer2) {
+if (document.getElementById("lights").innerHTML==""){document.getElementById("lightsContainer").classList.remove("visible");};
+ document.getElementById("timer").classList.remove("visible");
+  showState();
+  document.getElementById("lifterName").classList.add("visible");
+  document.getElementById("lifterAttempt").classList.add("visible");
+ document.getElementById("lifterPTotal").classList.add("visible");  
+ document.getElementById("lifterCat").classList.add("visible");  
+ document.getElementById("lifterFlight").classList.add("visible");  
+ document.getElementById("compStatus").classList.add("visible");  
+ document.getElementById("compName").classList.add("visible");  
+}
+} //end clearTimer1
+
+function showState()
+{
+  if (document.getElementById("lifterState").innerHTML != "")
+  document.getElementById("lifterState").classList.add("visible");
+
+}
+
+
+function clearTimer2() {
+timer2=false;
+clearInterval(secondInterval);
+
+if (!timer1){
+if (document.getElementById("lights").innerHTML==""){document.getElementById("lightsContainer").classList.remove("visible");};
+document.getElementById("timer").classList.remove("visible");
+
+  document.getElementById("lightsContainer").style.removeProperty("left");
+  document.getElementById("lightsContainer").style.removeProperty("bottom");
+  document.getElementById("lightsContainer").style.removeProperty("position");
+  document.getElementById("lightsContainer").style.removeProperty("width");
+  showState();
+  document.getElementById("lifterName").classList.add("visible");
+  document.getElementById("lifterAttempt").classList.add("visible");
+ document.getElementById("lifterPTotal").classList.add("visible");  
+ document.getElementById("lifterCat").classList.add("visible");  
+ document.getElementById("lifterFlight").classList.add("visible");  
+ document.getElementById("compStatus").classList.add("visible");  
+ document.getElementById("compName").classList.add("visible");  
+}
+} //end clearTimer1
+
+function evaluateTimer2(t) { //t is time 
+// let's do this
+
+
+  var d = new Date(); //d is now
+  t=t.split(/[- :]/); //split the PHP date time to convert to JS
+  var t2 = new Date(Date.UTC(t[0], t[1]-1, t[2], t[3], t[4], t[5])); //this is the new UTC time in JS format
+  
+  diff = t2 - d; //workout the differnece between the target time (t2) and now (now)
+  
+  var updatet2=oldt2-t2;
+
+  if ((diff<=0) || (diff<62000)) { clearTimer2(); return false;} //if it's behind or just a standard next attempt timer
+  if ((diff>0) && (updatet2)) {
+	oldt2=t2;
+	timer2=true;
+	clearInterval(firstInterval);
+        clearInterval(secondInterval); //clear this interval (the bar loaded clicker 250ms)
+        var pad ="00";
+	document.getElementById("lights").innerHTML="";
+        document.getElementById("timer").innerHTML = "9:59"; //safe bet that it'll usually be 10 minutes
+        document.getElementById("timer").classList.add("visible"); //show the timer
+        document.getElementById("lightsContainer").classList.add("visible"); //show the timer container
+        document.getElementById("timer").style.color="#fff";
+
+        //timer time
+        secondInterval = setInterval(function() {
+
+	var now = new Date().getTime(); //get the current time
+
+	distance = t2-now; //work out the delta
+	distance -=clockOffset; // apply the static offset
+
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        var seconds =  (pad+seconds).slice(-pad.length); //formatting of the seconds
+
+        document.getElementById("timer").innerHTML = minutes +":" + seconds;
+        if (minutes ==0) {
+        if (seconds ==30) { //30s remaining goes orange
+        document.getElementById("timer").style.color="#970";
+        }
+        if (seconds ==9) { //move to single figures goes red
+        document.getElementById("timer").style.color="#f00";
+        }
+        if (seconds <= 0) {clearTimer2();newLifter()}} //clear me
+
+				if (document.getElementById("lifterState").classList.contains("visible")) document.getElementById("lifterState").classList.remove("visible");
+}, 250); //250ms timer interval
+return true;}
+
+
+
+
+} //end evaluateTimer2
+
+function showBarLoaded() {
+  document.getElementById("lifterPTotal").classList.remove("visible");
+  document.getElementById("compName").classList.remove("visible");
+  document.getElementById("compStatus").classList.remove("visible");
+  document.getElementById("lifterFlight").classList.remove("visible");
+  document.getElementById("lifterCat").classList.remove("visible");
+  document.getElementById("lifterState").classList.remove("visible");
+  document.getElementById("overlay").classList.add("centre");
+} //end showBarLoaded
+
+function showBreakTimer() {
+  document.getElementById("lifterState").classList.remove("visible");
+  document.getElementById("lifterPTotal").classList.remove("visible");
+  document.getElementById("compName").classList.remove("visible");
+  document.getElementById("compStatus").classList.remove("visible");
+  document.getElementById("lifterFlight").classList.remove("visible");
+  document.getElementById("lifterCat").classList.remove("visible");
+  document.getElementById("lifterName").classList.remove("visible");
+  document.getElementById("lifterAttempt").classList.remove("visible");
+  document.getElementById("overlay").classList.remove("centre");
+
+} //end showBreakTimer
+
+
+
+function clearScreen() { //clear everything from the screen
+document.getElementById("lightsContainer").classList.remove("visible");
+document.getElementById("lights").classList.remove("visible");
+document.getElementById("timer").classList.remove("visible");
+document.getElementById("overlay").classList.remove("visible");
+document.getElementById("overlay").classList.remove("centre");
+
+} //end clearScreen
+
+function setNext() { //set the next lifter (bio display)
+clearTimeout(timeoutclearScreen);
+clearTimeout(timeoutsetNext);
+document.getElementById("overlay").classList.add("visible");
+} //end setNext
+
+function doLights(l) { //set the lights - show the DIV if required, set the colours
+var lightString="";
+// do the lights
+
+// if not all of them are on (but at least some of them are on
+
+if (!l.every(x => x>0)) {
+
+  document.getElementById("lightsContainer").classList.add("visible");
+  document.getElementById("lights").classList.add("visible");
+  clearTimer(timer1);
+
+ for (let c=0; c<3; c++) {
+  lightString += calcLight(l[c],false);
+ } //end loop
+
+}else // end some (pending)
+{ //same again but they're all on this time
+  document.getElementById("lightsContainer").classList.add("visible");
+  document.getElementById("lights").classList.add("visible");
+  clearTimer(timer1);
+
+
+
+ for (let c=0; c<3; c++) {
+  lightString += calcLight(l[c],true);
+ } //end loop
+
+}
+document.getElementById("lights").innerHTML = lightString;
+} //end doLights
+
+function calcLight(val,full) { //calculate the light based on the number given
+if (!full) {
+switch (val) {
+case 0:
+default:
+return String.fromCodePoint(0x26ab);
+break
+case 1:
+case 2:
+case 3:
+case 4:
+return String.fromCodePoint(0x1f7e2);
+break
+} //end switch
+} else  //end if not full
+switch (val) {
+case 0:
+default:
+return "";
+break
+case 1:
+return String.fromCodePoint(0x26aa);
+break
+case 2:
+case 3:
+case 4:
+return String.fromCodePoint(0x1f534);
+} //end switch
+
+} //end calcLight
+
+
+function clearLights() { //hide the lights and get rid of any outstanding cells
+document.getElementById("lights").innerHTML="";
+if ((!timer1) && (!timer2)) document.getElementById("lightsContainer").classList.remove("visible");
+document.getElementById("lights").classList.remove("visible");
+} //end clearLights
+
+
+function clearTimer(timertoclear) { //clear the timer
+document.getElementById("timer").classList.remove("visible");
+document.getElementById("timer").innerHTML="";
+} //end clearTimer
+
+function newLifter() { //update the Div with new lifter data
+
+//this is the only function that updates the text in the divs (besides the timer) //
+//it also needs to do a dynamic resize if the text doesn't fit. it'll fill the div//
+//then resize each one. messy but gotta be done//
+
+document.getElementById("overlay").classList.remove("centre");
+     document.getElementById("lifterName").innerHTML=currentLifter.lifterName;
+     document.getElementById("lifterAttempt").innerHTML=currentLifter.currentAttempt+"kg";
+     document.getElementById("compStatus").innerHTML=interpretStatus(currentLifter.compStatus);
+//     document.getElementById("lifterBW").innerHTML="BW: "+currentLifter.lifterBW;
+//     document.getElementById("lifterCat").innerHTML=interpretCat(currentLifter.lifterCat) + interpretClass(currentLifter.lifterClass, currentLifter.lifterBW);
+     document.getElementById("lifterCat").innerHTML=currentLifter.lifterCat + "<br>" + interpretClass(currentLifter.lifterClass, currentLifter.lifterBW);
+     document.getElementById("lifterFlight").innerHTML=currentLifter.lifterFlight;
+     document.getElementById("lifterPTotal").innerHTML="Total:<br>"+ currentLifter.total;
+//if there's a team/state, show it
+     if (!currentLifter.lifterTeam) {document.getElementById("lifterState").classList.remove("visible");}else{
+	document.getElementById("lifterState").innerHTML=currentLifter.lifterTeam;
+        document.getElementById("lifterState").classList.add("visible");}
+if (!timer2) {
+document.getElementById("lifterPTotal").classList.add("visible");
+document.getElementById("compName").classList.add("visible");
+document.getElementById("compStatus").classList.add("visible");
+document.getElementById("lifterFlight").classList.add("visible");
+document.getElementById("lifterCat").classList.add("visible");
+document.getElementById("lightsContainer").classList.remove("visible");
+}
+} //end newLifter
+
+
+function interpretStatus(stat) { //interpret the comp status
+switch (stat) {
+case 1:
+case 2:
+case 3:
+out = "Squat ";
+out += stat;
+break;
+case 4:
+case 5:
+case 6:
+out = "Bench ";
+out += stat-3;
+break;
+case 7:
+case 8:
+case 9:
+out = "Deadlift ";
+out += stat-6;
+break;
+}
+return out;
+}; //end interpretStatus
+
+function interpretCat(cat) {
+var c=cat.split("-").map(item => item.trim());
+c[3]= ((c[3]=="S") ? "S-Jr": c[3]);
+var goodCat =((c[3]=="O") ? "" : c[3]);
+goodCat += ((c[0]=="F") ? " Female" : " Male");
+goodCat += ((c[1]=="CL") ? " Classic " : " ");
+goodCat += ((c[2]=="BP") ? "<br>Bench Only " : "<br>");
+
+return goodCat;
+} //end interpretCat
+
+function interpretClass(wclass,bw) { //interpret and format the lifter class
+
+if ((wclass==84) & (bw>84)) {wclass="84+"} else 
+ if ((wclass==120) & (bw>120)) {wclass="120+"}else{
+  wclass="-"+wclass};
+
+wclass+="kg";
+
+return wclass;
+}; //end interpretClass
+
+function doHeartbeat() { //offset update & heartbeat
+  var d= new Date().getTime()/1000; //get the current unix date
+  var xhttp = new XMLHttpRequest(); //set up an ajax request
+
+  xhttp.onreadystatechange = function() {
+    if (this.readyState ==4 && this.status ==200) {
+      //do things when the get has been successful
+      var nd =  parseInt(this.responseText);
+       clockOffset=(nd-d); //set the clock offset to the difference in times to account for timezones, badly synced clocks, etc.
+    }
+  };
+  xhttp.open("GET", "heartbeat.php?t="+Math.random(), true);
+  xhttp.send();
+
+} //end doHeartbeat
+
+
+
+</script>
+</html>
+
+
