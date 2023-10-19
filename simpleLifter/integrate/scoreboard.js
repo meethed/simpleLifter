@@ -1,4 +1,3 @@
-
 //scoreboard function
 //does a funky sort to start with
 //division, weight class and age 
@@ -9,9 +8,10 @@
 
 //TODO: do another one with raw data to enable excel sort/filter
 function doScoreboard() {
-   utils=["Comp Setup...","Save","Load","Hide Results","Help..."];
+  if (utils[3][0]=="G") utils[3]="Hide Results";
 	var points=[0,12,9,8,7,6,5,4,3,2,1];
 	document.getElementById("tableu").style.display="none";
+  document.getElementById("btnNew").style.display="none";
 	if (!!document.getElementById("scoreboard")) document.getElementById("scoreboard").remove();
 	var scoreboard = document.createElement("table");
 	scoreboard.id="scoreboard";
@@ -72,7 +72,8 @@ function doScoreboard() {
 		}); //end sorting function
 	var csv=document.createElement("div");
   csv.innerHTML="<a href='./dead.php?c=" + compName + "'>Click Here for Open Powerlifting CSV Export</a>";
-	document.body.appendChild(scoreboard); //display the scoreboard separately
+	csv.id="csvExport";
+  document.body.appendChild(scoreboard); //display the scoreboard separately
 	document.body.appendChild(csv);
 	//OK we've finished sorting now to add in headers
 	var headRow = makeTr(document.getElementById("tableu").children[0]);
@@ -159,8 +160,10 @@ function exportToExcel(){ //export the table to Excel format
 } //end function exporttoexcel
 
 function hideScoreboard(){
-	utils=["Comp Setup...","Save","Load","Generate Results","Help..."];
+  if (utils[3][0]=="H") utils[3]="Generate Results";
 	document.getElementById("tableu").style.display="block";
+  document.getElementById("btnNew").style.display="inline-block";
 	document.body.removeChild(document.getElementById("scoreboard"));
+  document.body.removeChild(document.getElementById("csvExport"));
 } //end function  hidescoreboard
 

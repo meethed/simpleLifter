@@ -5,7 +5,7 @@ function doSessionChange() {
 
 //get list of active comps
 
-fetch("../../getcomps.php")
+fetch("../../getcomps.php?c="+compName)
  .then(x => x.text())
  .then(y => {
 

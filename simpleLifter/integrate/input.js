@@ -272,6 +272,41 @@ function showContext(t){
 }	
 } //end function showContext
 
+function showWeights(t){
+
+	var a,b,val;
+  var arr=setup.mW;
+  if (t.parentElement.childNodes[6].innerHTML[0]=="F") arr=setup.fW;
+  if (t.parentElement.childNodes[6].innerHTML[0]=="X") arr=setup.xW;
+  arr[arr.length-1]=arr[arr.length-2]+"+";
+  a = document.createElement("DIV");
+  a.setAttribute("id", t.id + "autocomplete-list");
+  a.setAttribute("class", "autocomplete-items");
+  t.appendChild(a);
+      /*for each item in the array...*/
+      for (i = 0; i < arr.length; i++) {
+        /*check if the item starts with the same letters as the text field value:*/
+        /*create a DIV element for each element:*/
+          b = document.createElement("DIV");
+          b.innerHTML =  arr[i];
+          
+          /*insert a input field that will hold the current array item's value:*/
+          
+          /*execute a function when someone clicks on the item value (DIV element):*/
+          b.addEventListener("click", function(e) {
+          const cell=e.target.parentElement.parentElement;
+          closeAllLists();
+          cell.innerHTML=e.target.innerHTML+"kg";
+          for (var i=0; i<lifters.liftList.length;i++)
+            if (cell.parentElement.childNodes[2].innerHTML == lifters.liftList[i].name)
+              lifters.liftList[i].wc=e.target.innerHTML;
+          });
+          a.appendChild(b);
+        
+     
+}	
+} //end function showWeights
+
 
 function showTimers(){
 	

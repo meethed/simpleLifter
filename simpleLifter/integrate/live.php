@@ -26,8 +26,9 @@ $conn->close();
 <title>Live scoreboard</title>
 </head>
 <body>
-<?php if ($compLetters=="ADE") {echo "<h1>APU Classic Nationals 2022</h1><h3>Note lifter's actual age groups are shown, however they are all competing as Open lifters</h3>";}; ?>
-<?php if (!$isParent) {echo "<iframe id='lightsiFrame'  src='../../comp.php?pos=lights&s=OBS&compName=".$compLetters."'></iframe>";}; ?>
+<?php if ($compLetters=="ADE") {echo "<h1>APU Classic Nationals 2022</h1><h3>Note lifter's actual age groups are shown, however they are all competing as Open lifters</h3>";};
+if ($isParent) {echo "<h1>".$compName."</h1>";};
+if (!$isParent) {echo "<iframe style='background:#000;' id='lightsiFrame'  src='../../comp.php?pos=lights&s=OBS&compName=".$compLetters."'></iframe>";}; ?>
 <table id="tableu">
 <tr>
 <th>Gr</th>
@@ -180,7 +181,7 @@ for (c=0;c<len;c++) {
 		newRow.appendChild(newCol);
 
 		newCol=document.createElement("td");
-		newCol.innerHTML=weightClass(lifters[r].bw,lifters[r].division,lifters[r].year);
+		newCol.innerHTML=weightClass(lifters[r]);
 		if (isActive) newCol.classList.add("act");
 		newRow.appendChild(newCol);
 
@@ -263,6 +264,24 @@ for (c=0;c<len;c++) {
 		newRow.appendChild(newCol);
 	document.getElementById("tableu").appendChild(newRow);
 } //end for the next lifter
+
+if (isParent) { // if its a compilation, sort properly
+var items=document.querySelectorAll("tr");
+var itemsArr=[];
+var v,i;
+Array.from(items).forEach((v,i) => { 
+  if (items[i].hasChildNodes())
+    if (items[i].childNodes.length>5) itemsArr.push(items[i]);
+});
+itemsArr.shift();
+itemsArr.sort(function(a,b) {
+  var sa=a.childNodes[6].innerHTML+a.childNodes[5].innerHTML+a.childNodes[8].innerHTML
+  var sb=b.childNodes[6].innerHTML+b.childNodes[5].innerHTML+b.childNodes[8].innerHTML
+  return sa == sb ? 0 : (sa > sb? 1: -1);
+});
+
+for (i =0; i<itemsArr.length; i++) document.getElementById("tableu").appendChild(itemsArr[i]);
+} //do sort
 } //end function add tableu
 
 
@@ -289,11 +308,16 @@ return "O"
 return ad;
 }
 
-function weightClass(bw,c,y){
+function weightClass(l){
 if (!setup) return;
+var bw=l.bw;
+var c=l.division;
+var y=l.year;
 var age=yr-y;
 var f,m,x;
-var wc=0;
+if (l.wc) {
+l.wc = l.wc.slice(-1)==" " ? l.wc.slice(0,-1)+"+" : l.wc;
+return l.wc+"kg"; }
 var gender = c.charAt(0);
 
         switch (gender) {
@@ -313,7 +337,6 @@ if (!d || d.length==1) {
         if (ix==d.length-1) wc=d.at(-2)+"+"; //if it's 1000 (the last entry), t$
         if (ix==0 && age>23) wc=d[1];
 
-        if (!wc) wc="";
         return wc+"kg";
         }
 

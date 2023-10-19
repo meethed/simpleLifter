@@ -222,9 +222,9 @@ class Lifter {
 	get ipf() { //returns the ipf points for the lifter, based on their total, classic/equipped, 3 lift or bench only, and gender
 
 
-	var t=this.total;
-	var bw=this.bw;
-	var d=this.division;
+	var t=this.total ? this.total : 0;
+	var bw=this.bw ? this.bw : 0;
+	var d=this.division ? this.division : 0;
 	var team=this.team;
 	let cy  = new Date().getFullYear();
 	var age = cy-this.year;
@@ -341,7 +341,10 @@ class Lifter {
 	
 	get weightClass() { //returns the Weight class for the lifter based on age, gender and bw
 
-	
+	if (this.wc) {
+  if (this.wc.slice(-1)==" ") this.wc=this.wc.slice(0,-1)+"+";
+  }
+  let realWeight=this.wc;
 	var wc,f,gender,age,bw;
 	var d=[0];
 	gender = this.gender;
@@ -366,6 +369,11 @@ class Lifter {
 	if (ix==0 && !age.endsWith("Jr")) wc=d[1];
 
 	if (!wc) wc="";
+  if (this.wc && this.wc!=wc) {
+    this.row.childNodes[8].style.background="#FAA";
+    return this.wc+"kg"
+  };
+  this.row.childNodes[8].style.background="";
 	return wc+"kg";
 	}
 
@@ -411,6 +419,7 @@ function setDivs(lifter){
     newCell.addEventListener("dblclick",function(e) {changeLifter(e.currentTarget)});
     newCell.addEventListener("contextmenu",function(e) {e.preventDefault(); showContext(e.currentTarget);});
     }
+    if (i==8) newCell.addEventListener("contextmenu", function(e) {e.preventDefault(); showWeights(e.currentTarget);});
 		newCell.classList.add("td");
 	} 	
 	if (i>=11 && i<=25) { //these ones are for the numbers

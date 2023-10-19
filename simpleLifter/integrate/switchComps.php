@@ -14,7 +14,19 @@ if ($result->num_rows > 0)  //if there's a competition that matches the compLett
   $cl = $row["compLetters"];
   $cn = $row["compName"];
   echo $cl;
-  $failed=0;}
+  $failed=0;
+  //overwrite the session data with the new comp
+  //restart the session
+  session_unset();
+  session_destroy();
+  session_start();
+
+  $_SESSION["compName"] = $cl;
+  $_SESSION["pos"]= "";
+  $_POST["compName"]=$cl;
+   }
+
+
     else {$failed=1;};
 $conn->close();
 ?>

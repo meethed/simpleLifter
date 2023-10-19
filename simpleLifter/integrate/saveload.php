@@ -14,7 +14,6 @@ if ($isExcel=="excel") {
 	$pwd=filter_input(INPUT_GET, "pwd");
 ////// this bit is to validate the password
 
-// Create connection
 include_once "../../../config.php";
 $sql = "SELECT compLetters, hish FROM comps WHERE compLetters=\"" . $compName. "\"";
 $result = $conn->query($sql);

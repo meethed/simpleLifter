@@ -35,9 +35,7 @@ if (empty($_POST)) { // if there is no POST data (ie a direct URL)
 	<head>
 	<title>simpleLifter Web v0.90 - 
 	<?php
-// Create connection
 include_once "../../../config.php";
-
 $sql = "SELECT compLetters, compID, compName, hish FROM comps WHERE compLetters=\"" . $_POST["compName"]. "\"";
 $result = $conn->query($sql);
 

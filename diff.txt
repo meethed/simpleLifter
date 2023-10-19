@@ -1,0 +1,655 @@
+diff -r ./addcomp.php ../gitget/simpleLifter/addcomp.php
+11c11
+<   if ($compName == "") {echo "Bruv the competition name was blank do it again"; die();}
+---
+> 		if ($compName == "") {echo "Bruv the competition name was blank do it again"; die();}
+diff -r ./archives.php ../gitget/simpleLifter/archives.php
+28c28
+<    if (file_exists("./simpleLifter/integrate/data/".$row["compLetters"] .".json"))
+---
+>    if (file_exists("./simpleLifter/integrate/data/".$row["compLetters"].".json"))
+Only in .: bigPlates.php
+Only in .: bopl.php
+Only in .: diff.txt
+Only in ../gitget/simpleLifter/: .git
+Only in ../gitget/simpleLifter/: .github
+Only in .: obs.php.old
+Only in ./resources: bigPlates.css
+diff -r ./resources/plateLights.css ../gitget/simpleLifter/resources/plateLights.css
+29a30
+> padding: 5px;
+155,157c156
+< 	border-radius:5px;
+< 	height: 99%;
+< 	margin-top:2px;
+---
+> 	border-radius:10px;
+diff -r ./resources/styles.css ../gitget/simpleLifter/resources/styles.css
+31,35d30
+< .question {
+< position: fixed;
+< top: 5px;
+< right: 5px;
+< }
+408c403
+< /*.pending {
+---
+> .pending {
+414,439c409
+< */
+< .pending {
+< width: 100%;
+< height: 100%;
+< animation: rotation 1.123s cubic-bezier(0.5, 0, 0.5, 1)  infinite;
+< background-image: conic-gradient(from 310deg at 50% 50%, #000000 0%, #000000 29%, #000000af 30%, #00000000 80%),radial-gradient(#000000 42%, #0f0 46%, #000000 50%,  #000000 100%);
+< }
+< /*.pending + div{
+< position: fixed;
+< border: 4px solid red;
+< display: block;
+< content: " ";
+< width: 100%;
+< height: 100%;
+< animation: rotation 0.7s cubic-bezier(0.2, 0.5, 0.7,1) infinite;
+< background-image: conic-gradient(from 45deg at 50% 50%, #000000 0%, #000000 62%, #00000000 80%, #000000 83%),radial-gradient(#000000 12%, #ffffff 13%, #000000 15%, #000000 100%);
+< }
+< */
+< @keyframes rotation {
+<   from {
+<     transform: rotate(0deg);
+<   }
+<   to {
+<     transform: rotate(360deg);
+<   }
+< }
+---
+> 
+Only in .: rosie
+diff -r ./simpleLifter/integrate/data/AAD.json ../gitget/simpleLifter/simpleLifter/integrate/data/AAD.json
+1c1
+< {"liftList":[{"group":"B","lot":2,"name":"Rayshell Raininghere","team":"","year":2008,"division":"F-EQ-PL","bw":0,"idx":"8","sr":"0","br":"0","row":{},"sq":{"a1":70,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"bp":{"a1":0,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"dl":{"a1":0,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"sortOrder":0,"act":0,"place":1},{"group":"B","lot":4,"name":"Yorrick Yesman","team":"","year":1993,"division":"M-EQ-PL","bw":0,"idx":"6","sr":"0","br":"0","row":{},"sq":{"a1":80,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"bp":{"a1":0,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"dl":{"a1":0,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"sortOrder":1,"act":{},"place":3},{"group":"B","lot":6,"name":"Xander Xu","team":"","year":1987,"division":"M-EQ-PL","bw":0,"idx":"5","sr":"0","br":"0","row":{},"sq":{"a1":90,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"bp":{"a1":0,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"dl":{"a1":0,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"sortOrder":2,"act":0,"place":2},{"group":"B","lot":7,"name":"Queenie Quokka","team":"","year":1969,"division":"F-EQ-PL","bw":0,"idx":"9","sr":"0","br":"0","row":{},"sq":{"a1":100,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"bp":{"a1":0,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"dl":{"a1":0,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"sortOrder":3,"act":0,"place":1},{"group":"B","lot":8,"name":"Zain Zedsy","team":"","year":1995,"division":"M-EQ-PL","bw":0,"idx":"7","sr":"0","br":"0","row":{},"sq":{"a1":110,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"bp":{"a1":0,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"dl":{"a1":0,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"sortOrder":4,"act":0,"place":1},{"group":"A","lot":5,"name":"Travis Taylorship","team":"","year":1991,"division":"M-EQ-PL","bw":0,"idx":"1","sr":"0","br":"0","row":{},"sq":{"a1":30,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"bp":{"a1":0,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"dl":{"a1":0,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"sortOrder":5,"act":0,"place":5},{"group":"A","lot":9,"name":"Ursula Uranquinty","team":"","year":1984,"division":"F-EQ-PL","bw":0,"idx":"2","sr":"0","br":"0","row":{},"sq":{"a1":40,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"bp":{"a1":0,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"dl":{"a1":0,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"sortOrder":6,"act":0,"place":1},{"group":"A","lot":1,"name":"Warrick Wylie","team":"","year":1999,"division":"M-EQ-PL","bw":0,"idx":"4","sr":"0","br":"0","row":{},"sq":{"a1":50,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"bp":{"a1":0,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"dl":{"a1":0,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"sortOrder":7,"act":0,"place":4},{"group":"A","lot":10,"name":"Stevie Stewardson","team":"","year":1990,"division":"F-CL-PL","bw":0,"idx":"0","sr":"0","br":"0","row":{},"sq":{"a1":60,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"bp":{"a1":0,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"dl":{"a1":0,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"sortOrder":8,"act":0,"place":1},{"group":"A","lot":3,"name":"Viktor Vangelis","team":"","year":2003,"division":"M-EQ-PL","bw":0,"idx":"3","sr":"0","br":"0","row":{},"sq":{"a1":120,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"bp":{"a1":0,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"dl":{"a1":0,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"sortOrder":9,"act":0,"place":1}],"activeRw":{"group":"B","lot":4,"name":"Yorrick Yesman","team":"","year":1993,"division":"M-EQ-PL","bw":0,"idx":"6","sr":"0","br":"0","row":{},"sq":{"a1":80,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"bp":{"a1":0,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"dl":{"a1":0,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"sortOrder":1,"act":{},"place":3},"activeGp":"B","activeCol":10}
+\ No newline at end of file
+---
+> {"liftList":[{"group":"A","lot":1,"name":"asdf","team":"aaa","year":null,"division":"M-CL-PL","bw":50,"sr":"","br":"","idx":0,"place":1,"sq":{"a1":90,"a2":"","a3":"","s1":-1,"s2":0,"s3":0},"bp":{"a1":50,"a2":"","a3":"","s1":1,"s2":0,"s3":0},"dl":{"a1":50,"a2":"","a3":"","s1":1,"s2":0,"s3":0},"sortOrder":0,"act":{},"row":{}},{"group":"A","lot":2,"name":"dsf","team":"","year":null,"division":"M-CL-PL","bw":70,"sr":"","br":"","idx":1,"place":1,"sq":{"a1":100,"a2":"","a3":"","s1":1,"s2":0,"s3":0},"bp":{"a1":"","a2":"","a3":"","s1":0,"s2":0,"s3":0},"dl":{"a1":"","a2":"","a3":"","s1":0,"s2":0,"s3":0},"sortOrder":1,"act":0,"row":{}},{"group":"A","lot":3,"name":"dsfew","team":"","year":null,"division":"M-CL-PL","bw":80,"sr":"","br":"","idx":2,"place":1,"sq":{"a1":120,"a2":"","a3":"","s1":1,"s2":0,"s3":0},"bp":{"a1":"","a2":"","a3":"","s1":0,"s2":0,"s3":0},"dl":{"a1":"","a2":"","a3":"","s1":0,"s2":0,"s3":0},"sortOrder":2,"act":0,"row":{}},{"group":"A","lot":4,"name":"efa","team":"","year":null,"division":"M-CL-PL","bw":90,"sr":"","br":"","idx":3,"place":1,"sq":{"a1":130,"a2":"","a3":"","s1":1,"s2":0,"s3":0},"bp":{"a1":"","a2":"","a3":"","s1":0,"s2":0,"s3":0},"dl":{"a1":"","a2":"","a3":"","s1":0,"s2":0,"s3":0},"sortOrder":3,"act":0,"row":{}},{"group":"A","lot":5,"name":"dfs","team":"","year":null,"division":"M-CL-PL","bw":100,"sr":"","br":"","idx":4,"place":1,"sq":{"a1":140,"a2":"","a3":"","s1":1,"s2":0,"s3":0},"bp":{"a1":"","a2":"","a3":"","s1":0,"s2":0,"s3":0},"dl":{"a1":"","a2":"","a3":"","s1":0,"s2":0,"s3":0},"sortOrder":4,"act":0,"row":{}},{"group":"A","lot":5,"name":"no name","team":"","year":null,"division":"F-CL-PL","bw":null,"sr":"","br":"","idx":4,"place":1,"sq":{"a1":150,"a2":"","a3":"","s1":1,"s2":0,"s3":0},"bp":{"a1":"","a2":"","a3":"","s1":0,"s2":0,"s3":0},"dl":{"a1":"","a2":"","a3":"","s1":0,"s2":0,"s3":0},"sortOrder":5,"act":0,"row":{}},{"group":"A","lot":6,"name":"yes name","team":"","year":null,"division":"F-CL-PL","bw":90,"sr":"","br":"","idx":5,"place":3,"sq":{"a1":177.5,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"bp":{"a1":"","a2":"","a3":"","s1":0,"s2":0,"s3":0},"dl":{"a1":"","a2":"","a3":"","s1":0,"s2":0,"s3":0},"sortOrder":6,"act":0,"row":{}},{"group":"B","lot":9,"name":"poo","team":"","year":null,"division":"F-CL-PL","bw":130,"sr":"","br":"","idx":8,"place":2,"sq":{"a1":90,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"bp":{"a1":"","a2":"","a3":"","s1":0,"s2":0,"s3":0},"dl":{"a1":"","a2":"","a3":"","s1":0,"s2":0,"s3":0},"sortOrder":7,"act":0,"row":{}},{"group":"B","lot":7,"name":"steve","team":"","year":null,"division":"F-CL-PL","bw":100,"sr":"","br":"","idx":6,"place":4,"sq":{"a1":100,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"bp":{"a1":"","a2":"","a3":"","s1":0,"s2":0,"s3":0},"dl":{"a1":"","a2":"","a3":"","s1":0,"s2":0,"s3":0},"sortOrder":8,"act":0,"row":{}},{"group":"B","lot":8,"name":"dave","team":"","year":null,"division":"F-CL-PL","bw":120,"sr":"","br":"","idx":7,"place":1,"sq":{"a1":120,"a2":"","a3":"","s1":0,"s2":0,"s3":0},"bp":{"a1":"","a2":"","a3":"","s1":0,"s2":0,"s3":0},"dl":{"a1":"","a2":"","a3":"","s1":0,"s2":0,"s3":0},"sortOrder":9,"act":0,"row":{}}],"activeRw":{"group":"A","lot":1,"name":"asdf","team":"aaa","year":null,"division":"M-CL-PL","bw":50,"sr":"","br":"","idx":0,"place":1,"sq":{"a1":90,"a2":"","a3":"","s1":-1,"s2":0,"s3":0},"bp":{"a1":50,"a2":"","a3":"","s1":1,"s2":0,"s3":0},"dl":{"a1":50,"a2":"","a3":"","s1":1,"s2":0,"s3":0},"sortOrder":0,"act":{},"row":{}},"activeGp":"A","activeCol":10}
+\ No newline at end of file
+diff -r ./simpleLifter/integrate/data/AADsetup.json ../gitget/simpleLifter/simpleLifter/integrate/data/AADsetup.json
+1c1
+< {"bar":25,"startGroup":"A","plates":[25,20,15,10,5,2.5,1.25,0.5,0.25],"lifterCount":7,"auto":true,"countUp":true,"showLights":true,"BP":false,"activeLi":"SQ-1","activeGp":"B","autoRefs":false,"stream":true,"activeRow":1,"openOnly":false,"CAPO":false,"mW":[56,59,66,74,83,93,105,120,1000],"fW":[43,47,52,57,63,69,76,84,1000],"xW":[56,59,66,74,83,93,105,120,1000],"maxGp":"B"}
+\ No newline at end of file
+---
+> {"bar":"25","startGroup":"A","plates":[25,20,15,10,5,2.5,1.25,0.5,0.25],"lifterCount":7,"auto":true,"countUp":true,"showLights":true,"BP":false,"activeLi":"SQ-1","activeGp":"A","autoRefs":false,"stream":true,"activeRow":0,"openOnly":false,"CAPO":false,"mW":["56","59","66","74","83","93","105","120","1000"],"fW":["47","52","57","63","69","76","84","1000"],"xW":["56","59","66","74","83","93","105","120","1000"],"maxGp":"C"}
+\ No newline at end of file
+Only in ./simpleLifter/integrate/data: ACU.json
+Only in ./simpleLifter/integrate/data: ACUsetup.json
+Only in ./simpleLifter/integrate/data: ACV.json
+Only in ./simpleLifter/integrate/data: ACVsetup.json
+Only in ./simpleLifter/integrate/data: ACW.json
+Only in ./simpleLifter/integrate/data: ACWsetup.json
+Only in ./simpleLifter/integrate/data: ACX.json
+Only in ./simpleLifter/integrate/data: ACXsetup.json
+Only in ./simpleLifter/integrate/data: ACY.json
+Only in ./simpleLifter/integrate/data: ACYsetup.json
+Only in ./simpleLifter/integrate/data: ACZ.json
+Only in ./simpleLifter/integrate/data: ACZsetup.json
+Only in ./simpleLifter/integrate/data: ADA.json
+Only in ./simpleLifter/integrate/data: ADAsetup.json
+Only in ./simpleLifter/integrate/data: ADB.json
+Only in ./simpleLifter/integrate/data: ADBsetup.json
+Only in ./simpleLifter/integrate/data: ADC.json
+Only in ./simpleLifter/integrate/data: ADCsetup.json
+Only in ./simpleLifter/integrate/data: ADD.json
+Only in ./simpleLifter/integrate/data: ADDsetup.json
+Only in ./simpleLifter/integrate/data: ADE.json
+Only in ./simpleLifter/integrate/data: ADEsetup.json
+Only in ./simpleLifter/integrate/data: ADF.json
+Only in ./simpleLifter/integrate/data: ADFsetup.json
+Only in ./simpleLifter/integrate/data: ADH.json
+Only in ./simpleLifter/integrate/data: ADHsetup.json
+Only in ./simpleLifter/integrate/data: ADJ.json
+Only in ./simpleLifter/integrate/data: ADJsetup.json
+Only in ./simpleLifter/integrate/data: ADK.json
+Only in ./simpleLifter/integrate/data: ADKsetup.json
+Only in ./simpleLifter/integrate/data: ADL.json
+Only in ./simpleLifter/integrate/data: ADLsetup.json
+Only in ./simpleLifter/integrate/data: ADM.json
+Only in ./simpleLifter/integrate/data: ADMsetup.json
+Only in ./simpleLifter/integrate/data: ADN.json
+Only in ./simpleLifter/integrate/data: ADNsetup.json
+Only in ./simpleLifter/integrate/data: ADO.json
+Only in ./simpleLifter/integrate/data: ADOsetup.json
+Only in ./simpleLifter/integrate/data: ADP.json
+Only in ./simpleLifter/integrate/data: ADPsetup.json
+Only in ./simpleLifter/integrate/data: ADR.json
+Only in ./simpleLifter/integrate/data: ADRsetup.json
+Only in ./simpleLifter/integrate/data: ADS.json
+Only in ./simpleLifter/integrate/data: ADSsetup.json
+Only in ./simpleLifter/integrate/data: ADU.json
+Only in ./simpleLifter/integrate/data: ADUsetup.json
+Only in ./simpleLifter/integrate/data: ADV.json
+Only in ./simpleLifter/integrate/data: ADVsetup.json
+Only in ./simpleLifter/integrate/data: ADZ.json
+Only in ./simpleLifter/integrate/data: ADZsetup.json
+Only in ./simpleLifter/integrate/data: AEB.json
+Only in ./simpleLifter/integrate/data: AEBsetup.json
+Only in ./simpleLifter/integrate/data: AEE.json
+Only in ./simpleLifter/integrate/data: AEEsetup.json
+Only in ./simpleLifter/integrate/data: AEF.json
+Only in ./simpleLifter/integrate/data: AEFsetup.json
+Only in ./simpleLifter/integrate/data: AEG.json
+Only in ./simpleLifter/integrate/data: AEGsetup.json
+Only in ./simpleLifter/integrate/data: AEH.json
+Only in ./simpleLifter/integrate/data: AEHsetup.json
+Only in ./simpleLifter/integrate/data: AEI.json
+Only in ./simpleLifter/integrate/data: AEIsetup.json
+Only in ./simpleLifter/integrate/data: AEJ.json
+Only in ./simpleLifter/integrate/data: AEJsetup.json
+Only in ./simpleLifter/integrate/data: AEK.json
+Only in ./simpleLifter/integrate/data: AEKsetup.json
+Only in ./simpleLifter/integrate/data: AEN.json
+Only in ./simpleLifter/integrate/data: AENsetup.json
+Only in ./simpleLifter/integrate/data: AEO.json
+Only in ./simpleLifter/integrate/data: AEOsetup.json
+Only in ./simpleLifter/integrate/data: AER.json
+Only in ./simpleLifter/integrate/data: AERsetup.json
+Only in ./simpleLifter/integrate/data: AES.json
+Only in ./simpleLifter/integrate/data: AESsetup.json
+Only in ./simpleLifter/integrate/data: AEU.json
+Only in ./simpleLifter/integrate/data: AEUsetup.json
+Only in ./simpleLifter/integrate/data: AEV.json
+Only in ./simpleLifter/integrate/data: AEVsetup.json
+Only in ./simpleLifter/integrate/data: AEW.json
+Only in ./simpleLifter/integrate/data: AEWsetup.json
+Only in ./simpleLifter/integrate/data: AFE.json
+Only in ./simpleLifter/integrate/data: AFEsetup.json
+Only in ./simpleLifter/integrate/data: AFF.json
+Only in ./simpleLifter/integrate/data: AFFsetup.json
+Only in ./simpleLifter/integrate/data: AFG.json
+Only in ./simpleLifter/integrate/data: AFGsetup.json
+Only in ./simpleLifter/integrate/data: AFI.json
+Only in ./simpleLifter/integrate/data: AFIsetup.json
+Only in ./simpleLifter/integrate/data: AFJ.json
+Only in ./simpleLifter/integrate/data: AFJsetup.json
+Only in ./simpleLifter/integrate/data: AFK.json
+Only in ./simpleLifter/integrate/data: AFKsetup.json
+Only in ./simpleLifter/integrate/data: AFM.json
+Only in ./simpleLifter/integrate/data: AFMsetup.json
+Only in ./simpleLifter/integrate/data: AFN.json
+Only in ./simpleLifter/integrate/data: AFNsetup.json
+Only in ./simpleLifter/integrate/data: AFO.json
+Only in ./simpleLifter/integrate/data: AFOsetup.json
+Only in ./simpleLifter/integrate/data: AFP.json
+Only in ./simpleLifter/integrate/data: AFPsetup.json
+Only in ./simpleLifter/integrate/data: AFR.json
+Only in ./simpleLifter/integrate/data: AFRsetup.json
+Only in ./simpleLifter/integrate/data: AFS.json
+Only in ./simpleLifter/integrate/data: AFSsetup.json
+Only in ./simpleLifter/integrate/data: AFT.json
+Only in ./simpleLifter/integrate/data: AFTsetup.json
+Only in ./simpleLifter/integrate/data: AFU.json
+Only in ./simpleLifter/integrate/data: AFUsetup.json
+Only in ./simpleLifter/integrate/data: AFV.json
+Only in ./simpleLifter/integrate/data: AFVsetup.json
+Only in ./simpleLifter/integrate/data: AFZ.json
+Only in ./simpleLifter/integrate/data: AFZsetup.json
+Only in ./simpleLifter/integrate/data: AGE.json
+Only in ./simpleLifter/integrate/data: AGEsetup.json
+Only in ./simpleLifter/integrate/data: AGF.json
+Only in ./simpleLifter/integrate/data: AGFsetup.json
+Only in ./simpleLifter/integrate/data: AGI.json
+Only in ./simpleLifter/integrate/data: AGIsetup.json
+Only in ./simpleLifter/integrate/data: AGK.json
+Only in ./simpleLifter/integrate/data: AGKsetup.json
+Only in ./simpleLifter/integrate/data: AGM.json
+Only in ./simpleLifter/integrate/data: AGMsetup.json
+Only in ./simpleLifter/integrate/data: AGN.json
+Only in ./simpleLifter/integrate/data: AGNsetup.json
+Only in ./simpleLifter/integrate/data: AGO.json
+Only in ./simpleLifter/integrate/data: AGOsetup.json
+Only in ./simpleLifter/integrate/data: AGP.json
+Only in ./simpleLifter/integrate/data: AGPsetup.json
+Only in ./simpleLifter/integrate/data: AGR.json
+Only in ./simpleLifter/integrate/data: AGRsetup.json
+Only in ./simpleLifter/integrate/data: AGS.json
+Only in ./simpleLifter/integrate/data: AGSsetup.json
+Only in ./simpleLifter/integrate/data: AGT.json
+Only in ./simpleLifter/integrate/data: AGTsetup.json
+Only in ./simpleLifter/integrate/data: AGX.json
+Only in ./simpleLifter/integrate/data: AGXsetup.json
+Only in ./simpleLifter/integrate/data: AGY.json
+Only in ./simpleLifter/integrate/data: AGYsetup.json
+Only in ./simpleLifter/integrate/data: AGZ.json
+Only in ./simpleLifter/integrate/data: AGZsetup.json
+Only in ./simpleLifter/integrate/data: AHD.json
+Only in ./simpleLifter/integrate/data: AHDsetup.json
+Only in ./simpleLifter/integrate/data: AHE.json
+Only in ./simpleLifter/integrate/data: AHEsetup.json
+Only in ./simpleLifter/integrate/data: AHF.json
+Only in ./simpleLifter/integrate/data: AHFsetup.json
+Only in ./simpleLifter/integrate/data: AHH.json
+Only in ./simpleLifter/integrate/data: AHHsetup.json
+Only in ./simpleLifter/integrate/data: AHI.json
+Only in ./simpleLifter/integrate/data: AHIsetup.json
+Only in ./simpleLifter/integrate/data: AHK.json
+Only in ./simpleLifter/integrate/data: AHKsetup.json
+Only in ./simpleLifter/integrate/data: AHL.json
+Only in ./simpleLifter/integrate/data: AHLsetup.json
+Only in ./simpleLifter/integrate/data: AHM.json
+Only in ./simpleLifter/integrate/data: AHMsetup.json
+Only in ./simpleLifter/integrate/data: AHN.json
+Only in ./simpleLifter/integrate/data: AHNsetup.json
+Only in ./simpleLifter/integrate/data: AHP.json
+Only in ./simpleLifter/integrate/data: AHPsetup.json
+Only in ./simpleLifter/integrate/data: AHR.json
+Only in ./simpleLifter/integrate/data: AHRsetup.json
+Only in ./simpleLifter/integrate/data: AHS.json
+Only in ./simpleLifter/integrate/data: AHSsetup.json
+Only in ./simpleLifter/integrate/data: AHT.json
+Only in ./simpleLifter/integrate/data: AHTsetup.json
+Only in ./simpleLifter/integrate/data: AHV.json
+Only in ./simpleLifter/integrate/data: AHVsetup.json
+Only in ./simpleLifter/integrate/data: AHY.json
+Only in ./simpleLifter/integrate/data: AHYsetup.json
+Only in ./simpleLifter/integrate/data: AIA.json
+Only in ./simpleLifter/integrate/data: AIAsetup.json
+Only in ./simpleLifter/integrate/data: AIB.json
+Only in ./simpleLifter/integrate/data: AIBsetup.json
+Only in ./simpleLifter/integrate/data: AIC.json
+Only in ./simpleLifter/integrate/data: AICsetup.json
+Only in ./simpleLifter/integrate/data: AIG.json
+Only in ./simpleLifter/integrate/data: AIGsetup.json
+Only in ./simpleLifter/integrate/data: AIJ.json
+Only in ./simpleLifter/integrate/data: AIJsetup.json
+Only in ./simpleLifter/integrate/data: AIL.json
+Only in ./simpleLifter/integrate/data: AILsetup.json
+Only in ./simpleLifter/integrate/data: AIM.json
+Only in ./simpleLifter/integrate/data: AIMsetup.json
+Only in ./simpleLifter/integrate/data: AIN.json
+Only in ./simpleLifter/integrate/data: AINsetup.json
+Only in ./simpleLifter/integrate/data: AIO.json
+Only in ./simpleLifter/integrate/data: AIOsetup.json
+Only in ./simpleLifter/integrate/data: AIP.json
+Only in ./simpleLifter/integrate/data: AIPsetup.json
+Only in ./simpleLifter/integrate/data: AIR.json
+Only in ./simpleLifter/integrate/data: AIRsetup.json
+Only in ./simpleLifter/integrate/data: AIT.json
+Only in ./simpleLifter/integrate/data: AITsetup.json
+Only in ./simpleLifter/integrate/data: AIU.json
+Only in ./simpleLifter/integrate/data: AIUsetup.json
+Only in ./simpleLifter/integrate/data: AIV.json
+Only in ./simpleLifter/integrate/data: AIVsetup.json
+Only in ./simpleLifter/integrate/data: AIW.json
+Only in ./simpleLifter/integrate/data: AIWsetup.json
+Only in ./simpleLifter/integrate/data: AIY.json
+Only in ./simpleLifter/integrate/data: AIYsetup.json
+Only in ./simpleLifter/integrate/data: AIZ.json
+Only in ./simpleLifter/integrate/data: AIZsetup.json
+Only in ./simpleLifter/integrate/data: AJB.json
+Only in ./simpleLifter/integrate/data: AJBsetup.json
+Only in ./simpleLifter/integrate/data: bestAAD.json
+Only in ./simpleLifter/integrate/data: bestADL.json
+Only in ./simpleLifter/integrate/data: bestADM.json
+Only in ./simpleLifter/integrate/data: bestADZ.json
+Only in ./simpleLifter/integrate/data: bestAEF.json
+Only in ./simpleLifter/integrate/data: bestAEG.json
+Only in ./simpleLifter/integrate/data: bestAEH.json
+Only in ./simpleLifter/integrate/data: bestAEI.json
+Only in ./simpleLifter/integrate/data: bestAEJ.json
+Only in ./simpleLifter/integrate/data: bestAEO.json
+Only in ./simpleLifter/integrate/data: bestAFF.json
+Only in ./simpleLifter/integrate/data: bestAFG.json
+Only in ./simpleLifter/integrate/data: bestAFI.json
+Only in ./simpleLifter/integrate/data: bestAFO.json
+Only in ./simpleLifter/integrate/data: bestAFP.json
+Only in ./simpleLifter/integrate/data: bestAFS.json
+Only in ./simpleLifter/integrate/data: bestAFT.json
+Only in ./simpleLifter/integrate/data: bestAFU.json
+Only in ./simpleLifter/integrate/data: bestAFV.json
+Only in ./simpleLifter/integrate/data: bestAFZ.json
+Only in ./simpleLifter/integrate/data: bestAGE.json
+Only in ./simpleLifter/integrate/data: bestAGF.json
+Only in ./simpleLifter/integrate/data: bestAGM.json
+Only in ./simpleLifter/integrate/data: bestAGN.json
+Only in ./simpleLifter/integrate/data: bestAGO.json
+Only in ./simpleLifter/integrate/data: bestAGR.json
+Only in ./simpleLifter/integrate/data: bestAGX.json
+Only in ./simpleLifter/integrate/data: bestAGY.json
+Only in ./simpleLifter/integrate/data: bestAGZ.json
+Only in ./simpleLifter/integrate/data: bestAHF.json
+Only in ./simpleLifter/integrate/data: bestAHH.json
+Only in ./simpleLifter/integrate/data: bestAHN.json
+Only in ./simpleLifter/integrate/data: bestAIR.json
+Only in ./simpleLifter/integrate/data: bestAIV.json
+Only in ./simpleLifter/integrate/data: bestAIW.json
+Only in ./simpleLifter/integrate/data: bests.json
+Only in ./simpleLifter/integrate/data: data.json
+Only in ./simpleLifter/integrate/data: ZZZ.json
+diff -r ./simpleLifter/integrate/dead.php ../gitget/simpleLifter/simpleLifter/integrate/dead.php
+12a13
+> 
+408d408
+< 
+diff -r ./simpleLifter/integrate/handler.js ../gitget/simpleLifter/simpleLifter/integrate/handler.js
+27,29d26
+<   if(e.target.id=="btnTimer"){
+<     showTimers();
+<   }
+diff -r ./simpleLifter/integrate/index.php ../gitget/simpleLifter/simpleLifter/integrate/index.php
+87c87
+<     <div class="mbtn" id="btnTimer">Break Timer...</div>
+---
+> 		<div class="mbtn" id="btnTimer">Break Timer...</div>
+166c166
+< 		<div id="btnOk" class="btn" onclick="document.getElementById('popupBox').replaceChildren(msg,btnOk); document.getElementById('popupBox').style.display='none'">Close</div><p></p>
+---
+> 		<div id="btnOk" class="btn" onclick="document.getElementById('popupBox').style.display='none'">Close</div><p></p>
+184c184,185
+<   <script src="sessionChange.js"></script>
+---
+>         <script src="sessionChange.js"></script>
+> 
+diff -r ./simpleLifter/integrate/input.js ../gitget/simpleLifter/simpleLifter/integrate/input.js
+146c146
+<  
+---
+>           
+235c235
+<             if (e.target.innerHTML=="Change Session...") doSessionChange();
+---
+> 					        if (e.target.innerHTML=="Change Session...") doSessionChange();
+246c246
+< 
+---
+> 	
+250,251c250,251
+<   a.setAttribute("id", t.id + "autocomplete-list");
+<   a.setAttribute("class", "autocomplete-items");
+---
+>   	a.setAttribute("id", t.id + "autocomplete-list");
+>   	a.setAttribute("class", "autocomplete-items");
+264,267c264,267
+<           const cell=e.target.parentElement.parentElement;
+<             closeAllLists();
+< 						if (e.target.innerHTML=="Activate lifter") changeLifter(cell);
+<             if (e.target.innerHTML=="Delete lifter") {cell.innerHTML=""; cell.previousSibling.innerHTML="";};
+---
+> 	  const cell=e.target.parentElement.parentElement;
+> 	  closeAllLists();
+> 	  if (e.target.innerHTML=="Activate Lifter") changeLifter(cell);
+> 	  if (e.target.innerHTML=="Delete Lifter") {cell.innerHTML=""; cell.previousSibling.innerHTML="";};
+273,274c273
+< } //end function showContext
+< 
+---
+> } //end function showUtils
+293c292
+<       
+---
+> 
+299c298
+<           setBarLoaded(-1); 
+---
+>          setBarLoaded(-1);
+301,306c300,305
+<           const m=parseInt(e.target.innerHTML);
+<           setTimer2(m ? m : -1);
+<           });
+<           a.appendChild(b);
+<         
+<      
+---
+>          const m=parseInt(e.target.innerHTML);
+>          setTimer2(m ? m : -1);
+>          });
+>          a.appendChild(b);
+>        
+>     
+diff -r ./simpleLifter/integrate/lifter.js ../gitget/simpleLifter/simpleLifter/integrate/lifter.js
+408,411c408,409
+< 		if (i==2) {
+<     newCell.addEventListener("dblclick",function(e) {changeLifter(e.currentTarget)});
+<     newCell.addEventListener("contextmenu",function(e) {e.preventDefault(); showContext(e.currentTarget);});
+<     }
+---
+> 		if (i==2) newCell.addEventListener("dblclick",function(e) {changeLifter(e.currentTarget)});
+> 		newCell.addEventListener("contextmenu",function(e) {e.preventDefault(); showContext(e.currentTarget);});
+534d531
+< 
+538,539c535,536
+< 			if (lifters.liftList[i].group!=lifters.activeGp) {lifters.activeGp=lifters.liftList[i].group; lifters.doSort();}
+<       setBarLoaded(-1); //clear the barloaded timer THEN change the lifter - this will ensure the plates display is updated
+---
+> 			if (lifters.liftList[i].group!=lifters.activeGp) {lifters.activeGp=lifters.liftList[i].group;lifters.doSort()};
+> 			setBarLoaded(-1)
+541c538
+<       updateStatus();
+---
+> 			updateStatus();
+542a540
+> 		
+diff -r ./simpleLifter/integrate/lifters.js ../gitget/simpleLifter/simpleLifter/integrate/lifters.js
+87c87
+< 	//first if it's attempt 1 or 2, we need to detect when we should go back to the top for the next attempt
+---
+> 		//first if it's attempt 1 or 2, we need to detect when we should go back to the top for the next attempt
+124c124
+< 
+---
+> 				
+126c126
+< 					if (setup.maxGp=="A") {var t=20;} else {var t=10;}; // if there's only the A group then 20 minute timer
+---
+> 					 if (setup.maxGp=="A") {var t=20;} else {var t=10;};  // if there's only the A group then 20 minute timer
+138c138
+< 	updateStatus(); // i need this one.
+---
+> 	//updateStatus(); this one is unnecessary and leads to weird doubling up
+157c157
+< 	ls.forEach((c,index) => { //for each lifter in the lift list
+---
+> 	ls.forEach((c,index) => {
+162,163c162,163
+< 			ls.forEach((cc,iindex) => { //for each lifter for comparison
+< 			  ccCat=cc.division+cc.weightClass; //current cat for the comparison lifter
+---
+> 			ls.forEach((cc,iindex) => {
+> 			  ccCat=cc.division+cc.weightClass;
+166c166
+< 			  gp+=1; //if they're bigger then add one
+---
+> 			  gp+=1; //if they're bigger they go before
+170c170
+< 			// cool so the places (liftList index) is assigned for each lfiter'
+---
+> 			// here we have a sorted 'group'
+194,199c194,198
+< 			//first up just brute force weigh in lot number
+< 			if (l.charAt(0)=="W") {
+< 			if (al>bl) return 1;
+< 			if (bl>al) return -1;
+< 			}
+< 
+---
+> 		      //first up just brute force weigh in lot number
+>       			if (l.charAt(0)=="W") {
+>       			if (al>bl) return 1;
+>       			if (bl>al) return -1;
+>       }		
+356a356
+> 
+358c358
+< 	this.liftList.forEach((c,i) => c.idx=i); //renumber neatly
+---
+> 	this.liftList.forEach((c,i) => c.idx=i);
+diff -r ./simpleLifter/integrate/lightTimer.js ../gitget/simpleLifter/simpleLifter/integrate/lightTimer.js
+25,27c25,27
+<   var a=document.querySelectorAll(".tr");
+<   var i; const l=a.length;
+<   for (i=1;i<l;i++) {a[i].remove();}
+---
+>         var a=document.querySelectorAll(".tr");
+>         var i; const l=a.length;
+>         for (i=1;i<l;i++) {a[i].remove();}
+64d63
+< 
+249c248
+< 
+---
+> 	
+Only in ./simpleLifter/integrate/pics: adrianbrogan.jpg
+Only in ./simpleLifter/integrate/pics: blank.jpg
+Only in ./simpleLifter/integrate/pics: brittanyromas.jpg
+Only in ./simpleLifter/integrate/pics: christiantorley.jpg
+Only in ./simpleLifter/integrate/pics: ethanlim.jpg
+Only in ./simpleLifter/integrate/pics: eujeanelee.jpg
+Only in ./simpleLifter/integrate/pics: evanmccloy.jpg
+Only in ./simpleLifter/integrate/pics: evanmccloy.old
+Only in ./simpleLifter/integrate/pics: jackheywood.jpg
+Only in ./simpleLifter/integrate/pics: lachlangreen.jpg
+Only in ./simpleLifter/integrate/pics: leohalford.jpg
+Only in ./simpleLifter/integrate/pics: liambelcher.jpg
+Only in ./simpleLifter/integrate/pics: markderrick.jpg
+Only in ./simpleLifter/integrate/pics: nekeablagoev.jpg
+Only in ../gitget/simpleLifter/simpleLifter/integrate/pics: pic.md
+Only in ./simpleLifter/integrate/pics: renayferguson.jpg
+Only in ./simpleLifter/integrate/pics: rickmorse.jpg
+Only in ./simpleLifter/integrate/pics: rosiewilson.jpg
+Only in ./simpleLifter/integrate/pics: tylerseabrook.jpg
+Only in ./simpleLifter/integrate/pics: waynebelcher.jpg
+Only in ./simpleLifter/integrate/pics: xinyuliang.jpg
+Only in ../gitget/simpleLifter/simpleLifter/integrate: plateLights.php
+diff -r ./simpleLifter/integrate/resources/styles.css ../gitget/simpleLifter/simpleLifter/integrate/resources/styles.css
+2d1
+< @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+139c138
+<   background-color: #699955;
+---
+> 	background-color: #699955;
+146c145
+<   background-color: darkred;
+---
+> 	background-color: darkred;
+373c372
+<   box-shadow: 5px 5px 10px 0px black;	
+---
+> 	box-shadow: 5px 5px 10px 0px black;
+491,493c490
+< 	width: 50%;
+< 	text-align: left;
+< 	font-family: 'Orbitron', monospace;
+---
+> 	font-family: 'Roboto Mono', monospace;
+496a494
+> 	float:right;
+501d498
+< 	float: right;
+504c501
+< 	font-family: 'Orbitron', monospace;
+---
+> 	font-family: 'Roboto Mono', monospace;
+509,510c506
+< 	right: 0px;
+< 	text-align: left;	
+---
+> 	right: 0px;	
+541a538
+> 
+diff -r ./simpleLifter/integrate/scoreboard.js ../gitget/simpleLifter/simpleLifter/integrate/scoreboard.js
+72a73
+> 
+74c75
+< 	csv.innerHTML="<a href='./dead.php?c=" + compName + "'>Click Here for Open Powerlifting CSV Export</a>";
+---
+> 	csv.innerHTML="<a href='./dead.php?c=" + compName + "'>Click here for Open Powerlifting CSV Export</a>";
+77d77
+< 	
+160c160
+<  
+---
+> 	 
+diff -r ./simpleLifter/integrate/sessionChange.js ../gitget/simpleLifter/simpleLifter/integrate/sessionChange.js
+12a13
+> 
+19,20c20
+< 
+< 
+---
+>   
+34,35c34,35
+< var box,btnOk,msg; 
+<   document.getElementById("msg").innerHTML=""; 
+---
+> var box,btnOk,msg;
+>   document.getElementById("msg").innerHTML="";
+56c56
+<   
+---
+> 
+61c61
+<   selector.append(option);  
+---
+>   selector.append(option);
+63,64c63,64
+< 
+<   document.getElementById("popupBox").style.display="block";
+---
+>   
+> document.getElementById("popupBox").style.display="block";
+69c69
+<   frm.prepend(lab); 
+---
+>   frm.prepend(lab);
+70a71
+>   
+79c80
+<   method: "POST",
+---
+> method: "POST",
+90c91,92
+<   var a=document.querySelectorAll(".tr");
+---
+> 
+> var a=document.querySelectorAll(".tr");
+93c95
+<   
+---
+> 
+98a101
+> 
+109c112
+<    }); //end of the fetch -  none of this happens without the fetch
+---
+> }); //end of the fetch -  none of this happens without the fetch
+111a115,116
+> 
+> 
+diff -r ./simpleLifter/integrate/switchComps.php ../gitget/simpleLifter/simpleLifter/integrate/switchComps.php
+9c9
+< $sql = "SELECT compLetters, compID, compName, hish FROM comps WHERE compLetters=\"" . $_POST["compName"]. "\"";
+---
+> $sql = "SELECT compLetters, compID, compName, hish FROM comps WHERE compLetters$
+13,14c13,14
+< if ($result->num_rows > 0)  //if there's a competition that matches the compLetters - now there's only 1 unique
+<   // competition so if the database is corrupted this will be a bit messy but that can't happen as that isn't
+---
+> if ($result->num_rows > 0)  //if there's a competition that matches the compLet$
+>   // competition so if the database is corrupted this will be a bit messy but t$
+17c17
+<   while($row = $result->fetch_assoc()) 
+---
+>   while($row = $result->fetch_assoc())
+26,27d25
+< 
+< 
+diff -r ./simpleLifter/integrate/windows.js ../gitget/simpleLifter/simpleLifter/integrate/windows.js
+3,6c3
+< lightWindow=window.open("","light_window_popup","menubar=no,scrollbars=no,status=no,toolbar=no,width=1920,height=1080");
+< if (lightWindow.location.href === "about:blank") {
+< lightWindow=window.open("../../plateLights.php","light_window_popup","menubar=no,scrollbars=no,status=no,toolbar=no,width=1920,height=1080"); 
+< }
+---
+> lightWindow=window.open("../../plateLights.php","","menubar=no,scrollbars=no,status=no,toolbar=no,width=1920,height=1080"); 
+Only in ./simpleLifter: testing
+Binary files ./simpleUpload.xlsm and ../gitget/simpleLifter/simpleUpload.xlsm differ
+Only in .: sos.php.old
+Only in .: trkr
+Only in .: utils
