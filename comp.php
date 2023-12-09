@@ -204,7 +204,7 @@ initPos(); //position adjustments
 
 if (typeof window.screen.orientation !== "undefined") {
 // make fullscreen
-screen.orientation.addEventListener('change', tryFullscreen);
+//screen.orientation.addEventListener('change', tryFullscreen);
 
 /* Get the documentElement (<html>) to display the page in fullscreen */
 var elem = document.documentElement;

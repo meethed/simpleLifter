@@ -359,10 +359,11 @@ return plateString;
 } //end function getLoad
 
 function updateCache() {
-var tickD=cache;
+if (cache) {
+  var tickD=cache;
 	drawPlates1(tickD.lifterName, tickD.currentAttempt,tickD.lot,tickD.rack,tickD.bar);
 	drawPlates2(tickD.nextName,tickD.nextLoad,tickD.nextLot,tickD.nextRack,tickD.bar);
-
+}
 } //end function updateCache
 
 function setCache(d) {

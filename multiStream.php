@@ -29,6 +29,7 @@
 </div>
 
 </body>
+<script src="streamteams.js"></script>
 <script>
 var tickInterval,
  currentJSON,
@@ -115,6 +116,7 @@ function doStat(s) {
  }
 } //end function doStat
 function interpretBW(js) {
+  if (js.lifterClass) return (js.lifterClass)+"kg";
   var d=[0];
   var wclass=js.lifterClass;
   var bw=js.lifterBW;
@@ -251,7 +253,8 @@ function getLifter(js) { //get the lifter details and update the divs
  document.getElementById("lifterPos").innerHTML = ordinal(lifterInfo.place);
  document.getElementById("attemptName").innerHTML =js.lifterName + " - " + js.currentAttempt + "kg";
  document.getElementById("lifterTot").innerHTML= js.total+"kg";
- document.getElementById("lifterTm").innerHTML = js.lifterTeam;
+ if (js.lifterTeam.slice(-1)=="*") js.lifterTeam=js.lifterTeam.slice(0,-1);
+ document.getElementById("lifterTm").innerHTML = streamteams[js.lifterTeam] ? streamteams[js.lifterTeam] : "";
  document.getElementById("lifterCat").innerHTML = interpretBW(js)
  document.getElementById("lifterAge").innerHTML = interpretCat(js);
  document.getElementById("attemptGouge").innerHTML = compStat(js) + interpretCat(js) + interpretBW(js);

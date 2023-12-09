@@ -11,7 +11,7 @@
 <div id="allContainer" class="containertb">
 <h1><i>simpleLifter</i></h1><h2>Powerlifting competition management system</h2>
 <p>This suite of tools was written to provide a contemporary, feature-rich and COMPLETELY FREE computer-controlled lighting, timing and live-stream overlay set up for powerlifting competition.</p>
-<p>For help, more information on available features, and contacts in case you need assistance, please click the question mark on the right.</p>
+<p>For help, more information on available features, and contacts in case you need assistance, please click the help button on the right.</p>
 <p>Please select the referee position or display type, choose your competition and enter the codeword (if applicable) before clicking "let's go".</p>
 
 <h2>Select Position / Lights</h2>
@@ -105,7 +105,7 @@ $conn->close();
 <h2>If you want to add a new competition click here: </h2>
 <button class="btn" type="button" id="newComp">New comp...</button>
 <br><br>
-<h2>The overlay link (to copy into OBS) is here:</h2>
+<h2>The overlay links are here:</h2>
 <div id="newstream"></div>
 <h2>Archived competition results:</h2>
 <a href="archives.php">Click here!</a>
@@ -116,6 +116,7 @@ $conn->close();
 
 <div class="containerntb" id="popupbox">
 <h1>New Competition Setup</h1>
+<p>Note there's an issue when you press submit nothing will happen but it WILL register the comp. Press F5 and check first... Sorry</p>
 <form name="newForm" id="newForm" method="POST" action="">
 <div class="question closer"><a HREF="">X</a></div>
 <div class="nicebox">
@@ -266,14 +267,27 @@ function sendForm() {
         promises.push( fetch("addcomp.php", { method: "POST", body: form}));
       } //end the loop adding the fetch promises
     } //end if we have multiple comps
-    Promise.all(promises).then(setTimeout(location.reload(),1000));;
+//    Promise.all(promises).then(setTimeout(location.reload(),1000));;
+      let promiseExecution=async() => {
+        for (let promise of promises) {
+          try {
+            const message = await promise;
+            console.log(message); } catch (error) { console.log(error.message);}
+        }
+      }
+
   }) //form send
 } //end sendForm function
 
 function linky() { //this is actually the comp update function
 var urlstr=self.location;
 var cl    = document.getElementById("compName").value;
-document.getElementById("newstream").innerHTML="<br>The new version: <br> "+ urlstr + "newStream.php?c="+cl;
+var streamstring=urlstr+"multiStream.php?c="+cl;
+var scoreboardstring=urlstr+"simpleLifter/integrate/scoreboard.php?c="+cl;
+var divstring="Livestream Overlay: <a href="+streamstring+">"+streamstring+"</a>";
+ divstring+="<br>Scoreboard: <a href="+scoreboardstring+">"+scoreboardstring+"</a>";
+ divstring+="<br>";
+document.getElementById("newstream").innerHTML=divstring;
 
 if (compName.options[compName.selectedIndex].dataset.isparent==1) {
 c=document.querySelectorAll(".positions");

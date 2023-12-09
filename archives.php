@@ -17,7 +17,7 @@ if ($conn->connect_error) {
   die("connection error");
 }
 
-$sql = "SELECT compLetters,compName,startdate,enddate FROM comps WHERE (enddate <= curdate()) AND (NOT isChild=1)";
+$sql = "SELECT isParent, compLetters,compName,startdate,enddate FROM comps WHERE (enddate <= curdate()) AND NOT (isChild=1)";
 $result = $conn->query($sql);
 
 //start a new scrollable div
@@ -25,7 +25,7 @@ $dummy=$result->fetch_assoc(); //ignore the first one
 if ($result->num_rows > 0) {
   //output data of each row
   while($row = $result->fetch_assoc()) {
-   if (file_exists("./simpleLifter/integrate/data/".$row["compLetters"].".json"))
+   if ($row["isParent"]=1 || file_exists("./simpleLifter/integrate/data/".$row["compLetters"].".json"))
     echo "<a href='./simpleLifter/integrate/dead.php?c=".$row["compLetters"] ."'>".$row["compName"]." - ".$row["startdate"]." to ".$row["enddate"]. "</a><br>\r\n";
 
   }
