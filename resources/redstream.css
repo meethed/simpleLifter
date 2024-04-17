@@ -1,0 +1,288 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Protest+Strike&display=swap');
+body {
+ width: 100%;
+ height: 100%;
+ overflow: hidden;
+ background: #000;
+ color: #f2f2f2;
+ font-family: "Roboto Condensed";
+ font-size: 3em;
+}
+* {
+ transition: 1.0s;
+}
+
+span {
+float: right;
+}
+#lifterInfo {
+ border: 5px solid #c55;
+ padding: 20px; 
+ border-radius: 10px;
+ position: fixed;
+ top: 25%;
+ left: 25%;
+ width: 50%;
+ background: #000;
+ box-shadow: 0px 0px 50px 20px #311;
+ overflow: hidden;
+ opacity: 0;
+}
+
+#lifterInfo .bg {
+ animation: slide 6s ease-in-out infinite alternate;
+ background-image: linear-gradient(-60deg, #611 50%, #411 50%);
+ bottom: 0;
+ left:-50%;
+ opacity: 0.5;
+ position: absolute;
+ right: -50%;
+ top:0;
+ z-index: -1;
+}
+
+@keyframes slide {
+ 0% {
+  transform:translateX(-25%);
+ }
+ 100% {
+  transform:translateX(25%);
+ }
+}
+
+#lifterInfo .bg1 {
+ 
+}
+#lifterInfo .bg2 {
+  animation-direction:alternate-reverse;
+  animation-duration:7s;
+}
+
+#lifterInfo .bg3 {
+ animation-duration: 9s;
+}
+
+#lifterInfo.left {
+left: -50%; transform: rotate3D(1,0,1,-180deg); opacity: 0;
+}
+#lifterInfo.right {
+left: 100%; transform: rotate3D(1,0,1,180deg); opacity: 0;
+}
+#lifterInfo.centre{
+left: 25%;
+opacity: 1;
+}
+
+.lbl, .inf {
+display: inline;
+}
+
+.lbl {
+color: #f2f2f2;
+}
+.inf {
+color: #f2f2f2;
+}
+.cnt {
+ width: 50%;
+}
+
+#lifterName {
+font-size: 2em;
+font-variant: small-caps;
+font-family: "Protest Strike";
+float: none;
+}
+
+#lifterAttempt {
+background-image: linear-gradient(to right,#411,black);
+padding: 5px;
+border: 3px solid #f2f2f2;
+border-radius: 10px;
+width: 50%;
+position: fixed;
+bottom: 50px;
+opacity: 0;
+left: 50%;
+transform: translateX(-50%);
+ animation: fade-out 1s cubic-bezier(0.25,-0.4,0.75,1.4) forwards;
+ overflow: hidden;
+}
+
+#lifterAttempt.visible {
+ animation: fade-in 1s cubic-bezier(0.25,-0.4,0.75,1.4) forwards;
+}
+@keyframes fade-in {
+0% {
+ width: 0px;
+ height: 0px;
+ opacity: 0;
+}
+20% {
+ width: 0px;
+ height: 105px;
+ opacity: 1;
+}
+40% {
+ width: 0px;
+ height: 105px;
+ opacity: 1;
+}
+80% {
+ opacity: 1;
+}
+100% {
+ opacity: 1;
+}
+}
+
+@keyframes fade-out {
+0% {
+ opacity: 1;
+}
+60% {
+ width: 0px;
+ height: 105px;
+ opacity: 1;
+}
+80% {
+ width: 0px;
+ height: 105px;
+ opacity: 1;
+}
+100% {
+ opacity: 0;
+ height: 0px;
+ width: 0px;
+}
+}
+
+
+.info {
+}
+
+.num {
+display: inline-block;
+border: 3px solid #f2f2f2;
+border-radius: 5px;
+}
+
+#attemptName {
+font-size: 0.8em;
+line-height: 0.2;
+margin-top: 12px;
+font-variant: small-caps;
+font-family:"Protest Strike";
+}
+
+#attemptNum1,#attemptNum2,#attemptNum3 {
+display: block;
+width: 100px;
+text-align: center;
+font-size: 0.55em;
+}
+
+.gd {
+border-color: #0f0;
+background: #070;
+color: #010;
+}
+
+.bd {
+border-color: #f00;
+background: #700;
+color: #100;
+}
+
+.at {
+background: #777;
+color: #000;
+}
+
+#lt {
+background: rgba(0,0,0,0);
+border: none;
+border-radius:5px;
+height: 109px;
+width: 200px;
+position: absolute;
+right: 20px;
+bottom: 5px;
+
+}
+
+#attemptGouge {
+font-size: 0.5em;
+}
+
+#attemptTot {
+text-align: center;
+font-size: 0.55em;
+}
+
+#cTot {
+position: absolute;
+top: 50%;
+right: 40%;
+width: 100px;
+padding-left: 10px;
+padding-right: 10px;
+transform: translateY(-50%);
+}
+
+#pic {
+ object-fit: contain;
+ max-height: 50%;
+ max-width: 25%;
+ top: 10%;
+ right: 10%;
+ position: absolute;
+}
+
+.light-frame {
+ height: 100%;
+ aspect-ratio: 16/9;
+ position: absolute;
+ right: 10px;
+ top: 10px;
+ display: inline;
+}
+
+.light-box {
+ margin: auto;
+ display: flex;
+ gap: 3%;
+
+}
+
+#bigLights {
+ width: 100%;
+ aspect-ratio: 3.3;
+}
+
+#smolLights {
+ height: 25%;
+ aspect-ratio:3.3;
+}
+
+.light {
+ border-radius: 50%;
+ width: 100%;
+ height: 100%;
+}
+
+.pending {background:radial-gradient(#3f3,#0f0,#0f0,rgba(0,0,0,0) 50%);}
+.white {background:radial-gradient(#fff,#fff,#fff,rgba(0,0,0,0) 75%);}
+.red {background:radial-gradient(#f33,#f00,#f00,rgba(0,0,0,0) 75%);}
+.blue {background:radial-gradient(#33f,#00f,#00f,rgba(0,0,0,0) 75%);}
+.yellow {background:radial-gradient(#fff,#ff0,#ff0,rgba(0,0,0,0) 75%);}
+
+#timer1Box {
+ position: absolute;
+ top: 16%;
+ left: 80%;
+ right: auto;
+ font-family: Monomaniac One;
+}

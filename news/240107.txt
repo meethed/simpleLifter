@@ -1,0 +1,14 @@
+New fed added!
+IPL / USPA rules are now possible. Mostly...
+<ul>
+<li>BW classes</li>
+<li>Age groups</li>
+<li>Multi ply & classic raw</li>
+<li>DOTS points</li>
+<li>30 minute break timer for single flight</li>
+</ul>
+TODO
+<ul>
+<li>Simple ref buttons (red/white only)</li>
+<li>More complex rest rules, weigh in specifics, etc etc</li>
+</ul>

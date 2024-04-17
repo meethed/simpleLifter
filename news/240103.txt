@@ -1,0 +1,8 @@
+Archive Up!
+Ok the archive is working and includes all of the legacy results. You can filter by date or competition name, it is sorted by newest on top and oldest on the bottom. There are a few issues with legacy results, though:
+<ul>
+<li>Calculated fields aren't recalculated. So things like placings, IPF/Glossbrenner points are either missing or incorrect.
+<li>Multi session comps aren't collated together. The 'master' session is there but to get all of the competition results in one place you'll have to copy and paste into excel/sheets.</li>
+<li>Legacy results are in a different table layout to the current ones. This will be addressed so that all results have an OPL-compatible export option.</li>
+</ul>
+

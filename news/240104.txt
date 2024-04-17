@@ -1,0 +1,13 @@
+A few new bits / fixed functionality:
+<h3>QR Code is Functional</h3>
+There's a QR Code on the post-login page (where you select your session and function). It will enable referees with smartphones to scan the QR code and login automatically without having to know or input the password.
+It currently gives full functionality - so you might as well give them the password if that's what you're worried about - but it's a much faster way to get them in than to share and remember the URL and password.
+<h3>Lights/timers only works</h3>
+The Lights 'function' is now available. It will display the lights and barloaded timer, and the '60 seconds to next attempt' timer will display as soon as the referees have input their choices.
+<h3>Setup options for the spreadsheet</h3>
+In the "Competition Setup" page, you can now set some basic spreadsheet options:
+<ul>
+<li>Auto referee progression (eg. good lift/no lift based on the number of red and white lights). It has a ~15 second timeout so it won't trigger for a second time until after the lights have cleared</li>
+<li>Flight progression in alphabetical (A-Z) or backwards (Z-A) order</li>
+</ul>
+That's enough for today...

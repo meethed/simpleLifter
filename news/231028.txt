@@ -1,0 +1,4 @@
+Legacy updates
+<ul><li>simpleUpload downloaded prior to October will not work. Please update your copy of simpleUpload prior to starting a new competition bulk upload.</li>
+<li>Weight classes are now separate to BW. If a lifter doesn't make their nominated weight class it will turn RED. If they don't nominate a weight class, it will be automatically calcluated. To change weight classes on the fly, right click on the weight class cell.</li></ul>
+

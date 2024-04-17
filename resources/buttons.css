@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab');
+
+* {
+ -webkit-user-select: none;
+ -moz-user-select: none;
+ user-select: none;
+}
+
+body {
+ background: black;
+ color: white;
+ font-family: "Roboto Condensed";
+ max-height: 100vh;
+}
+
+h2 {
+ text-align: center;
+ display: block;
+ font-family: "Roboto Slab";
+}
+.btn-container {
+ display: flex;
+ flex-direction: column;
+}
+.ref-btn {
+ width: 90%;
+  margin: 3vh auto;
+ font-size: 2.75em;
+ color: black;
+ text-align: center;
+ border: 3px black solid;
+ border-radius: 25px;
+}
+
+.ref-btn.dn {
+ transform: scaleY(-1);
+ transition: 0.5s;
+}
+
+.wht {
+ background-image: linear-gradient(45deg, #fff,#aaa,#fff);
+ background: white;
+}
+
+.red {
+ background-image: linear-gradient(45deg, #faa, #a77,#faa);
+ background: #f66;
+}
+
+.blu {
+ background-image: linear-gradient(45deg, #aaf, #77a, #aaf);
+ background: #66f;
+}
+
+.yel {
+ background-image: linear-gradient(45deg, #ffa, #aa7,#ffa);
+ background: #ff6;
+}
+
+#bl.c {
+ background-image: linear-gradient(45deg, #cec, #7a7, #cec);
+ background: #6f6;
+}
+
+#bl.l,#bl.r {
+ display: none;
+}
+
+
+.light-frame {
+ aspect-ratio: 16/9;
+ position: relative;
+ left: 50%;
+ transform: translateX(-50%);
+ bottom:10px;
+ aspect-ratio: 16/9;
+ width: 35%;
+}
+
+
+@media only screen and (max-width: 600px) {
+
+.light-frame {
+ width: 90%;
+}
+
+}

@@ -1,0 +1,11 @@
+Wow
+Ok we've done it. The new simpleLifter is live before the end of the year...18 minutes to spare...
+It's not finished yet.
+<ul>
+<li>Archive hasn't been moved over</li>
+<li>New comp spreadsheet has been rewritten and is full of bugs (it's not useable for comps yet)</li>
+<li>Lights and barloaded timer works</li>
+<li>You can create and edit new competitions</li>
+<li>Live scoresheet works</li>
+</ul>
+It'll be ready in a month I reckon...

@@ -1,0 +1,10 @@
+Just some tweaks
+<ul>
+<li>Easier for me to add news and updates</li>
+<li>Lights and timers work with the new code</li>
+<ul>
+<li>It is much more efficient (many times reduction in size and error-inducing duplication)</li>
+<li>It is more stable</li>
+<li>It will allow for better feature addition in the future...</li>
+</ul>
+</ul>

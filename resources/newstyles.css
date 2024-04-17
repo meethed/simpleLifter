@@ -1,0 +1,940 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab');
+
+* {
+ box-sizing:border-box;
+}
+html{
+ scroll-behavior:smooth;
+}
+body {
+ background: #eee;
+ position: absolute;
+ width: 100%;
+ min-height: 100%;
+}
+body, button, btn {
+ font-family: "Roboto Condensed",sans-serif;	
+ font-size: 100%;
+}
+
+img {
+height: auto;
+}
+
+a {
+color: black;	
+}
+
+a:hover {
+	background: #aae;
+}
+
+label {
+ display: block;
+ margin-top:30px;
+}
+label.no-pad {
+ margin-top:5px;}
+
+fieldset {
+ display: flex;
+ flex-wrap: wrap;
+ padding: 5px;
+ margin-top:20px;
+ margin-bottom: 10px;
+}
+
+fieldset label {
+ padding-left: 20px;
+ width: 100%;
+ margin-top:10px;
+ font-size: 200%;
+}
+
+fieldset label * {
+ width: 45%;
+ float: right;
+ height: 100%;
+ border: none;
+ padding: 0px;
+ padding-left: 10px;
+ font-size: 75%;
+ background: #beb;
+ border-radius: 10px;;
+}
+
+ fieldset label #lifterName {
+ width: 65%;
+}
+
+#ln {
+ background: #ddd;
+ border: none;
+ font-size: 1.5em;
+ font-weight: bold;
+ margin: 0px 5px 0px 5px;
+ border-radius: 10px;;
+ widtH: 100%; 
+}
+
+
+.navbar-top {
+	position:fixed;
+	width: 100%;
+	top: 0px;
+	left:0px;
+	z-index:1;
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+	line-height: 1.5;
+	color: #000;
+	background-color: #fff;
+	padding: 8px 16px;
+	width: 100%;
+	overflow:none;
+}
+
+.dropdown {
+	display: inline;
+	padding: 8px;
+}
+
+.dropdown-content {
+	display: none;
+	position:absolute;
+	background:white;
+		padding: 8px 8px;
+}
+
+.dropdown-content .btn {
+	display: block;
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+	
+}
+
+.dropdown:hover {
+	background: #77a;
+}
+
+:target::before {
+  content: "";
+  display: block;
+  height: 60px; /* fixed header height*/
+  margin: -60px 0 0; /* negative fixed header height */
+}
+
+.navbar-item {
+	float: left;
+	width: auto;
+	display:block;
+	padding: 8px;
+}
+
+.navbar-item b {
+	letter-spacing: 4px;
+}
+
+.btn {
+ display: inline;
+ padding: 8px 8px;
+ text-decoration:none;
+ background: #fff;
+ color: #000;
+}
+
+.smol-btn {
+ background: #000;
+ color: #fff;
+ margin:10px;
+ display: inline-block;
+}
+
+.smol-btn:hover {
+ background: #444;
+}
+
+.navbar-right .icon {
+	display:none;
+	
+}
+
+.header-image {
+	border: 5px black solid;
+	border-radius: 5px;
+	max-width:75%;
+	width: 75%;
+	display:block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 80px;
+}
+
+/* Slideshow container */
+.slideshow {
+
+  position: relative;
+  margin: 80px 0px auto auto;
+
+}
+
+/* Hide the images by default */
+.slides {
+	display: none;
+	width: 60%;
+	max-width:60%;
+  max-height:60%;
+  margin: auto;
+box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.slide-image {
+	width: 100%;
+	margin: auto;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+ cursor: pointer;
+ position: absolute;
+ top: 50%;
+ background: black;
+ width: auto;
+ margin-top: -22px;
+ padding: 16px;
+ color: white;
+ font-weight: bold;
+ font-size: 18px;
+ transition: 0.6s ease;
+ border-radius: 0 3px 3px 0;
+ user-select: none;
+}
+
+.prev {
+	left:20%;
+}
+/* Position the "next button" to the right */
+.next {
+  right: 20%;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.5);
+}
+
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+.footer-image {
+	display:block;
+	margin: 10px auto;
+  object-fit: cover;
+  object-position: 25% 35%;
+  width: 300px;
+  height: 100px;	
+}
+
+.navbar-right {
+	position:absolute;
+	right: 0px;
+	margin-right: 0px;
+	background: white;
+	display:flex;
+	justify-content: flex-end;
+	overflow:none;
+	text-align: right;
+}
+
+.content{
+ width: 85%;
+ margin: 100px auto 20px auto;
+ background: #fff;
+ padding: 20px;
+ box-shadow: 0px 0px 30px 3px rgba(0,0,0,0.3);
+}
+
+.compList{
+}
+
+.heading{
+	padding-top: 50px;
+	margin-bottom:10px;
+	font-family: "Roboto Slab";
+	border-bottom: black 1px solid;
+	font-size: 2em;
+	
+}
+
+h2{
+	font-family: "Roboto Condensed";
+	font-size: 1em;
+}
+
+.compList{
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: center;
+ width: 100%;
+}
+
+.competitionEntry{
+ width: 400px;
+ height: 300px;
+ justify-content: space-evenly;
+ margin: 30px 30px;
+ transition:all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+ overflow: hidden;
+ background: none;
+ border-radius:10px;
+}
+.competitionEntry:hover, competitionEntry.active {
+ transform: scale(1.2);
+ background: radial-gradient(circle at top, #fff,#ccc);
+ box-shadow: 0px 0px 30px 3px rgba(0,0,0,0.5);
+}
+
+.competitionEntry.active {
+ transition:all 0.1s;
+ border: solid 1px black;
+ padding: 20px;
+}
+.active .comp-image {
+ opacity: 0;
+}
+.comp-image {
+ border-radius: 10px;
+ display: block;
+ margin: 00px auto;
+ max-height: 90%;	
+ max-width: 80%;
+}
+
+.comp-title {
+	font-size:1.5em;
+	width:100%;
+  padding: 2px 2px;
+  text-align: center;
+}
+
+.active .comp-title {
+ padding: 15px 5px;
+}
+.comp-description {
+padding: 2px 2px;
+}
+.competitionEntry:hover .comp-image {
+ transform: scale(1.01);
+ z-index:-1;
+}
+
+p {
+	margin: 0px 0px 10px 0px;
+}
+form {
+	margin: 50px auto;
+	width: 75%;
+}
+
+.frmInput {
+	display: block;
+	padding:8px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+}
+
+.frmInput#frmFed {
+ margin-bottom:20px;
+}
+
+.frmInput.btn {
+	width: 20%;
+	background: black;
+	color: white;
+	box-shadow: inset 0px 0px 0px 1px;
+  border: 2px solid black;
+	margin-bottom: 25px;
+	float: left;
+
+}
+.weighinbtn {
+ display: inline-block;
+ padding: 8px 8px;
+ text-decoration:none;
+ font-size:1.5em;
+ width: 10%;
+ background: black;
+ color: white;
+ box-shadow: inset 0px 0px 0px 1px;
+ border: 2px solid black;
+}
+.weighingobtn {
+ display: block;
+ padding: 8px 8px;
+ text-decoration:none;
+ font-size:1.5em;
+ width: 48%;
+ background: #6b6;
+ color: white;
+ box-shadow: inset 0px 0px 0px 1px;
+ border: 2px solid black;
+ margin:5px auto 15px auto;
+}
+.weighingobtn:hover {
+ background:#8f8;
+}
+
+.weighinbtn:hover {
+ background: #aae;
+}
+
+.cmpInputPWD {
+	display: block;
+	margin: 0px auto;
+	width: 68%;
+
+}
+
+.cmpInputGo {
+	width: 68%;
+	background: black;
+	color: white;
+  margin: 5px auto;
+  box-shadow: inset 0px 0px 0px 1px;
+  border: 2px solid black;
+}
+
+.cmpInputGo:hover {
+background: #aae;
+
+}
+#cmpInputLive {
+text-align:center;
+margin-bottom:50px;
+}
+
+#or {
+width: 100%;
+text-align: center;
+color: #fff;
+font-size: 2em;
+margin: 15px auto;
+padding: 30px 0px;
+border-top: 1px solid white;
+}
+
+#frmManager {
+border-radius: 10px;
+margin: 0;
+padding: 0;
+width: 100%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+
+#frmManager.hide {
+}
+.frmInputDate {
+	display: inline;
+	padding:8px;
+  margin-top: 8px;
+	width: 25%;
+}
+.frmInputLab {
+	display: inline;
+  margin-top: 8px;
+	width: auto;
+  padding-right:10px;
+}
+.frmInputNum {
+	display: inline;
+	padding:8px;
+  margin-top: 8px;
+	max-width: 50%;
+}
+
+#sessionBox {
+ border: 1px solid black;
+ margin-top: 40px;
+ padding: 5px;
+}
+.spacer {
+  margin-top:10vh;
+}
+#sessionBox::before {
+ content: "Session List (Click to delete a session):";
+ position: relative;
+ top:-15px;
+ left: 5px;
+ background:white;
+}
+
+.sessionchoice:hover {
+text-decoration:line-through;
+}
+
+.sessionflexbox {
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: center;
+ width: 50%;
+ margin: auto;
+ border: 1px solid black;
+}
+
+.sessionflexbox:first-of-type::before {
+ position: relative;
+ top:-15px;
+ left: 5px;
+ background:white;
+}
+
+.sessionselect {
+ border: 3px solid black;
+ padding: 8px 8px;
+ width: 100%; 
+ margin: 10px 10px;
+ background: black;
+ color: white;
+ transition-duration: 0.5s;
+ text-align: center;
+ box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), inset 0px 0px 0px 1px white;
+}
+.sessionselect:hover {
+ transform: scale(1.1);
+ background: #777;
+ color: #aae;
+ transition-duration: 0.1s;
+}
+.sessionselect.selected {
+ transform: scale(1.1);
+ background: #aaa;
+ color: #fff;
+ transition-duration: 0.1s;
+}
+.sessionselect.ref {
+ width: 25%;
+ background: #cac;
+ border-color: #cac;
+ color: black;
+}
+
+.sessionselect.admin {
+ background: #999;
+ border-color: #999;
+ color: black;
+}
+
+.sessionselect.tech {
+ background: #add;
+ border-color: #add;
+ color: black;
+}
+
+.sessionselect.platform {
+ background: #da0;
+ border-color: #da0;
+ color: black;
+}
+.sessionselect.order {
+ background: #da0;
+ border-color: #da0;
+ color: black;
+}
+.sessionselect.displatform {
+ background: #da0;
+ border-color: #da0;
+ color: black;
+ width: 45%;
+}
+.managerform {
+
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+/* Mark the active step: */
+.step.active {
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #04AA6D;
+}
+
+
+
+footer {
+ width: 100%;
+ position: absolute;
+ bottom: 0px;
+}
+
+footer p {
+ text-align: center;
+ background: black;
+ color: white;
+ margin: 0;
+ padding: 10px;
+}
+
+#qrcode {
+ width: 256px;
+ margin: 5px auto;
+}
+
+.archiveList {
+ display: flex;
+ flex-flow: column wrap;
+}
+
+.month-group {
+ display: inline;
+ width: auto;
+ margin-top: 30px;
+}
+.month-group h2 {
+ width: auto;
+ display: inline;
+}
+.archive-entry {
+ width: auto;
+}
+.archive-description {
+ margin-top: 10px;
+ font-size: 1.1em;
+}
+.hide {
+ display: none;
+}
+
+.archive-description:hover {
+background: #aae;
+}
+
+.collapsible {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  margin-top:3px;
+  width: 100%;
+  text-align: left;
+  border: 2px solid black;
+  outline: none;
+  transition: 0.4s;
+	box-shadow: inset 0px 0px 0px 2px;
+
+}
+.collapsible.active, .collapsible:hover {
+ background: #aae;
+ box-shadow: none;
+}
+
+
+.collapsiblecontent {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+#tubeframe {
+ aspect-ratio: 16/9;
+ width: 100%;
+}
+#liveframe {
+ width: 100%;
+ height:400px;
+}
+
+.onlyresults #liveframe {
+ height: 1000px;
+}
+
+#seshchange {
+ font-family: inherit;
+ font-size: inherit;
+ border: none;
+ background: black;
+ color: white;
+ text-align:center;
+padding: 0;
+ -moz-appearance:none !important;
+ -webkit-appearance: none !important; 
+ appearance: none !important;
+}
+
+#seshchange:hover {
+ background: #aae;
+}
+
+#containertubeframe {
+ display: none;
+ width: 33%;
+}
+#containerliveframe {
+ height: 100%;
+}
+#containerliveframe.onlyresults{
+ width: 100%;
+}
+#containertubeframe.showtube {
+ display: inline-block;
+ width: 33%;
+ margin: 10px auto;
+}
+table#table {
+ border-collapse:collapse;
+ font-size: 1.5em;
+ margin: 10px auto;
+}
+tr.al {
+ background: #fa3;
+}
+
+#table tr {
+border-bottom: 1px solid black;
+}
+
+#table td,th {
+border-right:1px solid black;
+text-align: center;
+}
+
+.setup-valid-entry {
+padding-left: 10px;
+margin: 10px;
+}
+#validdescriptions {
+margin-bottom: 10px;
+}
+
+.setup-table {
+ width: 100%;
+ display: table;
+ border-collapse: collapse;
+}
+
+.setup-table .tr {
+ display: table-row;
+}
+
+.setup-table .td {
+ display: table-cell;
+ border-bottom: 1px solid black;
+ user-select: none;
+ text-align: center;
+}
+
+.setup-table .td.invalid {
+ background: #f00;
+}
+.setup-table .td.deleteme {
+ color: #000;
+}
+.setup-table .td.deleteme:hover {
+ color:#f00;
+ background: radial-gradient(#faa,#fff,#fff);
+}
+
+.setup-table .td.session-name:hover {
+ text-decoration: line-through;
+}
+
+
+
+.setup-table .th {
+ background: #000;
+ color: white;
+ display: table-cell;
+ border: 2px solid black;
+ text-align: center;
+}
+
+.setup-table #newRow {
+ font-size: 100%;
+ margin: auto;
+ position: absolute;
+ padding: 5px 10px;
+ transition: all 0.5s
+}
+
+.setup-table #newRow:hover {
+ background: #000;
+ color: #aae;
+ font-size: 120%;
+ transition: all 0.5s
+}
+
+.news-entry {
+ background:#fff;
+ padding: 5px 20px 30px 20px;
+ margin: 30px auto;
+ border: 1px solid black;
+ box-shadow: 0px 1px 14px 2px rgba(0,0,0,0.2);
+}
+.news-title {
+ font-size: 150%;
+ text-decoration: underline;
+ padding: 0;
+}
+
+
+@media screen and (max-width: 600px) {
+
+  .content {
+   width: 95%;
+   overflow: auto;
+  }
+	
+	.navbar-right a,.dropdown{display: none;}
+	.navbar-right .icon {
+			display: block;
+	}
+
+
+	.navbar-right.responsive {
+   position: absolute; display: block;
+   box-shadow: 5px 8px 16px 4px;
+  }
+
+	.navbar-right.responsive a{
+		float: none;
+		display: block;
+		position:relative;
+		text-align: left;
+
+	}
+		.navbar-right.responsive .dropdown{
+		float: none;
+		display: block;
+		position:relative;
+		text-align: left;
+		margin-top:30px;
+
+	}
+		.navbar-right.responsive .icon {
+		position: absolute;
+		right:0;
+		top:0;
+	}
+	.navbar-right .dropdown-content {
+			position:absolute;
+			z-index:1;
+			left:-150px;
+			top:20px;
+	}
+	
+	
+	.frmInput.btn {
+		width: 40%;
+		}
+
+  .frmInputDate {
+   width: 100%;
+  }
+
+  .frmInputLab {
+   display: block;
+   width: 100%;
+  }
+  .sessionflexbox {
+   width: 100%;
+  }
+  .spacer {
+   margin-top:50vh;
+  }
+
+  #containertubeframe {
+   width: 100%;
+  }
+  #containerliveframe {
+   width: 100%;
+  }
+  #liveframe {
+  }
+  #tubeframe {
+  }
+
+  table#table, table#table.inframe {
+   font-size:0.5em;
+  }
+
+  #seshchange {
+   font-size: 0.75em;
+   width: 100%;
+  }
+
+  .slideshow {
+   width: 100%;
+  }
+
+  .slides {
+   width: 100%;
+   max-width: 100%;
+   max-height: 100%;
+  }
+
+  .prev {
+   left: 0px;
+  }
+
+  .next {
+   right: 0px;
+  }
+ 
+ fieldset label{
+  font-size:200%;
+  padding-left:0px;
+ }
+
+ #weighin {
+  width: 100%;
+ }
+
+
+}
+

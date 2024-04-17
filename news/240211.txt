@@ -1,0 +1,8 @@
+Few fixes
+Ok so there were a few things that we've just worked out in testing:
+<ul>
+<li>The open powerlifting exporter is now working properly without needing to copy and paste the table</li>
+<li>The results page and lifting order now display in order. Not sure why they were broken in the first place</li>
+<li>There are two options for platform display including whether or not to add timers or just have the plates</li>
+<li>The livestream is doing some weird things and may not work properly - working on it</li>
+</ul>

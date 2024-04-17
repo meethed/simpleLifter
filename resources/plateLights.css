@@ -1,0 +1,271 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap');
+
+body {
+background: #000;
+font-family: 'Roboto Condensed';
+overflow: hidden;
+text-align: center;
+letter-spacing: 0px;
+margin: auto;
+padding: 0;
+width: 100vw;
+height: -webkit-fill-available;
+height: 100vh;
+color :#fff;
+}
+
+.attempt-box {
+ height: 50%;
+ width: 100%;
+ display: flex;
+ background: linear-gradient(#aaa,#aaa,#666,#222,#777);
+ overflow: hidden;
+}
+
+.plate-frame {
+ height: 100%;
+ display: inline-flex;
+ max-width: 80%;
+ margin: auto;
+}
+
+.lifter-text {
+ border: 3px solid #def;
+ background: black;
+ box-shadow: 0px 0px 28px 3px #000;
+ border-radius: 0px 0px 1vw 0px;
+ display: inline-block;
+ width: 20%;
+ padding: 1vw;
+ margin: auto 3%;
+}
+
+#n1, #n2 {
+ font-size: 3.5vw;
+}
+.attempt {
+ font-size: 3.5vw;
+ font-weight: bold;
+}
+
+.rackinfo {
+font-size: 2vw;
+}
+
+#aText {
+}
+
+#nText {
+}
+
+
+#lightsTimers {
+ opacity: 0;
+ height: 100%;
+ width: 100%;
+ background: black;
+ top: 0;
+ left: 0;
+ position: fixed;
+ transition: all 0.5s
+}
+
+#lightsTimers.visible {
+ opacity: 0.9;
+ transition: all 0.5s;
+}
+
+#lightsTimers.show {
+ display: block;
+}
+
+.plateHolder{
+ margin: auto;
+ display: inline-flex;
+ align-items: center;
+}
+
+
+h1 { /* header one size */
+margin: 0;
+font-size: 4vw;
+font-weight: bold;
+color: white;
+}
+h2 { /*header two size */
+margin: 0 0 0 0;
+font-size: 2.5vw;
+font-weight: bold;
+color: white;
+}
+h4 { /*used for the plate text */
+margin: 0 0 0 0;
+font-size: 7vw;
+font-weight: bold;
+color: white;
+}
+.warning { /*to let people know it connected */
+bottom: 0;
+left: 0;
+font-size: 20px;
+font-size: 1vh;
+position: fixed;
+}
+
+/* this is where the lights are */
+
+/* containers for the lights */
+.light-frame {
+ height: 100%;
+ overflow:hidden;
+ width: 100%;
+ position: absolute;
+}
+.light-box {
+ display: flex;
+}
+
+#bigLights {
+ max-width: 100%;
+ aspect-ratio:3.09;
+ margin: auto;
+ gap: 1%;
+}
+#smolLights {
+ aspect-ratio:3.6;
+ margin:auto;
+ height:35%;
+ gap:10%;
+}
+
+.light {border-radius: 50%;width: 100%;height:100%; opacity:0; transition: all 1s;}
+.light.red {background: radial-gradient(#f88,#f00,#f00,#700,#000); opacity: 1; transition: all 1s;}
+.light.white {background: radial-gradient(#fff,#ccc,#ccc,#777,#000);opacity: 1; transition: all 1s;}
+.light.blue {background: radial-gradient(#88f,#00f,#00f,#007,#000); opacity: 1; transition: all 1s;}
+.light.yellow {background: radial-gradient(#ff8,#ff0,#ff0,#770,#000); opacity: 1; transition: all 1s;}
+.light.pending {background: radial-gradient(#777,#070,#000,#000,#000); opacity: 1; transition: all 1s;}
+
+
+/* plates */
+.plate-frame {
+ display: flex;
+ height: 100%;
+}
+.plateHolder { 
+ display: flex;
+ height: 90%;
+}
+.plate {
+ display: flex;
+ aspect-ratio:0.2;
+ margin: auto 5px;
+ border: 4px solid black;
+ border-radius: 1vw;
+  text-align:center;
+ justify-content:center;
+ color: black;
+ box-shadow: 3px 3px 30px 3px #cacaca;
+}
+
+.plate::after {
+ margin: auto;
+ font-size: 3vw;;
+ color:black;
+ writing-mode: vertical-lr;
+ font-family: Orbitron;
+}
+.plateText {
+ margin: auto;
+ font-size:5vw;
+ color: black;
+}
+.p2500 {
+ background: linear-gradient(#300, #f00, #f00, #fdd, #f00, #300);
+ height: 100%;
+}
+.p2500::after{content: "25";}
+
+.p2000 {
+ background: linear-gradient(#003, #00f, #00f, #ddf, #00f, #003);
+ height: 100%;
+}
+.p2000::after{content: "20";}
+
+.p1500 {
+ background: linear-gradient(#330, #ff0, #ff0, #ffd, #ff0, #330);
+ height: 90%;
+}
+.p1500::after{content:"15";}
+.p1000 {
+ background: linear-gradient(#030, #0f0, #0f0, #dfd, #0f0, #030);
+ height: 85%;
+}
+.p1000::after{content:"10";}
+
+.p500  {
+ background: linear-gradient(#333, #ccc, #ccc, #fff, #ccc, #333);
+ height: 75%;
+}
+.p500::after{content:"5";}
+.p250  {
+ background: linear-gradient(#111, #000, #000, #333, #000, #111);
+ height: 70%;
+}
+.p250::after{content:"2.5";color:white;}
+
+.p125  {
+ background: linear-gradient(#333, #666, #666, #ddd, #666, #333);
+ height: 65%;
+}
+.p125::after{content:"1.25";}
+
+.p50  {
+ background: linear-gradient(#333, #666, #666, #ddd, #666, #333);
+ height: 50%;
+ aspect-ratio:0.3;
+}
+.p50::after{content:"0.5";}
+
+.p25  {
+ background: linear-gradient(#333, #666, #666, #ddd, #666, #333);
+ height: 50%;
+ aspect-ratio:0.3;
+}
+.p25::after{content:"0.25";}
+
+
+/* timers */
+
+.time-text {
+ font-family: "Monomaniac One";
+ position: absolute;
+}
+
+#timer1Box {
+ font-size: 20vw;
+ left: 21.5%;
+ top: 15%;
+}
+
+#timer2Box {
+ font-size:10vw;
+ left: 5%;
+ bottom: 5%;
+}
+#timer3Box {
+ font-size: 20vw;
+ left: 21.5%;
+ top: 15%;
+}
+
+
+@media only screen and (max-width: 600px) {
+ .plate {
+  border-width: 1px;
+  margin: auto 1px; 
+ };
+
+}
