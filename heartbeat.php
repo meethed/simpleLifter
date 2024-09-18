@@ -1,1 +1,1 @@
-<?php echo time(); ?>
+<?php echo time()*1000; ?>
