@@ -4,7 +4,7 @@ Hi! Welcome to the simpleLifter gitub. I don't really know what I'm doing here b
 
 I pulled the simpleLifter server down in October 2024 after the demand dropped right off. The code from the server is here for all to laugh at, pilfer from or whatever.
 
---What is it--
+## What is it
 simpleLifter is an HTML based powerlifting competition ecosystem. It includes:
 * lights and timers
 * web browser remote control for the referees
@@ -12,13 +12,13 @@ simpleLifter is an HTML based powerlifting competition ecosystem. It includes:
 * platform displays
 * livestream overlays
 
---Where did it come from--
+## Where did it come from
 It started as a free and improved version of Stian Walgermo's referees app. From there, we realised OBS integration and livestreams would be possible
 so I tweaked the nextLifter spreadsheet to 'steal' data and upload it to the server. At this point it was all running on a Raspberry Pi Zero W!!
 The simpleLifter spreadsheet started when I realised how alternative systems (nextLifter and openLifter) had pros and cons but to tweak them to get
 what I need would be near impossible. So I made my own.
 
---Why am I doing this--
+## Why am I doing this
 My original involvement with this was trying to automate and improve powerlifting livestream quality, by fixing nextLifter overlays and providing an 
 alternative to the more common liftingcast look. From there, I wanted to make a free wireless lights and timers system which was easy to deploy and
 eliminated trip hazards at competitions. 
@@ -32,5 +32,5 @@ Quality competition management software, light systems, and overlays should be a
 And it should be free. Cause I'm sick of people trying to profit off the goodwill of the meet directors, referees, spotters, tech desk, lifters, parents 
 and friends, or anybody else involved in what is still a grassroots and amateurish sport.
 
---To anybody reading this--
+## To anybody reading this
 Enjoy. I mean, you'll hate me once you look at the code. But I hope it helps.
