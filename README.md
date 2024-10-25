@@ -2,6 +2,8 @@
 
 Hi! Welcome to the simpleLifter gitub. I don't really know what I'm doing here but now it's all available for everyone to use.
 
+I pulled the simpleLifter server down in October 2024 after the demand dropped right off. The code from the server is here for all to laugh at, pilfer from or whatever.
+
 --What is it--
 simpleLifter is an HTML based powerlifting competition ecosystem. It includes:
 * lights and timers
@@ -13,13 +15,15 @@ simpleLifter is an HTML based powerlifting competition ecosystem. It includes:
 --Where did it come from--
 It started as a free and improved version of Stian Walgermo's referees app. From there, we realised OBS integration and livestreams would be possible
 so I tweaked the nextLifter spreadsheet to 'steal' data and upload it to the server. At this point it was all running on a Raspberry Pi Zero W!!
-simpleLifter the spreadsheet started when I realised how alternative systems (nextLifter and openLifter) had pros and cons but to tweak them to get
-what I need would be near impossible. So I made my own!! 
+The simpleLifter spreadsheet started when I realised how alternative systems (nextLifter and openLifter) had pros and cons but to tweak them to get
+what I need would be near impossible. So I made my own.
 
 --Why am I doing this--
-My original involvement with this was trying to automate and improve powerlifting livestream quality, by fixing nextLifter overlays. From there, I
-wanted to make a free wireless lights and timers system which was easy to deploy and eliminated trip hazards at competitions. I have competed and helped
-at IPF affiliated competitions where the platform loads were written on a whiteboard, and lifting order was shouted out. 
+My original involvement with this was trying to automate and improve powerlifting livestream quality, by fixing nextLifter overlays and providing an 
+alternative to the more common liftingcast look. From there, I wanted to make a free wireless lights and timers system which was easy to deploy and
+eliminated trip hazards at competitions. 
+
+I have competed and helped at IPF affiliated competitions where the platform loads were written on a whiteboard, and lifting order was shouted out. 
 
 It was horrible.
 
